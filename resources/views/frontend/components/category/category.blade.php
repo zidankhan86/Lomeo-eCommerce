@@ -1,228 +1,86 @@
-<div class="breadcrumb-wrapper">
-    <div class="container">
-        <div class="row">
-            <div class="col-sm-12">
-                <div class="text-center">
-                   <h2 class="lg-title">Travel</h2>
+  <!-- top categories product section start -->
+  <section class="overflow-hidden relative lg:pb-20 md:pb-6 pb-3">
+    <div class="container px-3 md:px-5 xl:px-0">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="text-gray-black xl:text-[32px] xl:leading-[110%] text-xl md:text-2xl font-semibold font-display">Top categories</h2>
+            <div class="flex gap-[18px]">
+                <button class="categoriesSwiper-button-prev">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <rect width="24" height="24" transform="matrix(-1 0 0 1 24 0)" fill="none" />
+                        <path d="M8.5 7.5L4 12M4 12L8.5 16.5M4 12H20" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+                <button class="categoriesSwiper-button-next">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M15.5 7.5L20 12M20 12L15.5 16.5M20 12H4" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <div class="swiper topCategoriesSwiper mx-3 md:mx-0">
+            <div class="swiper-wrapper">
+                <div class="swiper-slide">
+                    <div class="product-card-02">
+                        <div class="product-thumb">
+                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-01.png" alt=""></a>
+                        </div>
+
+                        <div class="product-info">
+                            <h2><a href="#">Wing Chair</a></h2>
+                            <p>3,584 Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card-02">
+                        <div class="product-thumb">
+                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-02.png" alt=""></a>
+                        </div>
+
+                        <div class="product-info">
+                            <h2><a href="#">Wing Chair</a></h2>
+                            <p>3,584 Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card-02">
+                        <div class="product-thumb">
+                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-03.png" alt=""></a>
+                        </div>
+
+                        <div class="product-info">
+                            <h2><a href="#">Wing Chair</a></h2>
+                            <p>3,584 Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card-02">
+                        <div class="product-thumb">
+                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-02.png" alt=""></a>
+                        </div>
+
+                        <div class="product-info">
+                            <h2><a href="#">Wing Chair</a></h2>
+                            <p>3,584 Products</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="swiper-slide">
+                    <div class="product-card-02">
+                        <div class="product-thumb">
+                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-03.png" alt=""></a>
+                        </div>
+
+                        <div class="product-info">
+                            <h2><a href="#">Wing Chair</a></h2>
+                            <p>3,584 Products</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-
-
-<section class="section-padding">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-8 col-md-12 col-sm-12 col-xs-12">
-				<div class="row">
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f1.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-extra text-sm text-uppercase letter-spacing-1">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">The best soft chocolate chip cookies</a></h3>
-
-			<span class=" text-muted  text-capitalize">September 15, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f2.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">How to Make the Best Baked Oatmeal</a></h3>
-
-			<span class=" text-muted  text-capitalize">August 05, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f8.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">5 ingredient cilantro vinaigrette</a></h3>
-
-			<span class=" text-muted  text-capitalize">April 22, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f3.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">The best soft chocolate chip cookies</a></h3>
-
-			<span class=" text-muted  text-capitalize">September 10, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f4.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">How to Make the Best Baked Oatmeal</a></h3>
-
-			<span class=" text-muted  text-capitalize">January 04, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f5.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">5 ingredient cilantro vinaigrette</a></h3>
-
-			<span class=" text-muted  text-capitalize">March 17, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f6.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class=" cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">5 ingredient cilantro vinaigrette</a></h3>
-
-			<span class=" text-muted  text-capitalize">July 28, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f7.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">The best soft chocolate chip cookies</a></h3>
-
-			<span class=" text-muted  text-capitalize">October 02, 2019</span>
-
-		</article>
-	</div>
-	<div class="col-lg-6 col-md-6">
-		<article class="post-grid mb-5">
-			<div class="post-thumb mb-4">
-				<img src="frontend/images/news/f8.jpg" alt="" class="img-fluid w-100">
-			</div>
-			<span class="cat-name text-color font-sm font-extra text-uppercase letter-spacing">Travel</span>
-			<h3 class="post-title mt-1"><a href="blog-single.html">How to Make the Best Baked Oatmeal</a></h3>
-
-			<span class=" text-muted  text-capitalize">September 15, 2019</span>
-
-		</article>
-	</div>
-</div>
-
-				<div class="pagination mt-5 pt-4">
-					<ul class="list-inline">
-						<li class="list-inline-item"><a href="#" class="active">1</a></li>
-						<li class="list-inline-item"><a href="#">2</a></li>
-						<li class="list-inline-item"><a href="#">3</a></li>
-						<li class="list-inline-item"><a href="#" class="prev-posts"><i class="ti-arrow-right"></i></a></li>
-					</ul>
-				</div>
-			</div>
-			<div class="col-lg-4 col-md-6 col-sm-12 col-xs-12">
-				<div class="sidebar sidebar-right">
-					<div class="sidebar-wrap mt-5 mt-lg-0">
-	<div class="sidebar-widget about mb-5 text-center p-3">
-		<div class="about-author">
-			<img src="frontend/images/author.jpg" alt="" class="img-fluid">
-		</div>
-		<h4 class="mb-0 mt-4">Liam Mason</h4>
-		<p>Travel Blogger</p>
-		<p>I'm Liam, last year I decided to quit my job and travel the world. You can follow my journey on this blog!</p>
-		<img src="frontend/images/liammason.png" alt="" class="img-fluid">
-	</div>
-
-	<div class="sidebar-widget follow mb-5 text-center">
-		<h4 class="text-center widget-title">Follow Me</h4>
-		<div class="follow-socials">
-			<a href="#"><i class="ti-facebook"></i></a>
-			<a href="#" ><i class="ti-twitter"></i></a>
-			<a href="#" ><i class="ti-instagram"></i></a>
-			<a href="#"><i class="ti-youtube"></i></a>
-			<a href="#"><i class="ti-pinterest"></i></a>
-		</div>
-	</div>
-
-	<div class="sidebar-widget mb-5 ">
-		<h4 class="text-center widget-title">Trending Posts</h4>
-
-		<div class="sidebar-post-item-big">
-			<a href="blog-single.html"><img src="frontend/images/news/img-1.jpg" alt="" class="img-fluid"></a>
-			<div class="mt-3 media-body">
-            	<span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-				<h4 ><a href="blog-single.html">Meeting With Clarissa, Founder Of Purple Conversation App</a></h4>
-			</div>
-		</div>
-
-        <div class="media border-bottom py-3 sidebar-post-item">
-            <a href="#"><img class="mr-4" src="frontend/images/news/thumb-1.jpg" alt=""></a>
-            <div class="media-body">
-            	<span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-                <h4 ><a href="blog-single.html">Thoughtful living in los Angeles</a></h4>
-            </div>
-        </div>
-
-        <div class="media py-3 sidebar-post-item">
-            <a href="#"><img class="mr-4" src="frontend/images/news/thumb-2.jpg" alt=""></a>
-           <div class="media-body">
-           		<span class="text-muted letter-spacing text-uppercase font-sm">September 10, 2019</span>
-                <h4 ><a href="blog-single.html">Vivamus molestie gravida turpis.</a></h4>
-            </div>
-        </div>
-	</div>
-
-
-	<div class="sidebar-widget category mb-5">
-		<h4 class="text-center widget-title">Catgeories</h4>
-	 	<ul class="list-unstyled">
-		  <li class="align-items-center d-flex justify-content-between">
-		    <a href="#">Innovation</a>
-		    <span>14</span>
-		  </li>
-		  <li class="align-items-center d-flex justify-content-between">
-		    <a href="#">Software</a>
-		    <span>2</span>
-		  </li>
-		  <li class="align-items-center d-flex justify-content-between">
-		    <a href="#">Social</a>
-		    <span>10</span>
-		  </li>
-		  <li class="align-items-center d-flex justify-content-between">
-		    <a href="#">Trends</a>
-		    <span>5</span>
-		  </li>
-		</ul>
-	</div>
-
-	<div class="sidebar-widget subscribe mb-5">
-		<h4 class="text-center widget-title">Newsletter</h4>
-		<input type="text" class="form-control" placeholder="Email Address">
-		<a href="#" class="btn btn-primary d-block mt-3">Sign Up</a>
-	</div>
-
-	<div class="sidebar-widget sidebar-adv mb-5">
-		<a href="#"><img src="frontend/images/sidebar-banner3.png" alt="" class="img-fluid w-100"></a>
-	</div>
-
-</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
+<!-- top categories product section end -->

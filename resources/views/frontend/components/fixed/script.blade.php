@@ -1,4 +1,6 @@
- <!-- Bootstrap core JS-->
- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
- <!-- Core theme JS-->
- <script src="{{ ('frontend/js/scripts.js') }}"></script>
+ <!-- script file here -->
+ <script src="{{asset ('frontend/./public/assets/plugins/js/jquery.js') }}"></script>
+ <script src="{{asset ('frontend/./public/assets/plugins/js/swipper.js') }}"></script>
+ <script src="{{asset ('frontend/./public/assets/plugins/js/select2.js') }}"></script>
+ <script src="{{asset ('frontend/./public/assets/plugins/js/mixitUp.js') }}"></script>
+ <script src="{{asset ('frontend/./public/js/app.js') }}"></script>
