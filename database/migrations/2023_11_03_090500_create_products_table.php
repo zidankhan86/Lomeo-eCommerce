@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('slug');
             $table->boolean('featured')->default(true);
             $table->string('thumbnail');
-            $table->string('price');
             $table->string('stock');
             $table->boolean('status')->default('1');
             $table->string('discount')->nullable();
