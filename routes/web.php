@@ -70,9 +70,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
     Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
     Route::get('/category-form',[CategoryController::class,'create'])->name('category.form');
-
     Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
-
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
 
