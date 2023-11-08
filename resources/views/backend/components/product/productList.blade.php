@@ -1,5 +1,11 @@
 
-
+<style>
+    img{
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+</style>
 <div class="container">
     <br><h2 style="text-align: center">Category Table</h2>
     <div style="text-align: right">
@@ -9,9 +15,10 @@
         <div class="card">
           <div class="table-responsive">
             <table
-    class="table table-vcenter table-mobile-md card-table">
+             class="table table-vcenter table-mobile-md card-table">
               <thead>
                 <tr>
+                    <th>Sl</th>
                     <th>Thumbnail</th>
                     <th>Name</th>
                     <th>Price</th>
@@ -27,10 +34,27 @@
                 </tr>
               </thead>
               <tbody>
+
+                @foreach ($products as $product)
+
+
                 <tr>
                     <tr>
-                        <td data-label="Name" >Test</td>
-                        <td data-label="Title" >Test </td>
+                        <td data-label="sl" >{{ $product->id }} </td>
+                        <td data-label="img" >
+                            <img src="{{ url('/public/uploads/' , $product->thumbnail) }}" alt="product">
+
+                        </td>
+                        <td data-label="Title" >{{ $product->name }} </td>
+                        <td data-label="Title" >BDT {{ $product->price }} </td>
+                        <td data-label="Title" >{{ $product->category->name }} </td>
+                        <td data-label="Title" >{{ $product->brand->name }} </td>
+
+                        <td data-label="Title" >{{ $product->stock }} </td>
+                        <td data-label="Title" >{{ $product->discount }} </td>
+                        <td data-label="Title" >{{ $product->status == 1? 'Active':'Inactive' }} </td>
+                        <td data-label="Title" >{{ $product->features == 1? 'True': 'False'	 }} </td>
+                      
 
                   <td>
                     <div class="btn-list flex-nowrap">
@@ -54,7 +78,7 @@
                   </td>
                 </tr>
 
-
+                @endforeach
 
               </tbody>
             </table>

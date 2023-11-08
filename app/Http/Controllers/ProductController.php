@@ -22,7 +22,11 @@ class ProductController extends Controller
 
     public function list()
     {
-       return view('backend.pages.productList');
+        $products   = Product::all();
+        Category::with('category')->where('name');
+        Brand::with('brand')->where('name');
+
+        return view('backend.pages.productList',compact('products'));
     }
 
     public function store(Request $request)
@@ -42,9 +46,9 @@ class ProductController extends Controller
         ]);
 
         $imageName = null;
-        if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
-            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        if ($request->hasFile('thumbnail')) {
+            $imageName = date('YmdHis') . '.' . $request->file('thumbnail')->getClientOriginalExtension();
+            $request->file('thumbnail')->storeAs('uploads', $imageName, 'public');
         }
 
         Product::create([
@@ -54,7 +58,7 @@ class ProductController extends Controller
             'price'                 => $request->price,
             'slug'                  => Str::slug($request->name),
             'featured'              => $request->input('featured', true),
-            'thumbnail'             => $request->thumbnail,
+            'thumbnail'             => $imageName,
             'stock'                 => $request->stock,
             'status'                => $request->input('status', true),
             'discount'              => $request->discount,
