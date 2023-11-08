@@ -6,9 +6,8 @@
         <link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
         <div class="container">
-<div class="container">
-    <div class="container">
-        <br><br><div class="col-12 mx-auto">
+
+        <br><br><div class="col-10 mx-auto">
             <form class="card" method="POST" action="{{ route('product') }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
@@ -22,6 +21,7 @@
                              </svg> Back
                         </a>
                     </h3><br><br>
+                    <div>
                     <div class="row row-cards">
                         <div class="col-md-12">
                             <div class="mb-3">
@@ -155,8 +155,7 @@
             </form>
         </div>
         </div>
-    </div>
-</div>
+
         </div>
         <style type="text/css">
             .ck-editor__editable_inline{

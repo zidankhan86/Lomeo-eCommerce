@@ -11,7 +11,7 @@
     <div style="text-align: right">
         <a href="{{ route('category.form') }}" class="btn btn-info" style="margin-right: 10px;">+ Add Category</a>
     </div><br><br>
-    <div class="col-12">
+    <div class="col-10 mx-auto">
         <div class="card">
           <div class="table-responsive">
             <table

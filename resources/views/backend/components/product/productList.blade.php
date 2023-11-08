@@ -54,7 +54,7 @@
                         <td data-label="Title" >{{ $product->discount }} </td>
                         <td data-label="Title" >{{ $product->status == 1? 'Active':'Inactive' }} </td>
                         <td data-label="Title" >{{ $product->features == 1? 'True': 'False'	 }} </td>
-                      
+
 
                   <td>
                     <div class="btn-list flex-nowrap">

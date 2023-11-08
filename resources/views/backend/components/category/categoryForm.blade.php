@@ -4,8 +4,8 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 
-<div class="container">
-<br><br><br><div class="col-12 mx-auto" >
+
+<br><br><br><div class="col-10 mx-auto" >
     <form class="card" action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
@@ -75,7 +75,7 @@
             <button type="submit" class="btn btn-primary">+ Add</button>
         </div>
     </form>
-</div>
+
 </div>
 <script>
     $(document).ready(function () {

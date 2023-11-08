@@ -52,7 +52,7 @@ class ProductController extends Controller
         }
 
         Product::create([
-            'name' => $request->name,
+            'name'                  => $request->name,
             'long_description'      => $request->long_description,
             'short_description'     => $request->short_description,
             'price'                 => $request->price,
