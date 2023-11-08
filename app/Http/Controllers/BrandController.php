@@ -14,7 +14,9 @@ class BrandController extends Controller
      */
     public function list()
     {
-        return view('backend.pages.brandList');
+        $brands = Brand::all();
+        Category::with('category')->where('name');
+        return view('backend.pages.brandList',compact('brands'));
     }
 
     /**
@@ -34,7 +36,7 @@ class BrandController extends Controller
     {
         $request->validate([
             'name' => 'required|max:255',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'required',
             'category_id' => 'required|exists:categories,id',
         ]);
 

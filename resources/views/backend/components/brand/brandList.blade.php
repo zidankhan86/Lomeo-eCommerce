@@ -1,5 +1,11 @@
 
-
+<style>
+    img{
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+</style>
 <div class="container">
     <br><h2 style="text-align: center">Brand Table</h2>
     <div style="text-align: right">
@@ -12,19 +18,24 @@
     class="table table-vcenter table-mobile-md card-table">
               <thead>
                 <tr>
-                    <th>Title</th>
+                    <th>Sl</th>
+                    <th>Image</th>
+                    <th>Name</th>
                   <th>Category Type</th>
-
-
                   <th class="w-1">Action</th>
                 </tr>
               </thead>
               <tbody>
+
+                @foreach ($brands as $brand)
+
+
                 <tr>
                     <tr>
-                        <td data-label="Name" >Test</td>
-                        <td data-label="Title" >Test </td>
-
+                        <td data-label="Name" >{{ $brand->id }}</td>
+                        <td data-label="Title" ><img src="{{ url('/public/uploads',$brand->image) }}" alt="brand"> </td>
+                        <td data-label="Name" >{{ $brand->name }}</td>
+                        <td data-label="Name" >{{ $brand->category->name }}</td>
                   <td>
                     <div class="btn-list flex-nowrap">
                       <a href="#" class="btn">
@@ -48,7 +59,7 @@
                 </tr>
 
 
-
+                @endforeach
               </tbody>
             </table>
           </div>
