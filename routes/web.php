@@ -7,6 +7,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -58,23 +59,30 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
 
-//Pages
-Route::get('/app',[HomeController::class,'index'])->name('app');
-Route::get('/product', [ProductController::class,'index'])->name('products.index');
-Route::post('/product', [ProductController::class,'store'])->name('product');
-Route::get('/logout',[TestController::class,'logout'])->name('logout');
-Route::get('/form',[TestController::class,'form'])->name('form');
-Route::get('/setting',[SettingController::class,'index'])->name('setting');
-Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
-Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
-Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
-Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
-Route::get('/category-form',[CategoryController::class,'form'])->name('category.form');
-Route::get('/blog-list',[BlogController::class,'list'])->name('blog.list');
-Route::get('/blog-form',[BlogController::class,'form'])->name('blog.form');
+    //Pages
+    Route::get('/app',[HomeController::class,'index'])->name('app');
+    Route::get('/product', [ProductController::class,'index'])->name('products.index');
+    Route::get('/logout',[TestController::class,'logout'])->name('logout');
+    Route::get('/form',[TestController::class,'form'])->name('form');
+    Route::get('/setting',[SettingController::class,'index'])->name('setting');
+    Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
 
-//profile
-Route::get('/profile',[ProfileController::class,'index'])->name('profile');
-//post
-Route::post('/registration/update{id}',[RegistrationController::class,'update'])->name('registration.update');
+    Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
+    Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
+    Route::get('/category-form',[CategoryController::class,'create'])->name('category.form');
+
+    Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
+
+    Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
+    Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
+
+    //Post
+    Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
+    Route::post('/product', [ProductController::class,'store'])->name('product');
+    Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
+    Route::post('/brand-store', [BrandController::class,'store'])->name('brand.store');
+    //profile
+    Route::get('/profile',[ProfileController::class,'index'])->name('profile');
+    //post
+    Route::post('/registration/update{id}',[RegistrationController::class,'update'])->name('registration.update');
 });

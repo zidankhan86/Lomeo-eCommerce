@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class BrandController extends Controller
@@ -10,9 +12,9 @@ class BrandController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function list()
     {
-        //
+        return view('backend.pages.brandList');
     }
 
     /**
@@ -20,7 +22,9 @@ class BrandController extends Controller
      */
     public function create()
     {
-        //
+
+        $categories = Category::all();
+        return view('backend.pages.brandForm',compact('categories'));
     }
 
     /**
@@ -28,7 +32,28 @@ class BrandController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:255',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'category_id' => 'required|exists:categories,id',
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
+
+        // Create the product
+        Brand::create([
+            'name' => $request->name,
+            'image' => $imageName,
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Brand created successfully');
+
     }
 
     /**

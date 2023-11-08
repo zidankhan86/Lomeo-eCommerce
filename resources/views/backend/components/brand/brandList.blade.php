@@ -1,9 +1,9 @@
 
 
 <div class="container">
-    <br><h2 style="text-align: center">Category Table</h2>
+    <br><h2 style="text-align: center">Brand Table</h2>
     <div style="text-align: right">
-        <a href="{{ route('blog.form') }}" class="btn btn-info" style="margin-right: 10px;">+ Add Blog</a>
+        <a href="{{ route('brand.create') }}" class="btn btn-info" style="margin-right: 10px;">+ Add Brand</a>
     </div><br><br>
     <div class="col-12">
         <div class="card">
@@ -14,10 +14,8 @@
                 <tr>
                     <th>Title</th>
                   <th>Category Type</th>
-                  <th>Category Type</th>
-                  <th>Category Type</th>
-                  <th>Category Type</th>
-                  <th>Category Type</th>
+
+
                   <th class="w-1">Action</th>
                 </tr>
               </thead>

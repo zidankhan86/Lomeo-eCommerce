@@ -3,13 +3,14 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
+    //Frontend page
     public function index()
     {
        return view('frontend.pages.category');
@@ -20,7 +21,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('backend.pages.categoryForm');
     }
 
     /**
@@ -28,7 +29,27 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name'   => 'required|max:255',
+            'status' => 'required',
+            'image'  => 'required|image|mimes:jpeg,png,jpg,gif',
+
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
+
+        Category::create([
+            "name"     => $request->name,
+            "status"   => $request->status,
+            "image"    => $imageName,
+            "slug"     => Str::slug($request->name),
+
+       ]);
+       return redirect()->back()->with('success', 'Category created successfully.');
     }
 
     /**
@@ -67,8 +88,4 @@ class CategoryController extends Controller
        return view('backend.pages.categoryList');
     }
 
-    public function form()
-    {
-       return view('backend.pages.categoryForm');
-    }
 }
