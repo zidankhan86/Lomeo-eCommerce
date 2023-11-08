@@ -1,4 +1,10 @@
-
+<style>
+    img{
+        height: 100px;
+        width: 100px;
+        border-radius: 50%;
+    }
+</style>
 
 <div class="container">
     <br><h2 style="text-align: center">Category Table</h2>
@@ -9,9 +15,10 @@
         <div class="card">
           <div class="table-responsive">
             <table
-    class="table table-vcenter table-mobile-md card-table">
+                class="table table-vcenter table-mobile-md card-table">
               <thead>
                 <tr>
+                    <th>Id</th>
                     <th>Title</th>
                   <th>Category Type</th>
 
@@ -20,10 +27,17 @@
                 </tr>
               </thead>
               <tbody>
+
+                @foreach ($categories as $category)
+
+
                 <tr>
                     <tr>
-                        <td data-label="Name" >Test</td>
-                        <td data-label="Title" >Test </td>
+                        <td data-label="id" >{{ $category->id }}</td>
+                        <td data-label="img" ><img src="{{ url('/public/uploads/' , $category->image) }}" alt="Cagegory"> </td>
+                        <td data-label="name" >{{ $category->name }} </td>
+
+
 
                   <td>
                     <div class="btn-list flex-nowrap">
@@ -46,7 +60,7 @@
                     </div>
                   </td>
                 </tr>
-
+                @endforeach
 
 
               </tbody>
