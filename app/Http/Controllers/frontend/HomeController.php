@@ -14,13 +14,13 @@ class HomeController extends Controller
     public function index()
     {
 
-        // $products = Product::all();
+         $products = Product::all();
 
-        return view('frontend.pages.home');
+        return view('frontend.pages.home',compact('products'));
     }
 
 
-    
+
 
     /**
      * Show the form for creating a new resource.
