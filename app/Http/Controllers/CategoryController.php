@@ -49,6 +49,7 @@ class CategoryController extends Controller
             "slug"     => Str::slug($request->name),
 
        ]);
+
        return redirect()->back()->with('success', 'Category created successfully.');
     }
 
@@ -72,9 +73,31 @@ class CategoryController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request,  $id)
     {
-        //
+        $update = Category::find($id);
+        $request->validate([
+            'name'   => 'required|max:255',
+            'status' => 'required',
+            'image'  => 'required|image|mimes:jpeg,png,jpg,gif',
+
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
+
+        $update->update([
+            "name"     => $request->name,
+            "status"   => $request->status,
+            "image"    => $imageName,
+            "slug"     => Str::slug($request->name),
+
+       ]);
+
+       return redirect()->back()->with('success', 'Category created successfully.');
     }
 
     /**

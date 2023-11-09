@@ -165,11 +165,10 @@
             .ck-editor__editable_inline{
             height: 150px;
             }
-
             </style>
 
-        <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
-        <script>
+            <script src="https://cdn.ckeditor.com/ckeditor5/40.0.0/classic/ckeditor.js"></script>
+            <script>
             ClassicEditor
                 .create(document.querySelector('#editor'))
                 .catch(error => {
@@ -181,10 +180,10 @@
                 .catch(error => {
                     console.error(error);
                 });
-        </script>
+              </script>
 
-        <script>
-            $(document).ready(function () {
-                $('.dropify').dropify();
-            });
-        </script>
+            <script>
+                $(document).ready(function () {
+                    $('.dropify').dropify();
+                });
+            </script>
