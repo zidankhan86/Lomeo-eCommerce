@@ -36,7 +36,7 @@ class Product extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function comments(): HasMany
+    public function gallery(): HasMany
     {
         return $this->hasMany(Gallery::class);
     }

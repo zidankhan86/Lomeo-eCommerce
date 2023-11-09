@@ -18,7 +18,7 @@
 
             <div class="mix all featured" data-cat="featured">
                 <div class="product-card">
-                    <a href="product-details.html">
+                    <a href="{{ route('details',$product->id) }}">
                         <div class="product-thumb">
                             <img src="{{ url('public/uploads/',$product->thumbnail) }}" alt="">
                             <span class="badge new">New</span>

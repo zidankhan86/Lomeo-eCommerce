@@ -34,6 +34,9 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 //Pages
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
 Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
+
+Route::get('/product/details/{id}',[FrontendProductController::class,'show'])->name('details');
+
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/about',[AboutController::class,'index'])->name('about');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');

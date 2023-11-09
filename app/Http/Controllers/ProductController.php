@@ -153,10 +153,10 @@ class ProductController extends Controller
     public function galleryStore(Request $request ){
 
         //dd($request->all());
-           
-            $postImageNames=[];
-    if ($request->hasFile('images')) {
-        foreach ($request->file('images') as $image) {
+
+              $postImageNames=[];
+         if ($request->hasFile('images')) {
+           foreach ($request->file('images') as $image) {
             $imageUniqueName = time() . '_' . $image->getClientOriginalName();
             $image->storeAs('uploads', $imageUniqueName, 'public');
             $postImageNames[] = $imageUniqueName;

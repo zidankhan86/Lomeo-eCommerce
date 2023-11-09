@@ -5,6 +5,7 @@ namespace App\Http\Controllers\frontend;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Gallery;
 
 class ProductController extends Controller
 {
@@ -36,9 +37,13 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show( $id)
     {
-        //
+
+        //  $products = Product::find($id);
+         $products = Product::with('gallery')->find($id);
+        //  Gallery::with('product')->where('images');
+         return view('frontend.pages.productDetails',compact('products'));
     }
 
     /**
