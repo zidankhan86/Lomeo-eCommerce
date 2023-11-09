@@ -16,6 +16,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\frontend\ProductController as FrontendProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,7 +33,7 @@ use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 
 //Pages
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
-Route::get('/product/page',[FrontendHomeController::class,'product'])->name('product.page');
+Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
 Route::get('/blog',[BlogController::class,'index'])->name('blog');
 Route::get('/about',[AboutController::class,'index'])->name('about');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');

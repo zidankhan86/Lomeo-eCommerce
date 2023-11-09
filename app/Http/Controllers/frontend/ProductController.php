@@ -2,25 +2,20 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class HomeController extends Controller
+class ProductController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     */
+
+
     public function index()
     {
-
-        // $products = Product::all();
-
-        return view('frontend.pages.home');
+          $products = Product::all();
+        // $userId = auth()->user()->id;
+        return view('frontend.pages.product',compact('products'));
     }
-
-
-    
 
     /**
      * Show the form for creating a new resource.

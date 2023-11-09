@@ -227,10 +227,10 @@
 
                     <ul class="lg:flex gap-8 items-center hidden main-menu">
                         <li>
-                            <a href="index.html">Home</a>
+                            <a href="{{ route('home') }}">Home</a>
                         </li>
                         <li>
-                            <a href="products.html">Shop</a>
+                            <a href="{{ route('product.page') }}">Shop</a>
                         </li>
                         <li>
                             <a href="product-details.html">Product</a>
@@ -383,7 +383,7 @@
             <div class="panel-1 tab-content active">
                 <ul class="flex flex-col items-center">
                     <li class="w-full block">
-                        <a href="" class="border-b border-[#029FAE] block px-3 py-2">Home</a>
+                        <a href="{{ route('home') }}" class="border-b border-[#029FAE] block px-3 py-2">Home</a>
                     </li>
                     <li class="w-full block">
                         <a href="" class="border-b border-[#029FAE] block px-3 py-2">Shop</a>
