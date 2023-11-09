@@ -58,7 +58,7 @@
 
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
+                      <a href="{{ route('product.edit',$product->id) }}" class="btn">
                         Edit
                       </a>
                       <div class="dropdown">

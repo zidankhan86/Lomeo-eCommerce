@@ -82,9 +82,12 @@ class ProductController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Product $product)
+    public function edit( $id)
     {
-        //
+         $product = Product::find($id);
+         $categories = Category::all();
+         $brands = Brand::all();
+         return view('backend.pages.productEdit',compact('product','categories','brands'));
     }
 
     /**

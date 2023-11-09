@@ -41,7 +41,7 @@
 
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
+                      <a href="{{route('category.edit',$category->id)}}" class="btn">
                         Edit
                       </a>
                       <div class="dropdown">

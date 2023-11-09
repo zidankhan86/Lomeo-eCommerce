@@ -38,7 +38,7 @@
                         <td data-label="Name" >{{ $brand->category->name }}</td>
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
+                      <a href="{{ route('brand.edit',$brand->id) }}" class="btn">
                         Edit
                       </a>
                       <div class="dropdown">

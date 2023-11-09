@@ -69,9 +69,11 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Brand $brand)
+    public function edit( $id)
     {
-        //
+        $categories= Category::all();
+        $brand = Brand::find($id);
+        return view('backend.pages.brandEdit',compact('categories','brand'));
     }
 
     /**

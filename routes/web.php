@@ -74,6 +74,10 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
 
+    Route::get('/brand-form/{id}', [BrandController::class,'edit'])->name('brand.edit');
+    Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');
+    Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
+
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
     Route::post('/product', [ProductController::class,'store'])->name('product');
