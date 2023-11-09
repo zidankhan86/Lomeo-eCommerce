@@ -213,10 +213,10 @@
 
             <div class="dropdown-menu-columns">
                 <div class="dropdown-menu-column">
-                  <a class="dropdown-item" href="#">
+                  {{-- <a class="dropdown-item" href="{{ route('product.gallery') }}">
                     gallery
 
-                  </a>
+                  </a> --}}
               </div>
             </div>
           </li>

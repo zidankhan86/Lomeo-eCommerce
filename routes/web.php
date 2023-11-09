@@ -73,7 +73,8 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
-
+    Route::get('/product-gallery/{id}', [ProductController::class,'gallery'])->name('product.gallery');
+    //Edit
     Route::get('/brand-form/{id}', [BrandController::class,'edit'])->name('brand.edit');
     Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
@@ -85,7 +86,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/brand-store', [BrandController::class,'store'])->name('brand.store');
     Route::post('/brand-update/{id}', [BrandController::class,'update'])->name('brand.update');
     Route::post('/product/update/{id}', [ProductController::class,'update'])->name('product.update');
-
+    Route::post('/product-gallery-store', [ProductController::class,'galleryStore'])->name('gallery.store');
     Route::post('/category-update/{id}',[CategoryController::class,'update'])->name('category.update');
 
     //profile

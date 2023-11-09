@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
+use App\Models\Gallery;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 
@@ -141,5 +142,32 @@ class ProductController extends Controller
     public function destroy(Product $product)
     {
         //
+    }
+
+    public function gallery($id)
+    {
+        $product = Product::find($id);
+       return view('backend.pages.productgallery',compact('product'));
+    }
+
+    public function galleryStore(Request $request ){
+
+        //dd($request->all());
+           
+            $postImageNames=[];
+    if ($request->hasFile('images')) {
+        foreach ($request->file('images') as $image) {
+            $imageUniqueName = time() . '_' . $image->getClientOriginalName();
+            $image->storeAs('uploads', $imageUniqueName, 'public');
+            $postImageNames[] = $imageUniqueName;
+        }
+    }
+
+        Gallery::create([
+            "product_id"       =>$request->product_id,
+            "images" => serialize($postImageNames),
+        ]);
+
+        return back()->with('success','Images uploaded');
     }
 }
