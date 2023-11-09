@@ -6,6 +6,8 @@
 <!-- Tabler Core -->
 <script src="{{asset ('./dist/js/tabler.min.js?1684106062') }}" defer></script>
 <script src="{{asset ('./dist/js/demo.min.js?1684106062') }}" defer></script>
+{{-- Dropify Css --}}
+<script src="{{ asset('js/dropify.js') }}"></script>
 <script>
   // @formatter:off
   document.addEventListener("DOMContentLoaded", function () {

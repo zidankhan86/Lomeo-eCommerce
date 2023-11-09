@@ -1,11 +1,15 @@
 
+
+        {{-- DROPIFY --}}
         <!-- Include jQuery -->
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
         <!-- Include Dropify CSS and JS -->
         <link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" rel="stylesheet">
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
-        <div class="container">
+
+
+
+
 
         <br><br><div class="col-10 mx-auto">
             <form class="card" method="POST" action="{{ route('product') }}" enctype="multipart/form-data">
@@ -154,7 +158,7 @@
                 </div>
             </form>
         </div>
-        </div>
+
 
         </div>
         <style type="text/css">
@@ -183,6 +187,4 @@
             $(document).ready(function () {
                 $('.dropify').dropify();
             });
-
-
         </script>
