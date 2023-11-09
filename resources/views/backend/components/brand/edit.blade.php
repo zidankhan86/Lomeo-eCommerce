@@ -4,7 +4,7 @@
 <link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" rel="stylesheet">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 <br><br><div class="col-10 mx-auto">
-    <form class="card" action="{{ route('brand.store') }}" method="post" enctype="multipart/form-data">
+    <form class="card" action="{{ route('brand.update',$brand->id) }}" method="post" enctype="multipart/form-data">
         @csrf
       <div class="card-body">
         <br><br><h3 class="card-title" style="text-align: center; display: flex; justify-content: space-between; align-items: center;">

@@ -79,9 +79,32 @@ class BrandController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Brand $brand)
+    public function update(Request $request,  $id)
     {
-        //
+        $update = Brand::find($id);
+
+        $request->validate([
+            'name'          => 'required|max:255',
+            'image'         => 'required',
+            'category_id'   => 'required|exists:categories,id',
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
+
+             // Create the product
+            $update->update([
+            'name'          => $request->name,
+            'image'         => $imageName,
+            'slug'          => Str::slug($request->name),
+            'category_id'   => $request->category_id,
+        ]);
+
+        return redirect()->back()->with('success', 'Brand updated successfully');
+
     }
 
     /**
