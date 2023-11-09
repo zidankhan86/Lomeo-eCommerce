@@ -93,9 +93,46 @@ class ProductController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request,  $id)
     {
-        //
+        $update = Product::find($id);
+        $request->validate([
+            'name'                  => 'required|max:255',
+            'price'                 => 'required|numeric',
+            'image'                 => 'required|image|mimes:jpeg,png,jpg,gif',
+            'long_description'      => 'required',
+            'short_description'     => 'required',
+            'thumbnail'             => 'required',
+            'stock'                 => 'required',
+            'status'                => 'boolean',
+            'discount'              => 'nullable',
+            'category_id'           => 'required|exists:categories,id',
+            'image'                 => 'nullable',
+        ]);
+
+        $imageName = null;
+        if ($request->hasFile('thumbnail')) {
+            $imageName = date('YmdHis') . '.' . $request->file('thumbnail')->getClientOriginalExtension();
+            $request->file('thumbnail')->storeAs('uploads', $imageName, 'public');
+        }
+
+        $update->update([
+            'name'                  => $request->name,
+            'long_description'      => $request->long_description,
+            'short_description'     => $request->short_description,
+            'price'                 => $request->price,
+            'slug'                  => Str::slug($request->name),
+            'featured'              => $request->input('featured', true),
+            'thumbnail'             => $imageName,
+            'stock'                 => $request->stock,
+            'status'                => $request->input('status', true),
+            'discount'              => $request->discount,
+            'category_id'           => $request->category_id,
+            'brand_id'              => $request->brand_id,
+            'image'                 => $imageName,
+        ]);
+
+        return redirect()->back()->with('success', 'Product updated successfully');
     }
 
     /**

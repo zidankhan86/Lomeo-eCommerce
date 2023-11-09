@@ -8,7 +8,7 @@
         <div class="container">
 
         <br><br><div class="col-10 mx-auto">
-            <form class="card" method="POST" action="{{ route('product') }}" enctype="multipart/form-data">
+            <form class="card" method="POST" action="{{ route('product.update',$product->id) }}" enctype="multipart/form-data">
                 @csrf
                 <div class="card-body">
                     <br><br><h3 class="card-title" style="text-align: center; display: flex; justify-content: space-between; align-items: center;">

@@ -83,11 +83,11 @@ Route::group(['middleware'=>'auth'],function(){
     Route::post('/product', [ProductController::class,'store'])->name('product');
     Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
     Route::post('/brand-store', [BrandController::class,'store'])->name('brand.store');
-
     Route::post('/brand-update/{id}', [BrandController::class,'update'])->name('brand.update');
+    
     Route::post('/product/update/{id}', [ProductController::class,'update'])->name('product.update');
     Route::post('/category-update/{id}',[CategoryController::class,'update'])->name('category.update');
-    
+
     //profile
     Route::get('/profile',[ProfileController::class,'index'])->name('profile');
     //post
