@@ -9,21 +9,29 @@ use Illuminate\Http\Request;
 class CartController extends Controller
 {
    public function addToCart($productId){
-    $Product = Product::find($productId);
+   // Find the product
+   $product = Product::find($productId);
 
-    $userId = auth()->user()->id; // Get the authenticated user's ID
+   // Check if the product exists
+   if (!$product) {
+       return back()->with('error', 'Product not found');
+   }
 
-    // Add the product to the cart
-    \Cart::session($userId)->add(array(
-        'id' => $Product->id, // Use the product's actual ID as the cart item ID
-        'name' => $Product->name,
-        'price' => $Product->price,
-        'quantity' => 1, // Set the initial quantity as 1
-        'attributes' => array(),
-        'associatedModel' => $Product
-    ));
+   // Get the authenticated user's ID
+   $userId = auth()->user()->id;
 
-        return back()->with('success','Product added to the cart');
+   // Add the product to the cart
+   \Cart::session($userId)->add(array(
+       'id' => $product->id, // Use the actual product ID
+       'name' => $product->name,
+       'price' => $product->price,
+       'quantity' => 1, // Set the initial quantity as 1
+       'attributes' => array(),
+       'associatedModel' => $product
+   ));
+
+   return back()->with('success', 'Product added to the cart');
+
 
    }
 
@@ -48,6 +56,7 @@ class CartController extends Controller
 
    public function showCart()
    {
+    
 
       // Retrieve the currently authenticated user
       $userId = auth()->user();

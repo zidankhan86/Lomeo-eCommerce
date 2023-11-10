@@ -1,5 +1,5 @@
-  <!-- top categories product section start -->
-  <section class="overflow-hidden relative lg:pb-20 md:pb-6 pb-3">
+<!-- top categories product section start -->
+<section class="overflow-hidden relative lg:pb-20 md:pb-6 pb-3">
     <div class="container px-3 md:px-5 xl:px-0">
         <div class="flex justify-between items-center mb-10">
             <h2 class="text-gray-black xl:text-[32px] xl:leading-[110%] text-xl md:text-2xl font-semibold font-display">Top categories</h2>
@@ -20,23 +20,27 @@
         <div class="swiper topCategoriesSwiper mx-3 md:mx-0">
             <div class="swiper-wrapper">
 
-                @foreach ($categories as $category)
+
+                @foreach ($categories as $item)
 
 
                 <div class="swiper-slide">
                     <div class="product-card-02">
                         <div class="product-thumb">
-                            <a href="#"><img src="{{ url('/public/uploads/',$category->image) }}" alt=""></a>
+                            <a href="#"><img src="{{ url('/public/uploads/',$item->image) }}" alt=""></a>
                         </div>
 
                         <div class="product-info">
-                            <h2><a href="#">{{ $category->name }}</a></h2>
+                            <h2><a href="#">{{ $item->name }}</a></h2>
                             <p>3,584 Products</p>
                         </div>
                     </div>
                 </div>
 
                 @endforeach
+
+
+
 
             </div>
         </div>
