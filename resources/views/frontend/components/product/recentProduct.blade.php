@@ -19,21 +19,21 @@
         </div>
         <div class="swiper recentSwiper overflow-hidden">
             <div class="swiper-wrapper">
-                
+
                 @foreach ($latestProducts as $product)
 
 
                 <div class="swiper-slide">
                     <div class="product-card">
-                        <a href="product-details.html">
+                        <a href="{{ route('details',$product->id) }}">
                             <div class="product-thumb">
                                 <img src="{{ url('/public/uploads/',$product->image) }}" alt="">
                                 <span class="badge new">New</span>
                             </div>
                             <div class="product-info">
                                 <div>
-                                    <h2 class="product-name">Library Stool Chair</h2>
-                                    <h3 class="product-price">$20</h3>
+                                    <h2 class="product-name">{{ $product->name }}</h2>
+                                    <h3 class="product-price">BDT {{ $product->price }}</h3>
                                 </div>
                                 <div>
                                     <button class="cart-icon">

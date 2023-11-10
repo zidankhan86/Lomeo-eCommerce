@@ -49,7 +49,7 @@ function CreatePasswordIcon() {
 
 var swiper = new Swiper(".bannerSwiper", {
     cssMode: true,
-    loop: true,
+    //loop: true,
     speed: 1000,
     navigation: {
         nextEl: ".swiper-button-next",
@@ -66,7 +66,7 @@ var swiper = new Swiper(".bannerSwiper", {
 var swiper2 = new Swiper(".brandSwiper", {
     slidesPerView: 2,
     spaceBetween: 12,
-    loop: true,
+   // loop: true,
     mousewheel: true,
     breakpoints: {
         375:{
@@ -96,7 +96,7 @@ var swiper3 = new Swiper(".topCategoriesSwiper", {
     slidesPerView: 1,
     spaceBetween: 12,
     centeredSlides: true,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: ".categoriesSwiper-button-next",
         prevEl: ".categoriesSwiper-button-prev",
@@ -120,7 +120,7 @@ var swiper3 = new Swiper(".topCategoriesSwiper", {
 var swiper4 = new Swiper(".featureSwiper", {
     slidesPerView: 1,
     spaceBetween: 24,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: ".featureSwiper-button-next",
         prevEl: ".featureSwiper-button-prev",
@@ -144,7 +144,7 @@ var swiper4 = new Swiper(".featureSwiper", {
 var swiper5 = new Swiper(".recentSwiper", {
     slidesPerView: 1,
     spaceBetween: 24,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: ".recentSwiper-button-next",
         prevEl: ".recentSwiper-button-prev",
@@ -171,7 +171,7 @@ var swiper5 = new Swiper(".recentSwiper", {
 var swiper6 = new Swiper(".testimonialSwiper", {
     slidesPerView: 1,
     spaceBetween: 0,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: ".testimonials-button-next",
         prevEl: ".testimonials-button-prev",
@@ -188,7 +188,7 @@ var swiper6 = new Swiper(".testimonialSwiper", {
 var galleryThumbs = new Swiper(".gallery-thumbs", {
     freeMode: true,
     slidesPerView: 3,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: '.gallery-button-next',
         prevEl: '.gallery-button-prev',
@@ -201,7 +201,7 @@ var galleryThumbs = new Swiper(".gallery-thumbs", {
 
 var galleryMain = new Swiper(".gallery-main", {
     mousewheel: true,
-    loop: true,
+    //loop: true,
     navigation: {
         nextEl: '.gallery-button-next',
         prevEl: '.gallery-button-prev',
