@@ -85,27 +85,17 @@
         </div>
         <div class="swiper brandSwiper overflow-hidden">
             <div class="swiper-wrapper items-center">
+
+            @foreach ($brands as $brand)
+
+
                 <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-01.png" alt=""></a>
+                    <a href="#"><img src="{{ url('/public/uploads/',$brand->image) }}" alt=""></a>
                 </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-02.png" alt=""></a>
-                </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-03.png" alt=""></a>
-                </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-04.png" alt=""></a>
-                </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-05.png" alt=""></a>
-                </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-06.png" alt=""></a>
-                </div>
-                <div class="swiper-slide inline-flex items-center justify-center">
-                    <a href="#"><img src="/frontend./public/assets/images/all-img/brand-logo-07.png" alt=""></a>
-                </div>
+
+
+                @endforeach
+
             </div>
         </div>
     </div>

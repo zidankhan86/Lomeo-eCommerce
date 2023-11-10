@@ -15,6 +15,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
 
@@ -34,6 +35,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 //Pages
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
 Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
+
+Route::get('/brand-page',[FrontendBrandController::class,'index'])->name('brand.page');
 
 Route::get('/product/details/{id}',[FrontendProductController::class,'show'])->name('details');
 
@@ -57,7 +60,7 @@ Route::post('/registration/store',[RegistrationController::class,'store'])->name
 
 //Middleware
 Route::group(['middleware'=>'auth'],function(){
-
+    //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
@@ -74,7 +77,7 @@ Route::group(['middleware'=>'auth'],function(){
     Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
     Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
     Route::get('/category-form',[CategoryController::class,'create'])->name('category.form');
-    Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
+Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
     Route::get('/product-gallery/{id}', [ProductController::class,'gallery'])->name('product.gallery');
