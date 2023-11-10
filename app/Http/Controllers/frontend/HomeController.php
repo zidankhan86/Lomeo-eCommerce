@@ -19,23 +19,9 @@ class HomeController extends Controller
          $products          = Product::all();
          $brands            = Brand::all();
          $featuredProducts  = Product::where('featured', 1)->get();
+         $latestProducts    = Product::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('frontend.pages.home',compact('products','brands','featuredProducts','categories'));
-    }
-
-    //Features Products
-    public function featured()
-    {
-        $featuredProducts = Product::where('featured', 1)->get();
-        return view('frontend.pages.featuresProduct',compact('featuredProducts'));
-    }
-
-
-    //Category Products
-    public function category()
-    {
-        $categories = Category::all();
-        return view('frontend.pages.category',compact('categories'));
+        return view('frontend.pages.home',compact('products','brands','featuredProducts','categories','latestProducts'));
     }
 
 
