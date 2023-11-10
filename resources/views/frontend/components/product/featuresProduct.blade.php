@@ -24,7 +24,7 @@
                 @foreach ($featuredProducts as $feature)
                 <div class="swiper-slide">
                     <div class="product-card">
-                        <a href="">
+                        <a href="{{ route('details',$feature->id) }}">
                             <div class="product-thumb">
                                 <img src="{{ url('/public/uploads/',$feature->image) }}" alt="">
                                 <span class="badge new">New</span>

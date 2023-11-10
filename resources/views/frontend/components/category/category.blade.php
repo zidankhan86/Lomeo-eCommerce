@@ -19,10 +19,14 @@
         </div>
         <div class="swiper topCategoriesSwiper mx-3 md:mx-0">
             <div class="swiper-wrapper">
+
+                @foreach ($categories as $category)
+
+
                 <div class="swiper-slide">
                     <div class="product-card-02">
                         <div class="product-thumb">
-                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-01.png" alt=""></a>
+                            <a href="products.html"><img src="{{ url('/public/uploads/',$category->image) }}" alt=""></a>
                         </div>
 
                         <div class="product-info">
@@ -31,54 +35,9 @@
                         </div>
                     </div>
                 </div>
-                <div class="swiper-slide">
-                    <div class="product-card-02">
-                        <div class="product-thumb">
-                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-02.png" alt=""></a>
-                        </div>
 
-                        <div class="product-info">
-                            <h2><a href="#">Wing Chair</a></h2>
-                            <p>3,584 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-card-02">
-                        <div class="product-thumb">
-                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-03.png" alt=""></a>
-                        </div>
+                @endforeach
 
-                        <div class="product-info">
-                            <h2><a href="#">Wing Chair</a></h2>
-                            <p>3,584 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-card-02">
-                        <div class="product-thumb">
-                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-02.png" alt=""></a>
-                        </div>
-
-                        <div class="product-info">
-                            <h2><a href="#">Wing Chair</a></h2>
-                            <p>3,584 Products</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="swiper-slide">
-                    <div class="product-card-02">
-                        <div class="product-thumb">
-                            <a href="products.html"><img src="/frontend./public/assets/images/all-img/t-product-03.png" alt=""></a>
-                        </div>
-
-                        <div class="product-info">
-                            <h2><a href="#">Wing Chair</a></h2>
-                            <p>3,584 Products</p>
-                        </div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -14,22 +15,27 @@ class HomeController extends Controller
      */
     public function index()
     {
+         $categories        = Category::all();
+         $products          = Product::all();
+         $brands            = Brand::all();
+         $featuredProducts  = Product::where('featured', 1)->get();
 
-         $products = Product::all();
-         $brands = Brand::all();
-         $featuredProducts = Product::where('featured', 1)->get();
+        return view('frontend.pages.home',compact('products','brands','featuredProducts','categories'));
+    }
 
-        return view('frontend.pages.home',compact('products','brands','featuredProducts'));
+    //Features Products
+    public function featured()
+    {
+        $featuredProducts = Product::where('featured', 1)->get();
+        return view('frontend.pages.featuresProduct',compact('featuredProducts'));
     }
 
 
-    public function featured()
+    //Category Products
+    public function category()
     {
-
-
-        $featuredProducts = Product::where('featured', 1)->get();
-
-        return view('frontend.pages.featuresProduct',compact('featuredProducts'));
+        $categories = Category::all();
+        return view('frontend.pages.category',compact('categories'));
     }
 
 

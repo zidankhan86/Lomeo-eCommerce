@@ -10,7 +10,7 @@
                                 <path d="M13.3334 4.5L6.00002 11.8333L2.66669 8.5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                             </svg>
                         </span>
-                        <span>Free shipping on all orders over $50</span>
+                        <span>Free shipping on all orders over BDT 5000</span>
                     </p>
                     <div>
                         <ul class="flex gap-6 items-center">
@@ -51,7 +51,7 @@
             <div class="container px-3 md:px-5 xl:px-0">
                 <div class="flex justify-between items-center py-5">
                     <div>
-                        <a href="index.html">
+                        <a href="{{ route('home') }}">
                             <img src="/frontend./public/assets/images/all-img/logo.png" alt="">
                         </a>
                     </div>
@@ -81,7 +81,7 @@
                                     <span class="bg-dark-accents text-white rounded-full py-[3px] px-[9px] ml-1 inline-flex justify-center items-center text-[10px] leading-[100%]">@if(auth()->check())
                                         <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::session(auth()->user()->id)->getTotalQuantity() }}</span>
                                     @else
-                                        0 
+                                        0
                                     @endif</span>
                                 </a>
                                 <div class="cart-content">
