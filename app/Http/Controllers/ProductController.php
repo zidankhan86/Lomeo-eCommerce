@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\Gallery;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class ProductController extends Controller
 {
@@ -32,6 +33,7 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+
         $request->validate([
             'name'                  => 'required|max:255',
             'price'                 => 'required|numeric',
@@ -152,22 +154,26 @@ class ProductController extends Controller
 
     public function galleryStore(Request $request ){
 
-        //dd($request->all());
+        try {
+            $postImageNames = [];
 
-              $postImageNames=[];
-         if ($request->hasFile('images')) {
-           foreach ($request->file('images') as $image) {
-            $imageUniqueName = time() . '_' . $image->getClientOriginalName();
-            $image->storeAs('uploads', $imageUniqueName, 'public');
-            $postImageNames[] = $imageUniqueName;
+            if ($request->hasFile('images')) {
+                foreach ($request->file('images') as $image) {
+                    $imageUniqueName = time() . '_' . $image->getClientOriginalName();
+                    $image->storeAs('uploads', $imageUniqueName, 'public');
+                    $postImageNames[] = $imageUniqueName;
+                }
+            }
+
+            $product = Gallery::create([
+                "product_id" => $request->product_id,
+                "images" => serialize($postImageNames),
+            ]);
+
+            Session::flash('success', 'Images uploaded successfully');
+            return redirect()->route('product.gallery', $product->id)->with('success', 'Gallery Updated');
+        } catch (\Exception $e) {
+            return response()->json(['error' => $e->getMessage()], 500);
         }
-    }
-
-        Gallery::create([
-            "product_id"       =>$request->product_id,
-            "images" => serialize($postImageNames),
-        ]);
-
-        return back()->with('success','Images uploaded');
     }
 }

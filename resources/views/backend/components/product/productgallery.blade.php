@@ -1,36 +1,75 @@
-<br><br><div class="col-10 mx-auto">
-    <form class="card" action="{{ route('gallery.store') }}" method="post" enctype="multipart/form-data">
-        @csrf
-        <div class="card-body">
-            <h3 class="card-title" style="text-align: center; display: flex; justify-content: space-between; align-items: center;">
-                <strong>Create Gallery</strong>
-                <a href="{{ route('product.list') }}" class="btn btn-info">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-arrow-back-up" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                        <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                        <path d="M9 14l-4 -4l4 -4"></path>
-                        <path d="M5 10h11a4 4 0 1 1 0 8h-1"></path>
-                    </svg> Back
-                </a>
-            </h3>
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="mb-3">
-                        <label for="image" class="form-label">Images</label>
-                    </div>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Gallery</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.css">
+</head>
+<body>
+    <div class="container">
+
+        <div class="container">
+            <div class="container">
+                <div class="container">
+                <div class="container mt-4">
+                    <h4>Product Gallery</h4><br>
+                    <form action="{{ route('gallery.store') }}" class="dropzone" id="myDropzone">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                    </form><br>
+                    <button type="button" class="btn btn-success" id="submit-all">Submit</button>
+
+
                 </div>
-                <input type="hidden" name="product_id" value="{{ $product->id }}">
-                <div class="col-md-8">
-                    <div class="mb-3">
-                        <input type="file" id="image" name="images[]" class="form-control" style="width: 100%;" multiple>
-                        @error('image')
-                        <p class="text-danger">{{ $message }}</p>
-                        @enderror
-                    </div>
-                </div>
+
             </div>
+            @error('record')
+            <p class="text-success">{{ $message }}</p>
+            @enderror
         </div>
-        <div class="card-footer text-end">
-            <button type="submit" class="btn btn-primary">+ Add</button>
         </div>
-    </form>
-</div>
+
+    </div>
+
+
+    <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.9.2/min/dropzone.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastr@2.1.4/toastr.min.js"></script>
+    <script>
+        Dropzone.autoDiscover = false;
+
+        $(document).ready(function () {
+            var myDropzone = new Dropzone("#myDropzone", {
+                paramName: "images",
+                maxFilesize: 4,
+                acceptedFiles: "image/*",
+                addRemoveLinks: true,
+                autoProcessQueue: false,
+                uploadMultiple: true,
+            });
+
+            $("#submit-all").on("click", function () {
+                myDropzone.processQueue();
+            });
+
+            myDropzone.on("complete", function (file) {
+                file.previewElement.remove();
+            });
+
+            myDropzone.on("success", function (file, response) {
+                console.log(response);
+                myDropzone.removeAllFiles();
+
+                // Show success toast message
+                toastr.success('Images uploaded successfully');
+            });
+        });
+    </script>
+</body>
+</html>
