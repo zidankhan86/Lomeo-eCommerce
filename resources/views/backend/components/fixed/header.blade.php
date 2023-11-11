@@ -103,7 +103,7 @@
         <div class="nav-item dropdown">
           <a href="#" class="nav-link d-flex lh-1 text-reset p-0" data-bs-toggle="dropdown" aria-label="Open user menu">
 
-            <img height="50" width="50" src="{{ asset('/uploads/' . auth()->user()->image) }}" alt="">
+            <img height="50" width="50" src="{{ asset('public/uploads/' . auth()->user()->image) }}" alt="">
             <div class="d-none d-xl-block ps-2">
               <div>{{ auth()->user()->name }}</div>
 

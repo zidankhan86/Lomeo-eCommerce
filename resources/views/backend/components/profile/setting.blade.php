@@ -37,7 +37,7 @@
                                 <div class="row align-items-center">
                                     <label for="image-upload" style="cursor: pointer;">
                                         <p class="label-txt">Choose Image</p>
-                                        <img height="100px" width="100px" id="image-preview" src="{{ asset('/uploads/' . auth()->user()->image) }}" alt="Student Image">
+                                        <img height="100px" width="100px" id="image-preview" src="{{ asset('public/uploads/' . auth()->user()->image) }}" alt="Student Image">
                                         <input type="file" id="image-upload" name="image">
                                     </label>
                                 </div>

@@ -3,7 +3,7 @@
         <div class="row align-items-center">
             <div class="col-auto">
                 <span class="avatar avatar-lg rounded"
-                    style="background-image: url('{{ asset('storage/uploads/' . auth()->user()->image) }}')"></span>
+                    style="background-image: url('{{ asset('/public/uploads/' . auth()->user()->image) }}')"></span>
             </div>
             <div class="col">
                 <h1 class="fw-bold">{{ auth()->user()->name }}</h1>
