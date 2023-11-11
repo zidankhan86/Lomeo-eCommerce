@@ -9,6 +9,8 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Wishlist extends Model
 {
     use HasFactory;
+
+    protected $guarded = [];
     /**
      * Get the user that owns the Wishlist
      *
@@ -28,4 +30,5 @@ class Wishlist extends Model
     {
         return $this->belongsTo(Product::class, 'product_id', 'id');
     }
+    
 }

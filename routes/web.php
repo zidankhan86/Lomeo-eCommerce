@@ -15,8 +15,9 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
+use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
 
 /*
@@ -35,12 +36,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 //Pages
 Route::get('/',[FrontendHomeController::class,'index'])->name('home');
 Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
-
-Route::get('/brand-page',[FrontendBrandController::class,'index'])->name('brand.page');
-
 Route::get('/product/details/{id}',[FrontendProductController::class,'show'])->name('details');
-
-Route::get('/blog',[BlogController::class,'index'])->name('blog');
+Route::get('/brand-page',[FrontendBrandController::class,'index'])->name('brand.page');
 Route::get('/about',[AboutController::class,'index'])->name('about');
 Route::get('/contact',[ContactController::class,'index'])->name('contact');
 Route::get('/category',[CategoryController::class,'index'])->name('category');
@@ -60,11 +57,17 @@ Route::post('/registration/store',[RegistrationController::class,'store'])->name
 
 //Middleware
 Route::group(['middleware'=>'auth'],function(){
+
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
+
+    //Wishlist
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist']);
+    Route::get('/wishlist/remove/{wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('remove.Wishlist');
 
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');
