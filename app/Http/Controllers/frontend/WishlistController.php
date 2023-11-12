@@ -44,31 +44,31 @@ class WishlistController extends Controller
     return redirect()->route('home')->with('error', 'Product is already in the wishlist.');
 }
 
-public function removeFromWishlist($id)
-{
+    public function removeFromWishlist($id)
+    {
 
-    try {
-      // Find the wishlist item for the authenticated user and the given product ID
-      $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
-      ->where('product_id', $id)
-      ->firstOrFail();
-        // Ensure the authenticated user owns the wishlist item
-        if ($wishlistItem->user_id !== auth()->user()->id) {
-            return redirect()->route('product.page')->with('error', 'You do not have permission to remove this product from the wishlist.');
+        try {
+        // Find the wishlist item for the authenticated user and the given product ID
+        $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
+        ->where('product_id', $id)
+        ->firstOrFail();
+            // Ensure the authenticated user owns the wishlist item
+            if ($wishlistItem->user_id !== auth()->user()->id) {
+                return redirect()->route('product.page')->with('error', 'You do not have permission to remove this product from the wishlist.');
+            }
+
+            // Remove the Wishlist item
+            $wishlistItem->delete();
+
+            return redirect()->route('wishlist.index')->with('success', 'Product removed from wishlist successfully.');
+        } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
+            return redirect()->route('wishlist.index')->with('error', 'Product not found in the wishlist.');
+        } catch (\Exception $e) {
+            // Handle other exceptions if necessary
+            return redirect()->route('wishlist.index')->with('error', 'An error occurred while removing the product from the wishlist.');
         }
 
-        // Remove the Wishlist item
-        $wishlistItem->delete();
-
-        return redirect()->route('wishlist.index')->with('success', 'Product removed from wishlist successfully.');
-    } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
-        return redirect()->route('wishlist.index')->with('error', 'Product not found in the wishlist.');
-    } catch (\Exception $e) {
-        // Handle other exceptions if necessary
-        return redirect()->route('wishlist.index')->with('error', 'An error occurred while removing the product from the wishlist.');
     }
-
-}
 
 
 

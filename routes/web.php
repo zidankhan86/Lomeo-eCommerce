@@ -33,30 +33,30 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
 //Frontend
 
-//Pages
-Route::get('/',[FrontendHomeController::class,'index'])->name('home');
-Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
-Route::get('/product/details/{id}',[FrontendProductController::class,'show'])->name('details');
-Route::get('/brand-page',[FrontendBrandController::class,'index'])->name('brand.page');
-Route::get('/about',[AboutController::class,'index'])->name('about');
-Route::get('/contact',[ContactController::class,'index'])->name('contact');
-Route::get('/category',[CategoryController::class,'index'])->name('category');
+    //Pages
+    Route::get('/',[FrontendHomeController::class,'index'])->name('home');
+    Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
+    Route::get('/product/details/{id}',[FrontendProductController::class,'show'])->name('details');
+    Route::get('/brand-page',[FrontendBrandController::class,'index'])->name('brand.page');
+    Route::get('/about',[AboutController::class,'index'])->name('about');
+    Route::get('/contact',[ContactController::class,'index'])->name('contact');
+    Route::get('/category',[CategoryController::class,'index'])->name('category');
 
-Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
+    Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
 
 
-//Auth
-Route::get('/login',[AuthController::class,'index'])->name('login');
-Route::post('/store',[AuthController::class,'store'])->name('store');
+    //Auth
+    Route::get('/login',[AuthController::class,'index'])->name('login');
+    Route::post('/store',[AuthController::class,'store'])->name('store');
 
-//Register
-Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
-Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
+    //Register
+    Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
+    Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
 
-//Backend
+    //Backend
 
-//Middleware
-Route::group(['middleware'=>'auth'],function(){
+    //Middleware
+    Route::group(['middleware'=>'auth'],function(){
 
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
