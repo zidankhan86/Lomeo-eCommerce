@@ -19,6 +19,7 @@ use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\frontend\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,7 +42,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/about',[AboutController::class,'index'])->name('about');
     Route::get('/contact',[ContactController::class,'index'])->name('contact');
     Route::get('/category',[CategoryController::class,'index'])->name('category');
-
+    Route::get('/search',[SearchController::class,'index'])->name('search');
     Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
 
 

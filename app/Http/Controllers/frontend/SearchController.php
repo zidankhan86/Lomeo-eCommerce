@@ -2,38 +2,30 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\Brand;
 use App\Models\Product;
-use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class SearchController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $search = Product::where('name', 'like', '%' . $request->search_key . '%')
+        ->get();
+
         $wishlistItems = collect([]);
 
         // Check if the user is authenticated
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
-         $categories        = Category::all();
-         $products          = Product::all();
-         $brands            = Brand::all();
-         $featuredProducts  = Product::where('featured', 1)->get();
-         $latestProducts    = Product::orderBy('created_at', 'desc')->take(5)->get();
 
-        return view('frontend.pages.home',compact('products','brands',
-                    'featuredProducts','categories','latestProducts',
-                    'wishlistItems'));
+        return view('frontend.pages.search',compact('search','wishlistItems'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.
