@@ -39,23 +39,17 @@ class AuthController extends Controller
         'password'  => 'required',
     ]);
 
-    // Get credentials from the request
-    $credential = $request->only(['email', 'password']);
 
-    // Attempt to authenticate the user
+    $credential = $request->only(['email', 'password']);
     if (Auth::attempt($credential)) {
-        // Check the user's role
         if (auth()->user()->role == 'customer') {
-            // Display success message using Toastr
-            toastr()->success('Login Success', 'Success');
-            return redirect()->route('home');
+            return redirect()->route('home')->withSuccess('Login Success', 'Success');
         } else {
-            // Handle the case where the user is not a customer (e.g., redirect to admin dashboard)
-            toastr()->success('Login Success', 'Success');
-            return redirect()->route('admin.dashboard');
+
+            return redirect()->back()->withError('Something went wrong');
         }
     } else {
-        // Authentication attempt failed
+
         toastr()->error('Invalid credentials. Please try again.', 'Error');
         return redirect()->back();
     }
