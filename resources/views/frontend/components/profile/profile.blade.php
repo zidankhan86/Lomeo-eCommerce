@@ -38,10 +38,12 @@
                         <div class="p-6">
                             <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Change Password</h2>
 
+                            <form action="{{ route('update.password' ,auth()->user()->id) }}" method="post">
+                                @csrf
                             <div class="relative">
                                 <!-- input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out -->
 
-                                <input type="password" placeholder="Current passowrd" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="CurrentPasswordInput" name="password">
+                                <input type="password" placeholder="Current_passowrd" name="old_password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="CurrentPasswordInput" name="password">
                                 <span class="absolute top-[17px] right-5 cursor-pointer ">
 
                                     <svg id="current-icon-show" onclick="currentPasswordIcon()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -56,10 +58,13 @@
                                         <path d="M1 0.83252C2.575 2.78252 5.4655 5.25002 10 5.25002C14.5345 5.25002 17.4235 2.78252 19 0.83252" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </span>
+                                @error('old_password')
+                                <p class="text-danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="relative">
-                                <input type="password" placeholder="New passowrd" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="CreatePasswordInput" name="password">
+                                <input type="password" placeholder="New passowrd" name="new_password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="CreatePasswordInput" name="password">
                                 <span class="absolute top-[17px] right-5 cursor-pointer select-none ">
 
                                     <svg id="create-icon-show" onclick="CreatePasswordIcon()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -75,10 +80,13 @@
                                         <path d="M1 0.83252C2.575 2.78252 5.4655 5.25002 10 5.25002C14.5345 5.25002 17.4235 2.78252 19 0.83252" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </span>
+                                @error('new_password')
+                                <p class="text danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
                             <div class="relative">
-                                <input type="password" placeholder="Confirm passowrd" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="myInput" name="password">
+                                <input type="password" placeholder="Confirm passowrd" name="confirm_password" class="form_password focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out" id="myInput" name="password">
                                 <span class="absolute top-[17px] right-5 cursor-pointer ">
                                     <svg id="icon-show" onclick="PasswordIcon()" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                         <path d="M12 4.24902C4.5 4.24902 1.5 11.9999 1.5 11.9999C1.5 11.9999 4.5 19.749 12 19.749C19.5 19.749 22.5 11.9999 22.5 11.9999C22.5 11.9999 19.5 4.24902 12 4.24902V4.24902Z" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
@@ -92,11 +100,17 @@
                                         <path d="M1 0.83252C2.575 2.78252 5.4655 5.25002 10 5.25002C14.5345 5.25002 17.4235 2.78252 19 0.83252" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
                                     </svg>
                                 </span>
+
+                                @error('confirm_password')
+                                <p class="text danger">{{ $message }}</p>
+                                @enderror
                             </div>
 
 
                             <button class="btn-primary">Save Changes</button>
                         </div>
+                    </form>
+
                     </div>
                 </div>
                 <!-- user password change end -->

@@ -4,8 +4,10 @@ namespace App\Http\Controllers\frontend;
 
 use App\Models\User;
 use Illuminate\Http\Request;
+use App\Rules\PasswordCheckRule;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -95,7 +97,7 @@ class AuthController extends Controller
 
     public function profileImage(Request $request ,$id){
         $user = User::find($id);
-        
+
         $imageName = null;
         if ($request->hasFile('image')) {
             $imageName = date('Ymdhsis') . '.' . $request->file('image')->getClientOriginalExtension();
@@ -115,9 +117,48 @@ class AuthController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function changePassword(Request $request, $id)
     {
-        //
+        {
+
+            $rules = [
+                'old_password' => ['required', new PasswordCheckRule], 
+                'new_password' => 'required|min:6',
+                'confirm_password' => 'required|same:new_password',
+            ];
+
+            // Define custom error messages
+            $messages = [
+                'old_password.required' => 'Old password is required.',
+                'new_password.required' => 'New password is required.',
+                'new_password.min' => 'New password must be at least 6 characters.',
+                'confirm_password.required' => 'Confirm password is required.',
+                'confirm_password.same' => 'The new password and confirm password must match.',
+            ];
+
+            // Perform the validation
+            $validatedData = $request->validate($rules, $messages);
+
+        $userUpdate= User::find($id);
+
+
+        $userUpdate->update([
+
+            "password" => bcrypt($request->password),
+
+
+        ]);
+
+                        // Update password if a new one is provided
+        if ($request->filled('new_password')) {
+            $userUpdate->update([
+                'password' => bcrypt($validatedData['new_password']),
+            ]);
+        }
+            return redirect()->back()->withSuccess('Profile Update Success');
+        }
+
+
     }
 
     /**
@@ -139,11 +180,11 @@ class AuthController extends Controller
 
     //dd($imageName);
     $userUpdate->update([
-        "email"   =>  $request->email,
-        "phone"   =>  $request->phone,
-        "name"    =>  $request->name,
-        "last_name"    =>  $request->last_name,
-        "role"    =>  'customer',
+        "email"      =>  $request->email,
+        "phone"      =>  $request->phone,
+        "name"       =>  $request->name,
+        "last_name"  =>  $request->last_name,
+        "role"       =>  'customer',
     ]);
 
 
