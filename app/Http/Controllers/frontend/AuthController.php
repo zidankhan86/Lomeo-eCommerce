@@ -93,6 +93,25 @@ class AuthController extends Controller
 
     }
 
+    public function profileImage(Request $request ,$id){
+        $user = User::find($id);
+        
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('Ymdhsis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
+
+
+        $user->update([
+            "image"         => $imageName,
+        ]);
+
+        return redirect()->back()->withSuccess('Profile picture updated');
+
+
+    }
+
     /**
      * Display the specified resource.
      */
