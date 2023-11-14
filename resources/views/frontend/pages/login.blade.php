@@ -53,7 +53,7 @@
                             value="yes">
                         <label for="wp-comment-cookies-consent">Remember me</label>
                     </div>
-                    <a href="#"
+                    <a href="{{ route('password.request') }}"
                         class="text-dark-accents text-[14px] font-medium line-height-[110%]">Forget Password</a>
                 </div>
                 <button class="form_btn w-full" type="submit">

@@ -15,12 +15,13 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\frontend\WishlistController;
+use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
-use App\Http\Controllers\frontend\SearchController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,13 @@ use App\Http\Controllers\frontend\SearchController;
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
     Route::post('/profile-image/{id}',[FrontendAuthController::class,'profileImage'])->name('account.image');
     Route::post('/change-password/{id}',[FrontendAuthController::class,'changePassword'])->name('update.password');
+
+    //Forget password
+    Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
+    Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
+    Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
+    Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::post('/store',[AuthController::class,'store'])->name('store');
