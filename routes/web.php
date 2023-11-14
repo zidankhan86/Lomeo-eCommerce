@@ -52,7 +52,7 @@ use App\Http\Controllers\frontend\SearchController;
     Route::post('/register-store',[FrontendAuthController::class,'store'])->name('register.store');
     Route::post('/login-authenticate',[FrontendAuthController::class,'loginProcess'])->name('login.authenticate');
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
-
+    Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::post('/store',[AuthController::class,'store'])->name('store');

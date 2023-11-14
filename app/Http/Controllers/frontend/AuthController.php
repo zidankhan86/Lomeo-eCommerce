@@ -114,7 +114,22 @@ class AuthController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
+    $userUpdate= User::find($id);
+
+
+    //dd($imageName);
+    $userUpdate->update([
+        "email"   =>  $request->email,
+        "phone"   =>  $request->phone,
+        "name"    =>  $request->name,
+        "last_name"    =>  $request->last_name,
+        "role"    =>  'customer',
+    ]);
+
+
+
+        return redirect()->back()->withSuccess('Profile Update Success');
     }
 
     /**

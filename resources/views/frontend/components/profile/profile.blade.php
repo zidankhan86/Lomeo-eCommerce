@@ -7,23 +7,26 @@
                 <div class="w-full ">
                     <div class="p-6">
                         <h2 class="text-start xl:text-2xl acc-title text-[22px] text-[#272343] font-medium mb-6 font-display">Account Information</h2>
+                        <form action="{{ route('account.Info',auth()->user()->id) }}" method="POST">
+                            @csrf
                         <div class="flex flex-col sm:flex-row gap-5 items-center mb-5">
                             <div class="w-full">
-                                <input type="text" placeholder="Kevin" class="input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out">
+                                <input type="text" name="name" value="{{ auth()->user()->name }}" class="input-box focus:outline-none focus:ring-2 focus:ring-accents transition duration-300 ease-in-out">
                             </div>
                             <div class="w-full">
-                                <input type="text" placeholder="Kevin Gilbert" class="input-box focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
+                                <input type="text" name="last_name" value="{{ auth()->user()->last_name }}" class="input-box focus:outline-none focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
                             </div>
                         </div>
 
                         <div class="w-full mb-5">
-                            <input type="text" placeholder="kevin.gilbert@gmail.com" class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
+                            <input type="email" name="email" value="{{ auth()->user()->email }}" class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
                         </div>
                         <div class="w-full mb-5">
-                            <input type="text" placeholder="+8801497 548244" class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
+                            <input type="tel" name="phone" value="{{ auth()->user()->phone}}" class="input-box focus:outline-none  focus:ring-2 focus:ring-accents font-display transition duration-300 ease-in-out">
                         </div>
                         <button type="submit" class="btn-primary">Save Changes</button>
                     </div>
+                </form>
                 </div>
             </div>
             <!-- account inforamation end -->
