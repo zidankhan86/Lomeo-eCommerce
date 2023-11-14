@@ -180,15 +180,15 @@
                                     <ul class="py-3">
                                         <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
                                             <li>
-                                                <a href="sign-in.html">Sign In</a>
+                                                <a href="{{ route('login.page') }}">Sign In</a>
                                             </li>
                                             <li>
-                                                <a href="sign-up.html">Create a Account</a>
+                                                <a href="{{ route('register.page') }}">Create a Account</a>
                                             </li>
                                         </div>
                                         <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
                                             <li>
-                                                <a href="account-setting.html">Account Settings</a>
+                                                <a href="{{ route('profile.page') }}">Account Settings</a>
                                             </li>
                                             <li>
                                                 <a href="order-history.html">Order History</a>
@@ -204,7 +204,7 @@
                                         </div>
                                         <div class="px-3">
                                             <li>
-                                                <a href="#">Logout</a>
+                                                <a href="{{ route('logout') }}">Logout</a>
                                             </li>
                                         </div>
                                     </ul>

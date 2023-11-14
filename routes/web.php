@@ -15,6 +15,7 @@ use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
@@ -45,8 +46,14 @@ use App\Http\Controllers\frontend\SearchController;
     Route::get('/search',[SearchController::class,'index'])->name('search');
     Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
 
+    //Auth Frontend
+    Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
+    Route::get('/register-page',[FrontendAuthController::class,'register'])->name('register.page');
+    Route::post('/register-store',[FrontendAuthController::class,'store'])->name('register.store');
+    Route::post('/login-authenticate',[FrontendAuthController::class,'loginProcess'])->name('login.authenticate');
+    Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
 
-    //Auth
+    //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::post('/store',[AuthController::class,'store'])->name('store');
 
