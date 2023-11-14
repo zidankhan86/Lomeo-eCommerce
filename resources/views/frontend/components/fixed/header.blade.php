@@ -85,11 +85,15 @@
                                         </svg>
                                     </span>
                                     <span>Cart</span>
-                                    <span class="bg-dark-accents text-white rounded-full py-[3px] px-[9px] ml-1 inline-flex justify-center items-center text-[10px] leading-[100%]">@if(auth()->check())
-                                        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::session(auth()->user()->id)->getTotalQuantity() }}</span>
+                                  <span class="bg-dark-accents text-white rounded-full py-[3px] px-[9px] ml-1 inline-flex justify-center items-center text-[10px] leading-[100%]">
+                                    @if(auth()->check())
+                                        <span class="badge bg-dark text-white ms-1 rounded-pill">{{ Cart::session(auth()->user()->id)->getContent()->count() }}</span>
                                     @else
                                         0
-                                    @endif</span>
+                                    @endif
+                                </span>
+
+
                                 </a>
                                 <div class="cart-content">
                                     <ul class="p-6">

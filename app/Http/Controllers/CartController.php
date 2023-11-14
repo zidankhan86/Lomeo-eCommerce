@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Product;
 use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class CartController extends Controller
 {
@@ -56,7 +57,7 @@ class CartController extends Controller
 
    public function showCart()
    {
-    
+
 
       // Retrieve the currently authenticated user
       $userId = auth()->user();
@@ -79,7 +80,14 @@ class CartController extends Controller
             $totalPrice += $itemTotalPrice;
         }
 
-       return view('frontend.pages.addToCart', compact('cartContents','userId','subTotal','total','totalPrice'));
+        $wishlistItems = collect([]);
+
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $wishlistItems = Auth::user()->wishlistProducts;
+        }
+
+       return view('frontend.pages.addToCart', compact('cartContents','userId','subTotal','total','totalPrice','wishlistItems'));
    }
 
 

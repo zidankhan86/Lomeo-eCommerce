@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Brand;
+use App\Models\Gallery;
 use App\Models\Product;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Gallery;
+use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
@@ -13,9 +16,16 @@ class ProductController extends Controller
 
     public function index()
     {
-          $products = Product::all();
-        // $userId = auth()->user()->id;
-        return view('frontend.pages.product',compact('products'));
+        $wishlistItems = collect([]);
+
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $wishlistItems = Auth::user()->wishlistProducts;
+        }
+         $categories        = Category::all();
+         $products          = Product::all();
+         $brands            = Brand::all();
+        return view('frontend.pages.product',compact('products','wishlistItems','categories','brands'));
     }
 
     /**

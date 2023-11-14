@@ -44,10 +44,16 @@
                                     <p class="text-[#01AD5A] font-semibold">{{ $product->stock > 0 ? 'In Stock' : 'Out of Stock' }}</p>
                                 </td>
                                 <td class="py-6 text-sm text-right">
-                                    <button class="{{ $wishlistItems->contains('product_id', $product->id) ? 'btn-wishlist2' : 'btn-wishlist' }}" {{ $wishlistItems->contains('product_id', $product->id) ? 'disabled' : '' }}>
-                                        {{ $wishlistItems->contains('product_id', $product->id) ? 'Added to wishlist' : 'Add to cart' }}
-                                    </button>
+                                    @if($wishlistItems->contains('product_id', $product->id))
+                                        <button class="btn-wishlist2" disabled>Added to wishlist</button>
+                                    @else
+                                        <form action="{{ route('cart.add-from-wishlist', $product->id) }}" method="post">
+                                            @csrf
+                                            <button type="submit" class="btn-wishlist">Add to cart</button>
+                                        </form>
+                                    @endif
                                 </td>
+
                             </tr>
                         @endforeach
                     </tbody>

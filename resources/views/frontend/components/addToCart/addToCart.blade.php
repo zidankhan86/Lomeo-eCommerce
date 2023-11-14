@@ -1,8 +1,8 @@
 <section>
     <div class="container px-3 md:px-5 xl:px-0">
-        <!-- shopping cart List Start -->
+        <!-- Shopping cart List Start -->
         <div class="shopping-cart-wrapper pt-10 pb-20 flex lg:flex-nowrap flex-wrap items-start gap-6">
-            <!-- shopping cart start -->
+            <!-- Shopping cart start -->
             <div class="shopping-cart lg:w-2/3 w-full">
                 <div class="px-6 py-6 overflow-x-auto">
                     <table class="w-[824px] leading-normal">
@@ -33,7 +33,7 @@
                                                 </svg>
                                             </a>
                                             <div class="w-[70px] h-[70px]">
-                                                <img class="w-full h-full rounded-lg" src="{{ asset('path/to/your/images/' . $item->associatedModel->image) }}" alt="{{ $item->name }}" />
+                                                <img class="w-full h-full rounded-lg" src="{{ $item->attributes->image }}" alt="{{ $item->name }}" />
                                             </div>
                                             <div class="ml-1">
                                                 <p class="mb-0 text-[#272343] text-sm">{{ $item->name }}</p>
@@ -46,7 +46,7 @@
                                     <td class="py-6 text-sm">
                                         <div class="border inline-flex justify-around items-center h-[52px] w-[140px] border-[#D6D9DD] rounded-lg">
                                             <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pl-[14px] select-none minus" id="minus">-</span>
-                                            <input type="text" class="text-[#272343] text-base plus_mines_input select-none" value="{{ $item->quantity }}"/>
+                                            <p class="text-[#272343] text-base plus_mines_input select-none">{{ $item->quantity }}</p>
                                             <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pr-[14px] select-none plus" id="plus">+</span>
                                         </div>
                                     </td>
@@ -66,7 +66,7 @@
                     <button class="bg-off-white text-[#272343] coupon-btn font-semibold py-[17px] px-6 rounded-lg">Update Cart</button>
                 </div>
             </div>
-            <!-- shopping cart end -->
+            <!-- Shopping cart end -->
 
             <!-- Cart Total End -->
             <div class="cart-total p-8 lg:w-1/3 w-full">

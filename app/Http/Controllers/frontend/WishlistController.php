@@ -7,6 +7,7 @@ use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 
 class WishlistController extends Controller
 {
@@ -64,11 +65,43 @@ class WishlistController extends Controller
         } catch (\Illuminate\Database\Eloquent\ModelNotFoundException $e) {
             return redirect()->route('wishlist.index')->with('error', 'Product not found in the wishlist.');
         } catch (\Exception $e) {
-            // Handle other exceptions if necessary
             return redirect()->route('wishlist.index')->with('error', 'An error occurred while removing the product from the wishlist.');
         }
 
     }
+
+
+
+    public function addToCartFromWishlist($id)
+    {
+        // Find the product in the wishlist
+        $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
+            ->where('product_id', $id)
+            ->first();
+
+        if ($wishlistItem) {
+            // Use the quantity from the wishlist item, or set a default of 1
+            $quantity = $wishlistItem->quantity ?? 1;
+
+            // Add the product to the cart
+            \Cart::session(auth()->user()->id)->add(
+                $wishlistItem->product->id,
+                $wishlistItem->product->name,
+                $quantity,
+                $wishlistItem->product->price,
+                ['image' => $wishlistItem->product->image]
+            );
+
+            // Remove the product from the wishlist
+            $wishlistItem->delete();
+
+            return redirect()->route('wishlist.index')->with('success', 'Product moved to cart successfully.');
+        }
+
+        return redirect()->route('wishlist.index')->with('error', 'Product not found in the wishlist.');
+    }
+
+
 
 
 
