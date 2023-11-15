@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -26,11 +27,14 @@ class HomeController extends Controller
          $products          = Product::all();
          $brands            = Brand::all();
          $featuredProducts  = Product::where('featured', 1)->get();
-         $latestProducts    = Product::orderBy('created_at', 'desc')->take(5)->get();
+         $latestProducts    = Product::orderBy('created_at', 'desc')
+                                        ->take(5)
+                                        ->get();
+          $testimonials = Testimonial::all();
 
         return view('frontend.pages.home',compact('products','brands',
                     'featuredProducts','categories','latestProducts',
-                    'wishlistItems'));
+                    'wishlistItems','testimonials'));
     }
 
 
