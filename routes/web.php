@@ -22,6 +22,7 @@ use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -76,6 +77,10 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     //Middleware
     Route::group(['middleware'=>'auth'],function(){
 
+    //Testimonial
+    Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
+    Route::get('/testimonial-list', [TestimonialController::class, 'list'])->name('testimonial.list');
+    Route::post('/testimonial-store', [TestimonialController::class, 'store'])->name('testimonial.store');
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
