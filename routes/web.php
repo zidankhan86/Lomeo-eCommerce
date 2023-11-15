@@ -22,6 +22,7 @@ use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\TestimonialController;
 
 /*
@@ -81,6 +82,10 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
     Route::get('/testimonial-list', [TestimonialController::class, 'list'])->name('testimonial.list');
     Route::post('/testimonial-store', [TestimonialController::class, 'store'])->name('testimonial.store');
+    //Hero
+    Route::get('/hero-form', [HeroController::class, 'create'])->name('hero.form');
+    Route::get('/hero-list', [HeroController::class, 'list'])->name('hero.list');
+    Route::post('/hero-store', [HeroController::class, 'store'])->name('hero.store');
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
