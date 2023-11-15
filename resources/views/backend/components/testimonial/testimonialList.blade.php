@@ -38,7 +38,7 @@
                         <td data-label="Name" >{{ $comment->position}}</td>
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="" class="btn">
+                      <a href="{{ route('testimonial.edit',$comment->id) }}" class="btn">
                         Edit
                       </a>
                       <div class="dropdown">

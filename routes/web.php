@@ -91,7 +91,6 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
-
     //Wishlist
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist']);
@@ -104,7 +103,6 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/form',[TestController::class,'form'])->name('form');
     Route::get('/setting',[SettingController::class,'index'])->name('setting');
     Route::get('/change-password',[ChangePasswordController::class,'index'])->name('change.password');
-
     Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
     Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
     Route::get('/category-form',[CategoryController::class,'create'])->name('category.form');
@@ -118,6 +116,9 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
 
+
+    Route::get('/testimonial-edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+    Route::post('/testimonial-update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
     Route::post('/product', [ProductController::class,'store'])->name('product');
