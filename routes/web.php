@@ -82,6 +82,9 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
     Route::get('/testimonial-list', [TestimonialController::class, 'list'])->name('testimonial.list');
     Route::post('/testimonial-store', [TestimonialController::class, 'store'])->name('testimonial.store');
+    Route::get('/testimonial-edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
+    Route::post('/testimonial-update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
+    Route::get('/testimonial-delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
     //Hero
     Route::get('/hero-form', [HeroController::class, 'create'])->name('hero.form');
     Route::get('/hero-list', [HeroController::class, 'list'])->name('hero.list');
@@ -116,10 +119,6 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
 
-
-    Route::get('/testimonial-edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
-    Route::post('/testimonial-update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
-    Route::get('/testimonial-delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
     Route::post('/product', [ProductController::class,'store'])->name('product');
