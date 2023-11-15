@@ -32,10 +32,10 @@ class TestimonialController extends Controller
 
         //dd($request->all());
         $request->validate([
-            'name' => 'required|max:255',
-            'image' => 'required',
-            'position' => 'required',
-            'description' => 'required',
+            'name'           => 'required|max:255',
+            'image'          => 'required',
+            'position'       => 'required',
+            'description'    => 'required',
         ]);
 
         $imageName = null;
@@ -46,10 +46,10 @@ class TestimonialController extends Controller
 
         // Create the product
         Testimonial::create([
-            'name' => $request->name,
-            'image' => $imageName,
-            'position' => $request->position,
-            'description' => $request->description,
+            'name'          => $request->name,
+            'image'         => $imageName,
+            'position'      => $request->position,
+            'description'   => $request->description,
         ]);
 
         return redirect()->back()->with('success', 'Testimonial created successfully');
@@ -80,10 +80,10 @@ class TestimonialController extends Controller
 
         $update = Testimonial::find($id);
         $request->validate([
-            'name' => 'required|max:255',
-            'image' => 'required',
-            'position' => 'required',
-            'description' => 'required',
+            'name'           => 'required|max:255',
+            'image'          => 'required',
+            'position'       => 'required',
+            'description'    => 'required',
         ]);
 
         $imageName = null;
@@ -94,10 +94,10 @@ class TestimonialController extends Controller
 
         // Create the product
         $update->update([
-            'name' => $request->name,
-            'image' => $imageName,
-            'position' => $request->position,
-            'description' => $request->description,
+            'name'          => $request->name,
+            'image'         => $imageName,
+            'position'      => $request->position,
+            'description'   => $request->description,
         ]);
 
         return redirect()->back()->with('success', 'Testimonial updated successfully');
