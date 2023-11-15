@@ -4,13 +4,15 @@
         <div class="swiper-wrapper">
 
 
-            
+            @foreach ($heros as $item)
+
+
 
             <div class="swiper-slide">
                 <div class="container px-3 md:px-5 flex flex-col md:flex-row items-center">
                     <div class="md:w-1/2 w-full">
-                        <p class="text-gray-black text-sm tracking-[0.12em] mb-2">Welcome to Comforty</p>
-                        <h1 class="xl:text-[68px] text-xl md:text-3xl xl:leading-[110%] text-gray-black font-semibold mb-6">Best Furniture Collection for your interior.</h1>
+                        <p class="text-gray-black text-sm tracking-[0.12em] mb-2">{{ $item->welcome_title }}</p>
+                        <h1 class="xl:text-[68px] text-xl md:text-3xl xl:leading-[110%] text-gray-black font-semibold mb-6">{{ $item->title }}</h1>
                         <div>
                             <a href="#" class="btn-primary">
                                 <span>Shop Now</span>
@@ -22,17 +24,17 @@
                         </div>
                     </div>
                     <div class="md:w-1/2 w-full flex justify-center items-center relative">
-                        <img src="/frontend./public/assets/images/all-img/chair.png" alt="">
+                        <img src="{{ url('/public/uploads/',$item->image) }}" alt="">
                         <div class="inline-block absolute top-0 right-0">
                             <img src="/frontend./public/assets/images/all-img/discount.png" alt="">
-                            <p class="absolute top-[33px] text-[#F05C52] text-4xl font-bold right-9">15%</p>
+                            <p class="absolute top-[33px] text-[#F05C52] text-4xl font-bold right-9">{{ $item->discount }}%</p>
                             <p class="absolute text-sm font-normal top-[68px] right-10">Discount</p>
                         </div>
                     </div>
                 </div>
             </div>
 
-
+            @endforeach
 
 
         </div>

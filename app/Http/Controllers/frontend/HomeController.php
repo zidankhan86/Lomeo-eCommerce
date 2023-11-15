@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Hero;
 use App\Models\Testimonial;
 use Illuminate\Support\Facades\Auth;
 
@@ -30,11 +31,12 @@ class HomeController extends Controller
          $latestProducts    = Product::orderBy('created_at', 'desc')
                                         ->take(5)
                                         ->get();
-          $testimonials = Testimonial::all();
+          $testimonials     = Testimonial::all();
+          $heros            = Hero::all();
 
         return view('frontend.pages.home',compact('products','brands',
                     'featuredProducts','categories','latestProducts',
-                    'wishlistItems','testimonials'));
+                    'wishlistItems','testimonials','heros'));
     }
 
 

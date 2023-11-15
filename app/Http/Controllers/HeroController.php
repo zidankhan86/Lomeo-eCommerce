@@ -47,6 +47,7 @@ class HeroController extends Controller
         'welcome_title' => $request->welcome_title,
         'image' => $imageName,
         'title' => $request->title,
+        'discount' => $request->discount,
 
     ]);
 

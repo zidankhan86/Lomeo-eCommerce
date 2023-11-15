@@ -55,6 +55,19 @@
 
             </div>
 
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="mb-3">
+                        <label class="form-label"> Discount Label</label>
+                        <input type="number" value="{{ old('discount') }}" name="discount" class="form-control" placeholder="15%">
+
+                    </div>
+                </div>
+
+
+
+        </div>
+
             </div>
         </div>
       </div>
