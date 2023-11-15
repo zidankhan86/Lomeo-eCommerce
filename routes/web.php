@@ -119,6 +119,7 @@ use App\Http\Controllers\TestimonialController;
 
     Route::get('/testimonial-edit/{id}', [TestimonialController::class, 'edit'])->name('testimonial.edit');
     Route::post('/testimonial-update/{id}', [TestimonialController::class, 'update'])->name('testimonial.update');
+    Route::get('/testimonial-delete/{id}', [TestimonialController::class, 'delete'])->name('testimonial.delete');
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
     Route::post('/product', [ProductController::class,'store'])->name('product');

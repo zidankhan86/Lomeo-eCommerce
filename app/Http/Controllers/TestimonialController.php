@@ -106,8 +106,11 @@ class TestimonialController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function delete( $id)
     {
-        //
+        $delete = Testimonial::find($id);
+        $delete->delete();
+        toastr()->info('Deleted');
+        return back();
     }
 }

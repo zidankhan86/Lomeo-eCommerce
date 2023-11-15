@@ -46,8 +46,8 @@
                           Actions
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">
-                            Action
+                          <a class="dropdown-item" href="{{ route('testimonial.delete',$comment->id) }}">
+                            Delete
                           </a>
                           <a class="dropdown-item" href="#">
                             Another action
