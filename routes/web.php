@@ -54,29 +54,41 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/register-page',[FrontendAuthController::class,'register'])->name('register.page');
     Route::post('/register-store',[FrontendAuthController::class,'store'])->name('register.store');
     Route::post('/login-authenticate',[FrontendAuthController::class,'loginProcess'])->name('login.authenticate');
+    //Profile
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
     Route::post('/profile-image/{id}',[FrontendAuthController::class,'profileImage'])->name('account.image');
     Route::post('/change-password/{id}',[FrontendAuthController::class,'changePassword'])->name('update.password');
-
     //Forget password
     Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
-
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
+    Route::get('/logout-user',[AuthController::class,'logoutUser'])->name('logout.user');
     Route::post('/store',[AuthController::class,'store'])->name('store');
-
     //Register
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
 
     //Backend
 
-    //Middleware
+    //Middleware Auth
     Route::group(['middleware'=>'auth'],function(){
+    //Cart
+    Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
+    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
+    Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
+    Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
+    //Wishlist
+    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
+    Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist']);
+    Route::get('/wishlist/remove/{wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('remove.Wishlist');
+    Route::post('/cart/add-from-wishlist/{id}', [WishlistController::class, 'addToCartFromWishlist'])->name('cart.add-from-wishlist');
+
+    //Middleware Admin
+    Route::group(['middleware'=>['auth','admin']],function(){
 
     //Testimonial
     Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
@@ -89,16 +101,7 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/hero-form', [HeroController::class, 'create'])->name('hero.form');
     Route::get('/hero-list', [HeroController::class, 'list'])->name('hero.list');
     Route::post('/hero-store', [HeroController::class, 'store'])->name('hero.store');
-    //Cart
-    Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
-    Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
-    Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
-    Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
-    //Wishlist
-    Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-    Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist']);
-    Route::get('/wishlist/remove/{wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('remove.Wishlist');
-    Route::post('/cart/add-from-wishlist/{id}', [WishlistController::class, 'addToCartFromWishlist'])->name('cart.add-from-wishlist');
+
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');
@@ -133,4 +136,5 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/profile',[ProfileController::class,'index'])->name('profile');
     //post
     Route::post('/registration/update{id}',[RegistrationController::class,'update'])->name('registration.update');
+});
 });

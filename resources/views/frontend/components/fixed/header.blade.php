@@ -204,7 +204,7 @@
                                         </div>
                                         <div class="px-3">
                                             <li>
-                                                <a href="{{ route('logout') }}">Logout</a>
+                                                <a href="{{ route('logout.user') }}">Logout</a>
                                             </li>
                                         </div>
                                     </ul>
