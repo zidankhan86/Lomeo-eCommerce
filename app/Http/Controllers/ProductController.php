@@ -141,15 +141,18 @@ class ProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function deleteGallery( $id)
     {
-        //
+       $delete = Gallery::find($id);
+       $delete->delete();
+       return redirect()->back()->with('deleted');
     }
 
     public function gallery($id)
     {
         $product = Product::find($id);
-       return view('backend.pages.productgallery',compact('product'));
+        $images  = Gallery::all();
+       return view('backend.pages.productgallery',compact('product','images'));
     }
 
     public function galleryStore(Request $request ){
@@ -167,7 +170,7 @@ class ProductController extends Controller
 
             $product = Gallery::create([
                 "product_id" => $request->product_id,
-                "images" => serialize($postImageNames),
+                "images"     => serialize($postImageNames),
             ]);
 
             Session::flash('success', 'Images uploaded successfully');

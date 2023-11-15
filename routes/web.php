@@ -112,6 +112,7 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
     Route::get('/product-gallery/{id}', [ProductController::class,'gallery'])->name('product.gallery');
+    Route::get('/delete-gallery/{id}', [ProductController::class,'deleteGallery'])->name('delete.gallery');
     //Edit
     Route::get('/brand-form/{id}', [BrandController::class,'edit'])->name('brand.edit');
     Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');

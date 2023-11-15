@@ -57,15 +57,9 @@
                 </div>
                 <div class="single-product-desc">
                     <h2 class="text-[#272343] text-2xl font-semibold mb-3.5">Product Descriptions</h2>
-                    <p class="text-[#636270] text-base mb-3">Super Stretchy form fit fabric: This super stretchable sofa slipcover will ensure your three-seater sofa is completely covered. Our slipcovers are designed and ready-made to fit a variety of sofa sizes, stretches to 66” with seat width up to 90”</p>
 
-                    <p class="text-[#636270] text-base mb-3">Transform your old sofa or protect your new one: PureFit sofa furniture protectors not only protects your sofa furniture daily wears and tears, kids, scratches from pets, dogs or accidental spills, it also transforms an old, worn out couch into the stunning centerpiece of your room</p>
 
-                    <p class="text-[#636270] text-base mb-3">The sofa cover that stays in place: Featuring non skid elastic bottom and premium non slip foam anchors, our sofa furniture slipcovers are among the only ones in the market to guarantee they will stay tight with no snag, no wrinkling, shifting or slipping even after sitting or taking a nap on it</p>
-
-                    <p class="text-[#636270] text-base mb-3">Easy to install/put on: You'll be done in no time! Just slip it on, Tuck any extra fabric and insert the non slip foam anchors into the gap/crease between the back and sitting cushions for a seamless look and VOILA! Use our picture guidelines to ensure a good fit (Installation Instructions Included)</p>
-
-                    <p class="text-[#636270] text-base">Easy care & 6 month warranty: Machine Washable Slipcover, wash at or below 30 degrees Celsius, do not bleach, do not iron. We stand behind all of our high quality products so we offer a 6 months No Question Asked on all our sofa covers. Please contact us (through Amazon if past the standard return window) and we will be pleased to assist you.</p>
+                    <p class="text-[#636270] text-base">{!! $products->long_description !!}</p>
                 </div>
             </div>
             <div class="right-side xl:px-8 px-0 xl:w-5/12 w-full">
