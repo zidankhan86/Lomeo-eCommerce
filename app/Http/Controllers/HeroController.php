@@ -81,8 +81,10 @@ class HeroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Hero $hero)
+    public function delete( $id)
     {
-        //
+        $delete = Hero::find($id);
+        $delete->delete();
+        return back()->with('success','Hero deleted');
     }
 }

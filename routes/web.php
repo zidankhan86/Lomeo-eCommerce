@@ -47,18 +47,14 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/contact',[ContactController::class,'index'])->name('contact');
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/search',[SearchController::class,'index'])->name('search');
-    Route::get('/products/cart', [ProductController::class,'cart'])->name('cart');
+
 
     //Auth Frontend
     Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
     Route::get('/register-page',[FrontendAuthController::class,'register'])->name('register.page');
     Route::post('/register-store',[FrontendAuthController::class,'store'])->name('register.store');
     Route::post('/login-authenticate',[FrontendAuthController::class,'loginProcess'])->name('login.authenticate');
-    //Profile
-    Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
-    Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
-    Route::post('/profile-image/{id}',[FrontendAuthController::class,'profileImage'])->name('account.image');
-    Route::post('/change-password/{id}',[FrontendAuthController::class,'changePassword'])->name('update.password');
+
     //Forget password
     Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
@@ -67,8 +63,8 @@ use App\Http\Controllers\TestimonialController;
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::get('/logout-user',[AuthController::class,'logoutUser'])->name('logout.user');
-    Route::post('/store',[AuthController::class,'store'])->name('store');
-    //Register
+    Route::post('/login-store',[AuthController::class,'store'])->name('store');
+    //Register backend
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
 
@@ -76,6 +72,13 @@ use App\Http\Controllers\TestimonialController;
 
     //Middleware Auth
     Route::group(['middleware'=>'auth'],function(){
+
+    //Profile
+    Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
+    Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
+    Route::post('/profile-image/{id}',[FrontendAuthController::class,'profileImage'])->name('account.image');
+    Route::post('/change-password/{id}',[FrontendAuthController::class,'changePassword'])->name('update.password');
+
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
@@ -101,6 +104,7 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/hero-form', [HeroController::class, 'create'])->name('hero.form');
     Route::get('/hero-list', [HeroController::class, 'list'])->name('hero.list');
     Route::post('/hero-store', [HeroController::class, 'store'])->name('hero.store');
+    Route::get('/hero-delete/{id}', [HeroController::class, 'delete'])->name('hero.delete');
 
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');

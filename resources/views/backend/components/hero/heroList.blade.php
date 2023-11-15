@@ -38,8 +38,8 @@
                         <td data-label="Name" >{{ $hero->title}}</td>
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="" class="btn">
-                        Edit
+                      <a href="{{ route('hero.delete',$hero->id) }}" class="btn">
+                        Delete
                       </a>
                       <div class="dropdown">
                         <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
