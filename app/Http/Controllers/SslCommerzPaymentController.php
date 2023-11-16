@@ -42,8 +42,6 @@ class SslCommerzPaymentController extends Controller
          //dd($request->all());
         $product = Product::find($id);  //For specific product data pass through parameter.
 
-        $order = new Order();
-
 
         # Here you have to receive all the order data to initate the payment.
         # Let's say, your oder transaction informations are saving in a table called "orders"
@@ -109,6 +107,21 @@ class SslCommerzPaymentController extends Controller
                 'currency' => $post_data['currency']
             ]);
 
+            $orderId = DB::table('orders')->where('transaction_id', $post_data['tran_id'])->value('id');
+            $userId = auth()->user()->id;
+            $cartItems= \Cart::session($userId)->getContent();
+            //dd($cartItems);
+
+            foreach ($cartItems as $item) {
+                $orderItem = new OrderItems();
+                $orderItem->user_id = $userId;
+
+                $orderItem->order_id = $orderId;
+                $orderItem->product_id = $item->id;
+                $orderItem->quantity = $item->quantity;
+                $orderItem->save();
+            }
+
         $sslc = new SslCommerzNotification();
         # initiate(Transaction Data , false: Redirect to SSLCOMMERZ gateway/ true: Show all the Payement gateway here )
         $payment_options = $sslc->makePayment($post_data, 'hosted');
@@ -119,19 +132,6 @@ class SslCommerzPaymentController extends Controller
         }
 
 
-        // $userId = auth()->user()->id;
-        // $cartItems= \Cart::session($userId)->getContent();
-        // //dd($cartItems);
-
-
-        // foreach ($cartItems as $item) {
-        //     $orderItem = new OrderItems();
-        //     $orderItem->order_id = $order->id;
-        //     $orderItem->product_id = $item->id;
-        //     $orderItem->qty = $item->qty;
-        //     $orderItem->sub_total = $item->qty * $item->price;
-        //     $orderItem->save();
-        // }
 
     }
 
