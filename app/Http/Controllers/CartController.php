@@ -22,7 +22,7 @@ class CartController extends Controller
    $userId = auth()->user()->id;
 
    // Add the product to the cart
-   Cart::session($userId)->add(array(
+   \Cart::session($userId)->add(array(
        'id' => $product->id, // Use the actual product ID
        'name' => $product->name,
        'price' => $product->price,

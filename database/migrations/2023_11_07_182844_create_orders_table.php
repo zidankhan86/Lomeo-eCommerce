@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-            $table->string('first_name');
+            $table->string('name');
             $table->string('last_name');
             $table->string('phone');
             $table->string('email');
@@ -23,6 +23,7 @@ return new class extends Migration
             $table->string('amount');
             $table->string('currency');
             $table->string('status')->default('processing');
+            $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
             $table->timestamps();
         });

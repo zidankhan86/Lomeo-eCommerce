@@ -4,26 +4,29 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\TestimonialController;
 use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\ChangePasswordController;
 use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\frontend\WishlistController;
+use App\Http\Controllers\SslCommerzPaymentController;
 use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
+use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
-use App\Http\Controllers\HeroController;
-use App\Http\Controllers\TestimonialController;
 
 /*
 |--------------------------------------------------------------------------
@@ -38,6 +41,18 @@ use App\Http\Controllers\TestimonialController;
 
 //Frontend
 
+    // SSLCOMMERZ Start
+    Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
+    Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
+
+    Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
+    Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
+
+    Route::post('/success', [SslCommerzPaymentController::class, 'success']);
+    Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
+    Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
+
+
     //Pages
     Route::get('/',[FrontendHomeController::class,'index'])->name('home');
     Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
@@ -47,7 +62,7 @@ use App\Http\Controllers\TestimonialController;
     Route::get('/contact',[ContactController::class,'index'])->name('contact');
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/search',[SearchController::class,'index'])->name('search');
-
+    Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
 
     //Auth Frontend
     Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
@@ -60,10 +75,12 @@ use App\Http\Controllers\TestimonialController;
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
+
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::get('/logout-user',[AuthController::class,'logoutUser'])->name('logout.user');
     Route::post('/login-store',[AuthController::class,'store'])->name('store');
+
     //Register backend
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
