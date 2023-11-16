@@ -41,17 +41,11 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
 //Frontend
 
-    // SSLCOMMERZ Start
-    Route::get('/example1', [SslCommerzPaymentController::class, 'exampleEasyCheckout']);
-    Route::get('/example2', [SslCommerzPaymentController::class, 'exampleHostedCheckout']);
 
-    Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
-    Route::post('/pay-via-ajax', [SslCommerzPaymentController::class, 'payViaAjax']);
-
+    //SSlcommerze
     Route::post('/success', [SslCommerzPaymentController::class, 'success']);
     Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
     Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
-
 
     //Pages
     Route::get('/',[FrontendHomeController::class,'index'])->name('home');
@@ -62,7 +56,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/contact',[ContactController::class,'index'])->name('contact');
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/search',[SearchController::class,'index'])->name('search');
-    Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
+
 
     //Auth Frontend
     Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
@@ -89,7 +83,10 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
     //Middleware Auth
     Route::group(['middleware'=>'auth'],function(){
-
+    //Order
+    Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
+    Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
+    Route::get('/order-history',[FrontendOrderController::class,'orderHistory'])->name('order.history');
     //Profile
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');

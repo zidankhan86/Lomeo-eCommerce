@@ -197,7 +197,7 @@
                                                 <a href="{{ route('profile.page') }}">Account Settings</a>
                                             </li>
                                             <li>
-                                                <a href="order-history.html">Order History</a>
+                                                <a href="{{ route('order.history') }}">Order History</a>
                                             </li>
                                         </div>
                                         <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
