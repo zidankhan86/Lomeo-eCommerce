@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Order;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -23,7 +24,10 @@ class OrderController extends Controller
      */
     public function orderHistory()
     {
-        return view('frontend.pages.orderHistory');
+        $user = auth()->user();
+        $orderHistory = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
+
+        return view('frontend.pages.orderHistory',compact('orderHistory'));
     }
 
     /**

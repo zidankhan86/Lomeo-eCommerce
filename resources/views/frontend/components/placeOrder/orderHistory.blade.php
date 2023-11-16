@@ -26,91 +26,31 @@
                             </tr>
                         </thead>
                         <tbody>
+
+                            @foreach ($orderHistory as $item)
+
+
                             <tr>
                                 <td class="py-6 text-sm">
-                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">#2485</span>
+                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">{{ $item->id }}</span>
                                 </td>
                                 <td class="py-6 text-sm">
-                                    <p class="mb-0">02 April, 2021</p>
+                                    <p class="mb-0">{{ $item->created_at instanceof \Carbon\Carbon ? $item->created_at->format('D M Y') : '' }}</p>
                                 </td>
+
                                 <td class="py-6 text-sm">
                                     <p>05</p>
                                 </td>
                                 <td class="py-6 text-sm">
-                                    <p>$265.00</p>
+                                    <p>BDT {{ $item->amount }}</p>
                                 </td>
                                 <td class="py-6 text-sm">
-                                    <button class="btn-warning px-3 py-2 text-[#F5813F] text-[14px] leading-[120%] font-display">Pending</button>
+                                    <button class="btn-warning px-3 py-2 text-[#F5813F] text-[14px] leading-[120%] font-display">{{ $item->status }}</button>
                                 </td>
                             </tr>
-                            <tr>
-                                <td class="py-6 text-sm">
-                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">#8901</span>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p class="mb-0">29 May, 2021</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>01</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>$265.00</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <button class="btn-success2 px-3 py-2 text-[#01AD5A] text-[14px] leading-[120%] font-display">Completed</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-6 text-sm">
-                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">#2597</span>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p class="mb-0">16 May, 2021</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>01</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>$265.00</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <button class="btn-success2 px-3 py-2 text-[#01AD5A] text-[14px] leading-[120%] font-display">Completed</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-6 text-sm">
-                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">#2485</span>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p class="mb-0">21 February, 2021</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>02</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>$265.00</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <button class="btn-success2 px-3 py-2 text-[#01AD5A] text-[14px] leading-[120%] font-display">Completed</button>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="py-6 text-sm">
-                                    <span class="text-dark-accent stext-[14px] font-display leading-[120%] ">#2485</span>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p class="mb-0">15 January, 2021</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>01</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <p>$265.00</p>
-                                </td>
-                                <td class="py-6 text-sm">
-                                    <button class="btn-success2 px-3 py-2 text-[#01AD5A] text-[14px] leading-[120%] font-display">Completed</button>
-                                </td>
-                            </tr>
+
+                            @endforeach
+
                         </tbody>
                     </table>
                 </div>
