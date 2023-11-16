@@ -30,7 +30,7 @@
                             </div>
                             <div>
                                 @auth
-                                <a href="{{ route('cart.add',auth()->user()->id) }}" class="cart-icon">
+                                <a href="{{ route('cart.add',$product->id) }}" class="cart-icon">
                                 @endauth
 
                                     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
