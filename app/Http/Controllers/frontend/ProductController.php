@@ -46,7 +46,6 @@ class ProductController extends Controller
             $wishlistItems = Auth::user()->wishlistProducts;
         }
          $categories        = Category::all();
-        //  $products          = Product::all();
          $brands            = Brand::all();
         return view('frontend.pages.categoryWiseProduct',compact('products','wishlistItems','categories','brands','category'));
     }
@@ -65,10 +64,16 @@ class ProductController extends Controller
     public function show( $id)
     {
 
-        //  $products = Product::find($id);
+        $wishlistItems = collect([]);
+
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $wishlistItems = Auth::user()->wishlistProducts;
+        }
+
          $products = Product::with('gallery')->find($id);
-        //  Gallery::with('product')->where('images');
-         return view('frontend.pages.productDetails',compact('products'));
+
+         return view('frontend.pages.productDetails',compact('products','wishlistItems'));
     }
 
     /**

@@ -90,9 +90,10 @@
                         <p class="text-gray-black text-[22px] leading-[120%] font-display font-semibold">BDT {{ number_format($totalPrice, 2) }}</p>
                     </div>
                 </div>
-                <a href="{{ route('place.order',$item->id) }}" class="mt-6 bg-accents hover:bg-[#272343] transition-all duration-300 py-[19px] rounded-lg text-[18px] font-bold font-display leading-[110%] text-gray-white text-center w-full">
+                <a href="{{ route('place.order', $item->id ?? 'default_value') }}" class="mt-6 bg-accents hover:bg-[#272343] transition-all duration-300 py-[19px] rounded-lg text-[18px] font-bold font-display leading-[110%] text-gray-white text-center w-full">
                     proceed to Checkout
                 </a>
+
             </div>
             <!-- Cart Total Start -->
         </div>
