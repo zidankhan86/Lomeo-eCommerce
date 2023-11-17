@@ -31,9 +31,24 @@ class ProductController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function catWiseProduct($id)
     {
-        //
+
+        $category = Category::findOrFail($id);
+        $products = Product::where('category_id',$id)
+                  ->where('status',1)
+                  ->limit(20)
+                  ->get();
+        $wishlistItems = collect([]);
+
+        // Check if the user is authenticated
+        if (Auth::check()) {
+            $wishlistItems = Auth::user()->wishlistProducts;
+        }
+         $categories        = Category::all();
+        //  $products          = Product::all();
+         $brands            = Brand::all();
+        return view('frontend.pages.categoryWiseProduct',compact('products','wishlistItems','categories','brands','category'));
     }
 
     /**

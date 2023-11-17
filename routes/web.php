@@ -55,7 +55,9 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/about',[AboutController::class,'index'])->name('about');
     Route::get('/contact',[ContactController::class,'index'])->name('contact');
     Route::get('/category',[CategoryController::class,'index'])->name('category');
+    Route::get('/category-wise-product/{id}',[FrontendProductController::class,'catWiseProduct'])->name('category.wise.product');
     Route::get('/search',[SearchController::class,'index'])->name('search');
+
 
 
     //Auth Frontend

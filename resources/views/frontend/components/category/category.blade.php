@@ -27,7 +27,7 @@
                 <div class="swiper-slide">
                     <div class="product-card-02">
                         <div class="product-thumb">
-                            <a href="#"><img src="{{ url('/public/uploads/',$item->image) }}" alt=""></a>
+                            <a href="{{ route('category.wise.product',$item->id) }}"><img src="{{ url('/public/uploads/',$item->image) }}" alt=""></a>
                         </div>
 
                         <div class="product-info">
