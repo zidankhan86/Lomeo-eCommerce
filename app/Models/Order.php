@@ -38,8 +38,12 @@ class Order extends Model
      *
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function order(): HasMany
+    public function orderItems(): HasMany
     {
         return $this->hasMany(OrderItems::class, 'order_id', 'id');
     }
+
+  
+
+
 }

@@ -87,6 +87,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
     Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
     Route::get('/order-history',[FrontendOrderController::class,'orderHistory'])->name('order.history');
+    Route::get('/order-details/{id}',[FrontendOrderController::class,'orderDetails'])->name('order.details');
     //Profile
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');

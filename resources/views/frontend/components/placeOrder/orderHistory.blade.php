@@ -23,6 +23,9 @@
                                 <th class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[120px]">
                                     Status
                                 </th>
+                                <th class="pb-6 border-b border-[#E1E3E6] text-left text-xs font-semibold text-[#272343] uppercase tracking-wider w-[120px]">
+                                    Details
+                                </th>
                             </tr>
                         </thead>
                         <tbody>
@@ -47,6 +50,13 @@
                                 <td class="py-6 text-sm">
                                     <button class="btn-warning px-3 py-2 text-[#F5813F] text-[14px] leading-[120%] font-display">{{ $item->status }}</button>
                                 </td>
+
+                                <td>
+                                    <a href="{{ route('order.details',$item->id) }}" class=" text-[#272343] px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 focus:outline-none focus:ring focus:border-blue-300">
+                                        Details
+                                    </a>
+                                </td>
+
                             </tr>
 
                             @endforeach

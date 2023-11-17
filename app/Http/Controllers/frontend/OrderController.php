@@ -4,6 +4,7 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
+use App\Models\OrderItems;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -29,6 +30,21 @@ class OrderController extends Controller
 
         return view('frontend.pages.orderHistory',compact('orderHistory'));
     }
+
+
+    public function orderDetails($id)
+    {
+
+        $orderDetails = Order::find($id);
+
+        Product::with('product')->where('name');
+
+      
+
+
+        return view('frontend.pages.orderDetails',compact('orderDetails'));
+    }
+
 
     /**
      * Store a newly created resource in storage.
