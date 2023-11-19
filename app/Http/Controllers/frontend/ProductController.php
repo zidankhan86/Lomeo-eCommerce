@@ -66,14 +66,22 @@ class ProductController extends Controller
 
         $wishlistItems = collect([]);
 
-        // Check if the user is authenticated
+
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
 
          $products = Product::with('gallery')->find($id);
 
-         return view('frontend.pages.productDetails',compact('products','wishlistItems'));
+         $product = Product::with('category')->find($id);
+
+
+         $relatedProducts = Product::where('category_id', $product->category->id)
+             ->where('id', '<>', $product->id)
+             ->take(4) 
+             ->get();
+
+         return view('frontend.pages.productDetails',compact('products','wishlistItems','relatedProducts'));
     }
 
     /**

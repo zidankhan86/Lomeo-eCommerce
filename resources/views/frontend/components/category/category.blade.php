@@ -32,7 +32,7 @@
 
                         <div class="product-info">
                             <h2><a href="#">{{ $item->name }}</a></h2>
-                            <p>3,584 Products</p>
+                            {{-- <p>3,584 Products</p> --}}
                         </div>
                     </div>
                 </div>
