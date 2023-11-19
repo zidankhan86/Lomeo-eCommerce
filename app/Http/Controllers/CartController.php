@@ -41,13 +41,9 @@ class CartController extends Controller
    public function removeFromCart(Product $product)
    {
 
-     // Retrieve the currently authenticated user
+
      $userId = auth()->user()->id;
-
-     // Get the row ID of the product in the cart
-     $rowId = $product->id; // You need to use the row ID
-
-     // Remove the product from the cart
+     $rowId = $product->id;
      \Cart::session($userId)->remove($rowId);
 
 
@@ -59,16 +55,13 @@ class CartController extends Controller
    {
 
 
-      // Retrieve the currently authenticated user
+
       $userId = auth()->user();
 
-      // Get the cart contents for the user
       $cartContents = \Cart::session(auth()->user()->id)->getContent();
 
       $subTotal = \Cart::session($userId)->getSubTotal();
 
-        // Retrieve the total for the specific user's cart
-        //$total = \Cart::session($userId)->getTotal();
         $total = \Cart::getTotal();
 
 

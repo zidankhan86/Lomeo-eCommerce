@@ -181,7 +181,7 @@
                                         <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
                                             <li>
                                                 @auth
-                                                <strong>{{ auth()->user()->name }} {{ auth()->user()->last_name }}</strong>
+                                                <p style="text-align: center"> <strong>{{ auth()->user()->name }} {{ auth()->user()->last_name }}</strong></p>
                                                 @endauth
 
                                             </li>

@@ -15,9 +15,15 @@ class OrderController extends Controller
      */
     public function index($id)
     {
-
+        $cartContents = \Cart::session(auth()->user()->id)->getContent();
         $product = Product::find($id);
-        return view('frontend.pages.placeOrder',compact('product'));
+        $totalPrice = 0; // Initialize the total price
+
+                foreach ($cartContents as $item) {
+            $itemTotalPrice = $item->price * $item->quantity;
+            $totalPrice += $itemTotalPrice;
+        }
+        return view('frontend.pages.placeOrder',compact('product','cartContents','totalPrice'));
     }
 
     /**
