@@ -58,8 +58,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/category-wise-product/{id}',[FrontendProductController::class,'catWiseProduct'])->name('category.wise.product');
     Route::get('/search',[SearchController::class,'index'])->name('search');
 
-
-
     //Auth Frontend
     Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
     Route::get('/register-page',[FrontendAuthController::class,'register'])->name('register.page');
@@ -90,6 +88,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
     Route::get('/order-history',[FrontendOrderController::class,'orderHistory'])->name('order.history');
     Route::get('/order-details/{id}',[FrontendOrderController::class,'orderDetails'])->name('order.details');
+
     //Profile
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
@@ -123,6 +122,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/hero-store', [HeroController::class, 'store'])->name('hero.store');
     Route::get('/hero-delete/{id}', [HeroController::class, 'delete'])->name('hero.delete');
 
+    //Order
+    Route::get('/order-list',[OrderController::class,'orderList'])->name('order.list');
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class OrderController extends Controller
@@ -10,9 +11,11 @@ class OrderController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function orderList()
     {
-        //
+        $orders = Order::all();
+        Product::with('product')->where('name');
+        return view('backend.pages.orderList',compact('orders'));
     }
 
     /**

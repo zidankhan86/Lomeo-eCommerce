@@ -3,12 +3,14 @@
 namespace App\Http\Controllers;
 
 use Cart;
+use App\Models\User;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Products;
 use App\Models\OrderItems;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Notifications\OrderReceivedNotification;
 use App\Library\SslCommerz\SslCommerzNotification;
 
 //use App\Http\Controllers\SslCommerzPaymentController;
@@ -120,6 +122,13 @@ class SslCommerzPaymentController extends Controller
                 $orderItem->product_id = $item->id;
                 $orderItem->quantity = $item->quantity;
                 $orderItem->save();
+            }
+            $order = Order::find($orderId);
+            $admins = User::where('role', 'admin')->get();
+
+            foreach ($admins as $admin) {
+                // Make sure your Admin model uses the Notifiable trait
+                $admin->notify(new OrderReceivedNotification($order));
             }
 
         $sslc = new SslCommerzNotification();

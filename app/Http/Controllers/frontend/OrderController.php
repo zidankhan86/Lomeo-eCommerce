@@ -39,7 +39,7 @@ class OrderController extends Controller
 
         Product::with('product')->where('name');
 
-      
+
 
 
         return view('frontend.pages.orderDetails',compact('orderDetails'));
