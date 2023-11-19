@@ -75,8 +75,12 @@
                     {{-- <a class="small" href="password.html">Forgot Password?</a> --}}
                     <button class="btn btn-primary" type="submit" >Login</button>
                 </div>
+
             </form>
+
           </div>
+          <p style="text-align: center" class="text-danger">Email: admin@gmail.com</p>
+          <p style="text-align: center" class="text-danger">Password: 12345</p>
           <div class="hr-text">or</div>
           <div class="card-body">
             <div class="row">
