@@ -22,6 +22,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\frontend\SearchController;
 use App\Http\Controllers\frontend\WishlistController;
 use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\SocialShareButtonsController;
 use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
 use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
@@ -78,7 +79,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     //Register backend
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
-
+    //Social Share
+    Route::get('/social-media-share/{productId}', [SocialShareButtonsController::class,'ShareWidget'])->name('social.share');
     //Backend
 
     //Middleware Auth
