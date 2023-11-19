@@ -244,18 +244,17 @@
                         </button>
                         <div class="dropdown-content">
                             <ul class="p-3">
-                                <li>
-                                    <a href="#">Wodden</a>
-                                </li>
-                                <li>
-                                    <a href="#">Partex</a>
-                                </li>
-                                <li>
-                                    <a href="#">Plywood</a>
-                                </li>
-                                <li>
-                                    <a href="#">Segun</a>
-                                </li>
+
+
+                              @php
+                $categories = \App\Models\Category::all();
+            @endphp
+
+            @foreach($categories as $category)
+                <li>
+                    <a href="{{ route('category.wise.product',$category->id) }}">{{ $category->name }}</a>
+                </li>
+            @endforeach
                             </ul>
                         </div>
                     </div>
