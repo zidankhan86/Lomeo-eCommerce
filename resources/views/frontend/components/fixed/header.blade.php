@@ -247,14 +247,14 @@
 
 
                               @php
-                $categories = \App\Models\Category::all();
-            @endphp
+                        $categories = \App\Models\Category::all();
+                    @endphp
 
-            @foreach($categories as $category)
-                <li>
-                    <a href="{{ route('category.wise.product',$category->id) }}">{{ $category->name }}</a>
-                </li>
-            @endforeach
+                    @foreach($categories as $category)
+                        <li>
+                            <a href="{{ route('category.wise.product',$category->id) }}">{{ $category->name }}</a>
+                        </li>
+                    @endforeach
                             </ul>
                         </div>
                     </div>
