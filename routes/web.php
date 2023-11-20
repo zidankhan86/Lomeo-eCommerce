@@ -48,6 +48,9 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
     Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
+    Route::post('/check/payment/{id}', [SslCommerzPaymentController::class, 'CheckPayment'])->name('check.payment');
+
+
     //Pages
     Route::get('/',[FrontendHomeController::class,'index'])->name('home');
     Route::get('/product/page',[FrontendProductController::class,'index'])->name('product.page');
@@ -85,6 +88,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
     //Middleware Auth
     Route::group(['middleware'=>'auth'],function(){
+
     //Order
     Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
     Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');

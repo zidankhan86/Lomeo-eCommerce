@@ -28,7 +28,75 @@ class SslCommerzPaymentController extends Controller
         return view('exampleHosted');
     }
 
-    public function index(Request $request,$id)
+    public function CheckPayment(Request $request ,$id){
+
+        $request->validate([
+            'name' => 'required|string',
+            'last_name' => 'required|string',
+            'phone' => 'required|string',
+            'email' => 'required|email',
+            'address' => 'required|string',
+
+        ]);
+
+
+      if($request->paymenttype == 1){
+        $randomTransactionId = mt_rand(100000, 999999);
+
+        //dd($request->all());
+        $order = new Order([
+            'name' => $request->input('name'),
+            'last_name' => $request->input('last_name'),
+            'phone' => $request->input('phone'),
+            'email' => $request->input('email'),
+            'address' => $request->input('address'),
+            'total' => $request->input('total'),
+            'transaction_id' => $randomTransactionId,
+            'amount' => $request->input('price'),
+            'paymenttype'=> $request->input('paymenttype'),
+            'currency' => 'BDT',
+            'product_id' => $request->input('product_id'),
+            'user_id' => auth()->id(), // Assuming you have user authentication
+        ]);
+
+        // Save the order to the database
+        $order->save();
+        $orderId =$order->id;
+        $userId = auth()->user()->id;
+        $cartItems= \Cart::session($userId)->getContent();
+        //dd($cartItems);
+       // dd($orderId);
+        foreach ($cartItems as $item) {
+            $orderItem = new OrderItems();
+            $orderItem->user_id = $userId;
+
+            $orderItem->order_id = $orderId;
+            $orderItem->product_id = $item->id;
+            $orderItem->quantity = $item->quantity;
+            $orderItem->save();
+        }
+
+
+        $order = Order::find($orderId);
+        $admins = User::where('role', 'admin')->get();
+
+        foreach ($admins as $admin) {
+            // Make sure your Admin model uses the Notifiable trait
+            $admin->notify(new OrderReceivedNotification($order));
+        }
+        \Cart::session($userId)->clear();
+        return redirect('/')->with('success','Order has been successfully completed');
+
+      }else{
+        $this->index($request ,$id);
+      }
+
+
+
+
+    }
+
+    public function index($request,$id)
     {
 
 
@@ -41,27 +109,24 @@ class SslCommerzPaymentController extends Controller
             'address'   => 'required',
 
         ]);
+
          //dd($request->all());
-        $product = Product::find($id);  //For specific product data pass through parameter.
-
-
-        # Here you have to receive all the order data to initate the payment.
-        # Let's say, your oder transaction informations are saving in a table called "orders"
-        # In "orders" table, order unique identity is "transaction_id". "status" field contain status of the transaction, "amount" is the order amount to be paid and "currency" is for storing Site Currency which will be checked with paid currency.
-
+        $product = Product::find($id);                //For specific product data pass through parameter.
         $post_data = array();
         $post_data['total_amount'] = $product->price; # You cant not pay less than 10
         $post_data['total'] = $product->price;
         $post_data['currency'] = "BDT";
-        $post_data['tran_id'] = uniqid(); // tran_ id must be unique
+        $post_data['tran_id'] = uniqid();
 
         # CUSTOMER INFORMATION
         $post_data['cus_name']      = $request->name;
+
+        $post_data['paymenttype']      = $request->paymenttype;
         $post_data['last_name']     = $request->last_name;       //Name come from Billings
-        $post_data['cus_email']     = $request->email;      //email come from Billings
-        $post_data['cus_add1']      = $request->address;     //Address come from Billings
-        $post_data['user_id']       = auth()->user()->id;     //User Id Come From Auth USer
-        $post_data['product_id']    = $product->id;       //product id come from product
+        $post_data['cus_email']     = $request->email;           //email come from Billings
+        $post_data['cus_add1']      = $request->address;         //Address come from Billings
+        $post_data['user_id']       = auth()->user()->id;        //User Id Come From Auth USer
+        $post_data['product_id']    = $product->id;              //product id come from product
         $post_data['cus_add2']      = "";
         $post_data['cus_city']      = "";
         $post_data['cus_state']     = "";
@@ -101,6 +166,7 @@ class SslCommerzPaymentController extends Controller
                 'phone'             => $post_data['cus_phone'],
                 'amount'            => $post_data['total_amount'],   //Last Name
                 'total'             => $post_data['total'],
+                'paymenttype'             => $post_data['paymenttype'],
                 'user_id'           => $post_data['user_id'],          //For User Post
                 'product_id'        => $post_data['product_id'],     //For Product Post
                 'status'            => 'Pending',

@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('transaction_id');
             $table->string('amount');
             $table->string('currency');
+            $table->boolean('paymenttype');
             $table->string('status')->default('processing');
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->foreignId('user_id')->constrained()->onDelete('cascade');
