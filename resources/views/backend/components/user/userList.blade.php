@@ -10,202 +10,53 @@
               <thead>
                 <tr>
                   <th>Name</th>
-                  <th>Title</th>
+                  <th>Mobile</th>
                   <th>Role</th>
                   <th class="w-1"></th>
                 </tr>
               </thead>
               <tbody>
+                @foreach ($user as $user)
+
+
                 <tr>
                   <td data-label="Name" >
                     <div class="d-flex py-1 align-items-center">
                       <span class="avatar me-2" style="background-image: url(./static/avatars/010m.jpg)"></span>
                       <div class="flex-fill">
-                        <div class="font-weight-medium">Thatcher Keel</div>
-                        <div class="text-muted"><a href="#" class="text-reset">tkeelf@blogger.com</a></div>
+                        <div class="font-weight-medium">{{ $user->name }}</div>
+                        <div class="text-muted"><p href="#" class="text-reset">{{ $user->email }}</p></div>
                       </div>
                     </div>
                   </td>
                   <td data-label="Title" >
-                    <div>VP Sales</div>
-                    <div class="text-muted">Business Development</div>
+                    <div>{{ $user->phone }}</div>
+
                   </td>
                   <td class="text-muted" data-label="Role" >
                     User
                   </td>
                   <td>
                     <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
-                        Edit
-                      </a>
+
                       <div class="dropdown">
                         <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
                           Actions
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
                           <a class="dropdown-item" href="#">
-                            Action
+                            Block
                           </a>
                           <a class="dropdown-item" href="#">
-                            Another action
+                            Unblock
                           </a>
                         </div>
                       </div>
                     </div>
                   </td>
                 </tr>
-                <tr>
-                  <td data-label="Name" >
-                    <div class="d-flex py-1 align-items-center">
-                      <span class="avatar me-2" style="background-image: url(./static/avatars/005f.jpg)"></span>
-                      <div class="flex-fill">
-                        <div class="font-weight-medium">Dyann Escala</div>
-                        <div class="text-muted"><a href="#" class="text-reset">descalag@usatoday.com</a></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-label="Title" >
-                    <div>Mechanical Systems Engineer</div>
-                    <div class="text-muted">Sales</div>
-                  </td>
-                  <td class="text-muted" data-label="Role" >
-                    Admin
-                  </td>
-                  <td>
-                    <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
-                        Edit
-                      </a>
-                      <div class="dropdown">
-                        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
-                          Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-label="Name" >
-                    <div class="d-flex py-1 align-items-center">
-                      <span class="avatar me-2" style="background-image: url(./static/avatars/006f.jpg)"></span>
-                      <div class="flex-fill">
-                        <div class="font-weight-medium">Avivah Mugleston</div>
-                        <div class="text-muted"><a href="#" class="text-reset">amuglestonh@intel.com</a></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-label="Title" >
-                    <div>Actuary</div>
-                    <div class="text-muted">Sales</div>
-                  </td>
-                  <td class="text-muted" data-label="Role" >
-                    User
-                  </td>
-                  <td>
-                    <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
-                        Edit
-                      </a>
-                      <div class="dropdown">
-                        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
-                          Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-label="Name" >
-                    <div class="d-flex py-1 align-items-center">
-                      <span class="avatar me-2">AA</span>
-                      <div class="flex-fill">
-                        <div class="font-weight-medium">Arlie Armstead</div>
-                        <div class="text-muted"><a href="#" class="text-reset">aarmsteadi@yellowpages.com</a></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-label="Title" >
-                    <div>VP Quality Control</div>
-                    <div class="text-muted">Accounting</div>
-                  </td>
-                  <td class="text-muted" data-label="Role" >
-                    Owner
-                  </td>
-                  <td>
-                    <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
-                        Edit
-                      </a>
-                      <div class="dropdown">
-                        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
-                          Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
-                <tr>
-                  <td data-label="Name" >
-                    <div class="d-flex py-1 align-items-center">
-                      <span class="avatar me-2" style="background-image: url(./static/avatars/008f.jpg)"></span>
-                      <div class="flex-fill">
-                        <div class="font-weight-medium">Tessie Curzon</div>
-                        <div class="text-muted"><a href="#" class="text-reset">tcurzonj@hp.com</a></div>
-                      </div>
-                    </div>
-                  </td>
-                  <td data-label="Title" >
-                    <div>Research Nurse</div>
-                    <div class="text-muted">Product Management</div>
-                  </td>
-                  <td class="text-muted" data-label="Role" >
-                    Admin
-                  </td>
-                  <td>
-                    <div class="btn-list flex-nowrap">
-                      <a href="#" class="btn">
-                        Edit
-                      </a>
-                      <div class="dropdown">
-                        <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
-                          Actions
-                        </button>
-                        <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item" href="#">
-                            Action
-                          </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
-                          </a>
-                        </div>
-                      </div>
-                    </div>
-                  </td>
-                </tr>
+                @endforeach
+
               </tbody>
             </table>
           </div>
