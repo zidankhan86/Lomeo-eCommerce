@@ -106,6 +106,7 @@
                 addRemoveLinks: true,
                 autoProcessQueue: false,
                 uploadMultiple: true,
+                parallelUploads: 5,
             });
 
             $("#submit-all").on("click", function () {

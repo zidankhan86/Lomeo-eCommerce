@@ -65,11 +65,15 @@
             <div class="right-side xl:px-8 px-0 xl:w-5/12 w-full">
                 <h2 class="text-[#272343] pro-title font-semibold mb-3 capitalize">{{ $products->name }}</h2>
                 <div class="flex items-center gap-2.5 mb-6">
+
+
                     <p class="flex gap-1.5 items-center">
-                        <span class="text-[#272343] text-2xl">BDT {{ $products->price }}</span>
-                        <span class="text-[#272343] opacity-30 text-xl line-through">BDT 500</span>
+                        <span class="text-[#272343] text-2xl">BDT {{ $products->discounted_price }}</span>
+                        <span class="text-[#272343] opacity-30 text-xl line-through">{{ $products->price - $products->discounted_price }}</span>
                     </p>
-                    <span class="bg-[#F5813F] px-2.5 py-1.5 rounded-[4px] text-white text-sm">{{ $products->dicount }} Off</span>
+
+
+                    <span class="bg-[#F5813F] px-2.5 py-1.5 rounded-[4px] text-white text-sm">{{ $products->discount }}% Off</span>
                 </div>
                 <p class="text-[#636270] text-base mb-6">
                     {!! $products->short_description!!}

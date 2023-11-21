@@ -78,6 +78,7 @@ class SslCommerzPaymentController extends Controller
 
 
         $order = Order::find($orderId);
+        
         $admins = User::where('role', 'admin')->get();
 
         foreach ($admins as $admin) {

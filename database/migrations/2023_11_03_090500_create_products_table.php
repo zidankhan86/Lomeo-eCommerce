@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('featured')->default(true);
             $table->string('thumbnail');
             $table->string('stock');
+            $table->string('discounted_price')->nullable();
             $table->boolean('status')->default('1');
             $table->string('discount')->nullable();
             $table->foreignId('category_id')->constrained()->onDelete('cascade');

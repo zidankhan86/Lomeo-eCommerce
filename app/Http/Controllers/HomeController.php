@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Brand;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Testimonial;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -21,16 +22,18 @@ class HomeController extends Controller
         $totalBrands             = Brand::get()->count();
         $totalOrders             = Order::get()->count();
         $totalOrdersDelivered    = Order::where('status','Delivered')->get()->count();
-        $totalOrdersPending    = Order::where('status','processing')
+        $totalOrdersPending      = Order::where('status','processing')
                                         ->orWhere('status','pending')
                                         ->orWhere('status','Ship')
                                         ->get()->count();
+        $testimonials            = Testimonial::get()->count();
           return view('backend.pages.dashboard',compact('totalProducts',
                                                         'totalCustomers',
                                                         'totalBrands',
                                                         'totalOrders',
                                                         'totalOrdersDelivered',
-                                                        'totalOrdersPending'));
+                                                        'totalOrdersPending',
+                                                        'testimonials'));
     }
 
     /**

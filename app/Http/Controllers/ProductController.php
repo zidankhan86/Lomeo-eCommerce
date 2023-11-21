@@ -43,7 +43,7 @@ class ProductController extends Controller
             'thumbnail'             => 'required',
             'stock'                 => 'required',
             'status'                => 'boolean',
-            'discount'              => 'nullable',
+            'discount' => 'nullable|numeric|between:1,100',
             'category_id'           => 'required|exists:categories,id',
             'image'                 => 'nullable',
         ]);
@@ -54,7 +54,7 @@ class ProductController extends Controller
             $request->file('thumbnail')->storeAs('uploads', $imageName, 'public');
         }
 
-        Product::create([
+       $product=Product::create([
             'name'                  => $request->name,
             'long_description'      => $request->long_description,
             'short_description'     => $request->short_description,
@@ -69,6 +69,15 @@ class ProductController extends Controller
             'brand_id'              => $request->brand_id,
             'image'                 => $imageName,
         ]);
+
+        if ($product) {
+
+            $discountPercentage = $product->discount / 100;
+            $originalPrice = $product->price;
+            $discountedPrice = $originalPrice - ($originalPrice * $discountPercentage);
+
+            $product->update(['discounted_price' => $discountedPrice]);
+        }
 
         return redirect()->back()->with('success', 'Product created successfully');
     }
