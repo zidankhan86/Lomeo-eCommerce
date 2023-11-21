@@ -78,7 +78,7 @@ class ProductController extends Controller
 
          $relatedProducts = Product::where('category_id', $product->category->id)
              ->where('id', '<>', $product->id)
-             ->take(4) 
+             ->take(4)
              ->get();
 
          return view('frontend.pages.productDetails',compact('products','wishlistItems','relatedProducts'));

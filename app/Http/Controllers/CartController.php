@@ -10,23 +10,23 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
    public function addToCart($productId){
-   // Find the product
+
    $product = Product::find($productId);
 
-   // Check if the product exists
+
    if (!$product) {
        return back()->with('error', 'Product not found');
    }
 
-   // Get the authenticated user's ID
+
    $userId = auth()->user()->id;
 
-   // Add the product to the cart
+
    \Cart::session($userId)->add(array(
-       'id' => $product->id, // Use the actual product ID
+       'id' => $product->id,
        'name' => $product->name,
        'price' => $product->price,
-       'quantity' => 1, // Set the initial quantity as 1
+       'quantity' => 1,
        'attributes' => array(),
        'associatedModel' => $product
    ));
@@ -66,7 +66,7 @@ class CartController extends Controller
 
 
 
-        $totalPrice = 0; // Initialize the total price
+        $totalPrice = 0;
 
                 foreach ($cartContents as $item) {
             $itemTotalPrice = $item->price * $item->quantity;
@@ -75,7 +75,7 @@ class CartController extends Controller
 
         $wishlistItems = collect([]);
 
-        // Check if the user is authenticated
+        
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }

@@ -30,7 +30,7 @@
                                             </svg>
                                         </a>
                                         <a href="{{ route('details', $product->id) }}" class="w-[70px] h-[70px]">
-                                            <img class="w-full h-full rounded-lg" src="{{ asset('public/assets/images/all-img/shopping-cart-01.png') }}" alt="{{ $product->name }}" />
+                                            <img class="w-full h-full rounded-lg" src="{{ url('/public/uploads/',$product->thumbnail) }}" alt="{{ $product->name }}" />
                                         </a>
                                         <a href="{{ route('details', $product->id) }}" class="ml-1">
                                             <p class="mb-0 text-[#272343] text-sm">{{ $product->name }}</p>
