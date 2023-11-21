@@ -104,10 +104,10 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        132 Sales
+                        {{ $totalOrdersDelivered }} Sales
                       </div>
                       <div class="text-muted">
-                        12 waiting payments
+                        {{ $totalOrdersPending }} waiting payments
                       </div>
                     </div>
                   </div>
@@ -125,10 +125,10 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        78 Orders
+                        {{ $totalOrders }} Orders
                       </div>
                       <div class="text-muted">
-                        32 shipped
+                        {{ $totalOrdersDelivered }} shipped
                       </div>
                     </div>
                   </div>
@@ -146,7 +146,7 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        623 Shares
+                        623 Shares(Not Dynamin)
                       </div>
                       <div class="text-muted">
                         16 today
@@ -167,7 +167,7 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        132 Likes
+                        132 Likes(Not Dynamic)
                       </div>
                       <div class="text-muted">
                         21 today
@@ -179,6 +179,7 @@
             </div>
           </div>
         </div>
+
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
@@ -187,6 +188,10 @@
             </div>
           </div>
         </div>
+
+
+
+
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
