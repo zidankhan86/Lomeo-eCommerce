@@ -33,7 +33,10 @@
                                                 </svg>
                                             </a>
                                             <div class="w-[70px] h-[70px]">
-                                                <img class="w-full h-full rounded-lg" src="{{url('/public/uploads/', $item->model->thumbnail) }}" alt="{{ $item->name }}" />
+                                                @if ($item->model && $item->model->thumbnail)
+                                                    <img class="w-full h-full rounded-lg" src="{{ url('/public/uploads/', $item->model->thumbnail) }}" alt="Thumbnail Image">
+                                                @endif
+
                                             </div>
                                             <div class="ml-1">
                                                 <p class="mb-0 text-[#272343] text-sm">{{ $item->name }}</p>

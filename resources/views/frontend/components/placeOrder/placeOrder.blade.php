@@ -112,7 +112,9 @@
                 <div class="flex justify-between items-center pb-4">
                     <div class="flex items-center gap-3">
                         <div>
-                            <img src="{{ url('/public/uploads/',$item->model->thumbnail) }}" alt="{{ $item->name }}">
+                            @if ($item->model && $item->model->thumbnail)
+                                <img class="w-full h-full rounded-lg" src="{{ url('/public/uploads/', $item->model->thumbnail) }}" alt="Thumbnail Image">
+                             @endif
                         </div>
                         <div class="flex gap-[6px]">
                             <p>{{ $item->name }}</p>

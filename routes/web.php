@@ -114,7 +114,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
     //Wishlist
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
-    Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist']);
+    Route::post('/wishlist/add/{id}', [WishlistController::class,'addToWishlist'])->name('add.to.wishlist');
     Route::get('/wishlist/remove/{wishlist}', [WishlistController::class, 'removeFromWishlist'])->name('remove.Wishlist');
     Route::post('/cart/add-from-wishlist/{id}', [WishlistController::class, 'addToCartFromWishlist'])->name('cart.add-from-wishlist');
 

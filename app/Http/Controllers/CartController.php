@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
    public function addToCart($productId){
+    
 
    $product = Product::find($productId);
 
@@ -75,7 +76,7 @@ class CartController extends Controller
 
         $wishlistItems = collect([]);
 
-        
+
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }

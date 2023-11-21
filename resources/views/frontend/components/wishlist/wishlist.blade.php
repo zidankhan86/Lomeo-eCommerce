@@ -49,11 +49,11 @@
                                     @else
                                         <form action="{{ route('cart.add-from-wishlist', $product->id) }}" method="post">
                                             @csrf
+                                            <input type="number" name="quantity" value="1" min="1"> <!-- Quantity input -->
                                             <button type="submit" class="btn-wishlist">Add to cart</button>
                                         </form>
                                     @endif
                                 </td>
-
                             </tr>
                         @endforeach
                     </tbody>

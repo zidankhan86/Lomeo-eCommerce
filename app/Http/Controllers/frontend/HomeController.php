@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Models\Hero;
 use App\Models\Brand;
 use App\Models\Product;
 use App\Models\Category;
-use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use App\Models\Hero;
 use App\Models\Testimonial;
+use Illuminate\Http\Request;
+use Illuminate\Support\Collection;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -18,12 +19,17 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $wishlistItems = collect([]);
+        $wishlistItems = new Collection; 
 
-        // Check if the user is authenticated
+
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
+
+        $productIds = $wishlistItems->pluck('id');
+        $product = Product::whereIn('id', $productIds)->get();
+
+
          $categories        = Category::all();
          $products          = Product::all();
          $brands            = Brand::all();
@@ -36,7 +42,7 @@ class HomeController extends Controller
 
         return view('frontend.pages.home',compact('products','brands',
                     'featuredProducts','categories','latestProducts',
-                    'wishlistItems','testimonials','heros'));
+                    'wishlistItems','testimonials','heros','product'));
     }
 
 

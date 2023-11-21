@@ -17,8 +17,8 @@ class WishlistController extends Controller
     public function index()
     {
         $wishlistItems = Auth::user()->wishlistProducts;
-        $productIds = $wishlistItems->pluck('id');
-        $products = Product::whereIn('id', $productIds)->get();
+        $productIds    = $wishlistItems->pluck('id');
+        $products      = Product::whereIn('id', $productIds)->get();
 
         return view('frontend.pages.wishlist', compact('wishlistItems', 'products'));
     }
@@ -31,12 +31,12 @@ class WishlistController extends Controller
     {
         $user = Auth::user();
 
-    // Check if the product is already in the wishlist
+
     if (!$user->wishlistProducts->contains('id', $id)) {
-        // Create a new wishlist item
+
         $wishlistItem = new Wishlist(['product_id' => $id, 'user_id' => $user->id]);
 
-        // Save the wishlist item
+
         $wishlistItem->save();
 
         return redirect()->route('home')->with('success', 'Product added to wishlist successfully.');
@@ -49,11 +49,11 @@ class WishlistController extends Controller
     {
 
         try {
-        // Find the wishlist item for the authenticated user and the given product ID
+
         $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
         ->where('product_id', $id)
         ->firstOrFail();
-            // Ensure the authenticated user owns the wishlist item
+
             if ($wishlistItem->user_id !== auth()->user()->id) {
                 return redirect()->route('product.page')->with('error', 'You do not have permission to remove this product from the wishlist.');
             }
@@ -80,15 +80,16 @@ class WishlistController extends Controller
             ->first();
 
         if ($wishlistItem) {
-            // Use the quantity from the wishlist item, or set a default of 1
+           
             $quantity = $wishlistItem->quantity ?? 1;
 
             // Add the product to the cart
             \Cart::session(auth()->user()->id)->add(
                 $wishlistItem->product->id,
                 $wishlistItem->product->name,
-                $quantity,
                 $wishlistItem->product->price,
+                $quantity,
+
                 ['image' => $wishlistItem->product->image]
             );
 
