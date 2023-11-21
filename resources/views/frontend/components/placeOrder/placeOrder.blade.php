@@ -68,7 +68,7 @@
 
                             <div class="flex items-center">
                                 <input id="default-radio-2" type="radio" value="2" name="paymenttype" class="w-4 h-4">
-                                <label for="default-radio-2" class="ml-2 text-[18px] leading-[110%] font-normal text-gray-black cursor-pointer">Paypel</label>
+                                <label for="default-radio-2" class="ml-2 text-[18px] leading-[110%] font-normal text-gray-black cursor-pointer">SSLCommerze</label>
                             </div>
                             <span>
                                 <svg width="162" height="21" viewBox="0 0 162 21" fill="none" xmlns="http://www.w3.org/2000/svg">

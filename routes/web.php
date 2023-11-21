@@ -10,6 +10,7 @@ use App\Http\Controllers\TestController;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PayPalController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
@@ -48,7 +49,12 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/fail', [SslCommerzPaymentController::class, 'fail']);
     Route::post('/cancel', [SslCommerzPaymentController::class, 'cancel']);
 
-    Route::post('/check/payment/{id}', [SslCommerzPaymentController::class, 'CheckPayment'])->name('check.payment');
+
+    //Paypal
+
+    Route::post('/paypal/create-payment', [PayPalController::class, 'createPayment'])->name('paypal.create-payment');
+    Route::get('/paypal/success', [PayPalController::class, 'success'])->name('paypal.success');
+    Route::get('/paypal/cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
 
 
     //Pages
@@ -94,7 +100,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/placeOrder/{id}',[FrontendOrderController::class,'index'])->name('place.order');
     Route::get('/order-history',[FrontendOrderController::class,'orderHistory'])->name('order.history');
     Route::get('/order-details/{id}',[FrontendOrderController::class,'orderDetails'])->name('order.details');
-
+    Route::post('/check/payment/{id}', [SslCommerzPaymentController::class, 'CheckPayment'])->name('check.payment');
     //Profile
     Route::get('/profile-page',[FrontendAuthController::class,'profile'])->name('profile.page');
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
@@ -130,6 +136,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
     //Order
     Route::get('/order-list',[OrderController::class,'orderList'])->name('order.list');
+    Route::get('/order-on-the-way/{id}',[OrderController::class,'orderOnTheWay'])->name('order.on.the.way');
+    Route::get('/order-completed/{id}',[OrderController::class,'orderCompleted'])->name('order.completed');
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');

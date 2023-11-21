@@ -21,17 +21,28 @@ class OrderController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function orderOnTheWay($id)
     {
-        //
+        $status = Order::findOrFail($id);
+
+        $status->update([
+
+            "status"=>"Ship"
+        ]);
+
+        return redirect()->back()->with('success','Status updated successfully');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
+    public function orderCompleted($id)
     {
-        //
+        $status = Order::findOrFail($id);
+
+        $status->update([
+
+            "status"=>"Delivered"
+        ]);
+
+        return redirect()->back()->with('success','Status updated successfully');
     }
 
     /**

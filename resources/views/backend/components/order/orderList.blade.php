@@ -25,7 +25,7 @@
                     <th>Transaction</th>
                     <th>Status</th>
                     <th>User</th>
-
+                    <th>Payment Type</th>
 
                   <th class="w-1">Action</th>
                 </tr>
@@ -48,23 +48,23 @@
 
                         <td data-label="Title">{{ $order->status }} </td>
                         <td data-label="Title">{{ $order->user->name }} </td>
-
+                        <td data-label="Title">{{ $order->paymenttype == 1 ? 'COD': 'Online payment' }} </td>
 
 
 
                   <td>
                     <div class="btn-list flex-nowrap">
-                      
+
                       <div class="dropdown">
                         <button class="btn dropdown-toggle align-text-top" data-bs-toggle="dropdown">
                           Actions
                         </button>
                         <div class="dropdown-menu dropdown-menu-end">
-                          <a class="dropdown-item">
-                            Add Gallery
+                          <a href="{{ route('order.on.the.way',$order->id) }}" class="dropdown-item">
+                            On the way
                           </a>
-                          <a class="dropdown-item" href="#">
-                            Another action
+                          <a class="dropdown-item" href="{{ route('order.completed',$order->id) }}">
+                           Completed
                           </a>
                         </div>
                       </div>
