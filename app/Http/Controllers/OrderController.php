@@ -48,9 +48,10 @@ class OrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function orderInvoice( $id)
     {
-        //
+        $inv = Order::find($id);
+        return view('backend.components.order.invoice',compact('inv'));
     }
 
     /**

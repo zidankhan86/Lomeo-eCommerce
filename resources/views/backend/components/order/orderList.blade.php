@@ -1,11 +1,5 @@
 
-<style>
-    img{
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-</style>
+
 <div class="container">
     <br><h2 style="text-align: center">Order List</h2>
     <div style="text-align: right">
@@ -25,6 +19,7 @@
                     <th>Transaction</th>
                     <th>Status</th>
                     <th>User</th>
+                    <th>Inv</th>
                     <th>Payment Type</th>
 
                   <th class="w-1">Action</th>
@@ -49,6 +44,7 @@
                         <td data-label="Title">{{ $order->status }} </td>
                         <td data-label="Title">{{ $order->user->name }} </td>
                         <td data-label="Title">{{ $order->paymenttype == 1 ? 'COD': 'Online payment' }} </td>
+                        <td><a href="{{ route('order.inv',$order->id) }}">INV</a></td>
 
                   <td>
                     <div class="btn-list flex-nowrap">

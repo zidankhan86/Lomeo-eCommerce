@@ -138,6 +138,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/order-list',[OrderController::class,'orderList'])->name('order.list');
     Route::get('/order-on-the-way/{id}',[OrderController::class,'orderOnTheWay'])->name('order.on.the.way');
     Route::get('/order-completed/{id}',[OrderController::class,'orderCompleted'])->name('order.completed');
+    Route::get('/order-invoice/{id}',[OrderController::class,'orderInvoice'])->name('order.inv');
     //Pages
     Route::get('/app',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');
