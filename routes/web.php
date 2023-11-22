@@ -119,7 +119,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/cart/add-from-wishlist/{id}', [WishlistController::class, 'addToCartFromWishlist'])->name('cart.add-from-wishlist');
 
     //Middleware Admin
-    Route::group(['middleware'=>['auth','admin']],function(){
+    Route::group(['middleware'=>['auth','admin'],'prefix'=>'app'],function(){
 
     //Testimonial
     Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
@@ -140,7 +140,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/order-completed/{id}',[OrderController::class,'orderCompleted'])->name('order.completed');
     Route::get('/order-invoice/{id}',[OrderController::class,'orderInvoice'])->name('order.inv');
     //Pages
-    Route::get('/app',[HomeController::class,'index'])->name('app');
+    Route::get('/',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');
     Route::get('/logout',[TestController::class,'logout'])->name('logout');
     Route::get('/form',[TestController::class,'form'])->name('form');
