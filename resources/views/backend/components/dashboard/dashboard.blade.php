@@ -130,7 +130,7 @@
                 </div>
               </div>
             </div>
-            {{-- <div class="col-sm-6 col-lg-3">
+            <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
@@ -141,16 +141,16 @@
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        6 Shares(Not Dynamin)
+                        {{ $totalProducts }} Products
                       </div>
                       <div class="text-muted">
-                        16 today
+                        {{ $totalFeatured }} Featured Product
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-            </div> --}}
+            </div>
             <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
@@ -250,7 +250,7 @@
                       padding: 4
                   },
               },
-              colors: ['#3F51B5'], // Adjust colors as needed
+              colors: ['#3F51B5'], // color
               tooltip: {
                   theme: 'dark',
               },

@@ -20,6 +20,7 @@ class HomeController extends Controller
     {
 
         $totalProducts           = Product::get()->count();
+        $totalFeatured           = Product::where('status','1')->get()->count();
         $totalCustomers          = User::get()->count();
         $totalBrands             = Brand::get()->count();
         $totalOrders             = Order::get()->count();
@@ -31,10 +32,10 @@ class HomeController extends Controller
         $testimonials            = Testimonial::get()->count();
         $totalCategories         = Category::get()->count();
         $totalCategoryActive     = Category::where('status','1')->count();
-        $ordersPerDay = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as orders_count'))
-                        ->groupBy('date')
-                        ->orderBy('date', 'asc')
-                        ->get();
+        $ordersPerDay            = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as orders_count'))
+                                    ->groupBy('date')
+                                    ->orderBy('date', 'asc')
+                                    ->get();
           return view('backend.pages.dashboard',compact('totalProducts',
                                                         'totalCustomers',
                                                         'totalBrands',
@@ -44,7 +45,7 @@ class HomeController extends Controller
                                                         'testimonials',
                                                         'totalCategories',
                                                         'totalCategoryActive',
-                                                        'ordersPerDay'));
+                                                        'ordersPerDay','totalFeatured'));
     }
 
     /**
