@@ -130,7 +130,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-sm-6 col-lg-3">
+            {{-- <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
@@ -150,22 +150,25 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --}}
             <div class="col-sm-6 col-lg-3">
               <div class="card card-sm">
                 <div class="card-body">
                   <div class="row align-items-center">
                     <div class="col-auto">
                       <span class="bg-facebook text-white avatar"><!-- Download SVG icon from http://tabler-icons.io/i/brand-facebook -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M7 10v4h3v7h4v-7h3l1 -4h-4v-2a1 1 0 0 1 1 -1h3v-4h-3a5 5 0 0 0 -5 5v2h-3" /></svg>
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-category-plus" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                            <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
+                            <path d="M4 4h6v6h-6zm10 0h6v6h-6zm-10 10h6v6h-6zm10 3h6m-3 -3v6"></path>
+                         </svg>
                       </span>
                     </div>
                     <div class="col">
                       <div class="font-weight-medium">
-                        132 Likes(Not Dynamic)
+                        {{ $totalCategories }} Category
                       </div>
                       <div class="text-muted">
-                        21 today
+                        {{ $totalCategoryActive }} Active
                       </div>
                     </div>
                   </div>
@@ -176,7 +179,7 @@
         </div>
 
 
-        
+
         <div class="col-lg-6">
           <div class="card">
             <div class="card-body">
@@ -186,21 +189,6 @@
           </div>
         </div>
 
-
-
-
-        <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Locations</h3>
-              <div class="ratio ratio-21x9">
-                <div>
-                  <div id="map-world" class="w-100 h-100"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
 
 
 

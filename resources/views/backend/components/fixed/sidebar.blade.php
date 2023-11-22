@@ -6,7 +6,7 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark">
         <a href=".">
-          <img src="./static/logo.svg" width="110" height="32" alt="Tabler" class="navbar-brand-image">
+          <img src="{{url ('./static/logo.svg') }}" width="110" height="32" alt="Tabler" class="navbar-brand-image">
         </a>
       </h1>
       <div class="navbar-nav flex-row d-lg-none">
@@ -239,27 +239,6 @@
 
 
 
-
-
-
-
-
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ route('order.list') }}"  data-bs-auto-close="false" role="button" aria-expanded="false" >
-              <span class="nav-link-icon d-md-none d-lg-inline-block"><!-- Download SVG icon from http://tabler-icons.io/i/package -->
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-shopping-cart-check" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-                    <path stroke="none" d="M0 0h24v24H0z" fill="none"></path>
-                    <path d="M4 19a2 2 0 1 0 4 0a2 2 0 0 0 -4 0"></path>
-                    <path d="M11.5 17h-5.5v-14h-2"></path>
-                    <path d="M6 5l14 1l-1 7h-13"></path>
-                    <path d="M15 19l2 2l4 -4"></path>
-                 </svg>
-              </span>
-              <span class="nav-link-title">
-                Orders
-              </span>
-            </a>
-          </li>
 
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('user.list') }}"  data-bs-auto-close="false" role="button" aria-expanded="false" >

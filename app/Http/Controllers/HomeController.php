@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
 use App\Models\Testimonial;
@@ -27,13 +28,16 @@ class HomeController extends Controller
                                         ->orWhere('status','Ship')
                                         ->get()->count();
         $testimonials            = Testimonial::get()->count();
+        $totalCategories         = Category::get()->count();
+        $totalCategoryActive         = Category::where('status','1')->count();
           return view('backend.pages.dashboard',compact('totalProducts',
                                                         'totalCustomers',
                                                         'totalBrands',
                                                         'totalOrders',
                                                         'totalOrdersDelivered',
                                                         'totalOrdersPending',
-                                                        'testimonials'));
+                                                        'testimonials',
+                                                        'totalCategories','totalCategoryActive'));
     }
 
     /**

@@ -22,7 +22,7 @@
                 <tr>
                   <td data-label="Name" >
                     <div class="d-flex py-1 align-items-center">
-                      <span class="avatar me-2" style="background-image: url(./static/avatars/010m.jpg)"></span>
+                      <span class="avatar me-2"><img src="{{ url('/public/uploads/',$user->image) }}" alt=""></span>
                       <div class="flex-fill">
                         <div class="font-weight-medium">{{ $user->name }}</div>
                         <div class="text-muted"><p href="#" class="text-reset">{{ $user->email }}</p></div>
