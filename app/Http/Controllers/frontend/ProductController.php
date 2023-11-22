@@ -81,7 +81,22 @@ class ProductController extends Controller
              ->take(4)
              ->get();
 
-         return view('frontend.pages.productDetails',compact('products','wishlistItems','relatedProducts'));
+
+        //Social share
+        $routeName = 'details';
+        $url = route($routeName, ['id' => $id]);
+        $shareComponent = \Share::page(
+            $url,
+            'Your share text comes here',
+        )
+        ->facebook()
+        ->twitter()
+        ->linkedin()
+        ->telegram()
+        ->whatsapp()
+        ->reddit();
+
+         return view('frontend.pages.productDetails',compact('products','wishlistItems','relatedProducts','shareComponent'));
     }
 
     /**

@@ -96,9 +96,9 @@ class ProductController extends Controller
      */
     public function edit( $id)
     {
-         $product = Product::find($id);
-         $categories = Category::all();
-         $brands = Brand::all();
+         $product       = Product::find($id);
+         $categories    = Category::all();
+         $brands        = Brand::all();
          return view('backend.pages.productEdit',compact('product','categories','brands'));
     }
 
