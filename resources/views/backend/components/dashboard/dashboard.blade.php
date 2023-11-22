@@ -181,12 +181,12 @@
 
 
         <div class="col-lg-6">
-          <div class="card">
-            <div class="card-body">
-              <h3 class="card-title">Traffic summary</h3>
-              <div id="chart-mentions" class="chart-lg"></div>
+            <div class="card">
+                <div class="card-body">
+                    <h3 class="card-title">Orders Per Day</h3>
+                    <div id="chart-orders-per-day" class="chart-lg"></div>
+                </div>
             </div>
-          </div>
         </div>
 
 
@@ -196,3 +196,69 @@
       </div>
     </div>
   </div>
+  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var ordersPerDay = @json($ordersPerDay);
+
+          var chartData = {
+              chart: {
+                  type: "bar",
+                  fontFamily: 'inherit',
+                  height: 240,
+                  parentHeightOffset: 0,
+                  toolbar: {
+                      show: false,
+                  },
+                  animations: {
+                      enabled: false
+                  },
+              },
+              plotOptions: {
+                  bar: {
+                      columnWidth: '50%',
+                  }
+              },
+              dataLabels: {
+                  enabled: false,
+              },
+              fill: {
+                  opacity: 1,
+              },
+              series: [
+                  {
+                      name: "Orders per Day",
+                      data: ordersPerDay.map(item => item.orders_count),
+                  },
+              ],
+              xaxis: {
+                  categories: ordersPerDay.map(item => item.date),
+                  labels: {
+                      padding: 0,
+                  },
+                  tooltip: {
+                      enabled: false
+                  },
+                  axisBorder: {
+                      show: false,
+                  },
+                  type: 'datetime',
+              },
+              yaxis: {
+                  labels: {
+                      padding: 4
+                  },
+              },
+              colors: ['#3F51B5'], // Adjust colors as needed
+              tooltip: {
+                  theme: 'dark',
+              },
+              legend: {
+                  show: false,
+              },
+          };
+
+          new ApexCharts(document.getElementById('chart-orders-per-day'), chartData).render();
+      });
+  </script>
