@@ -185,34 +185,33 @@
                                                 @endauth
 
                                             </li>
-                                            <li>
-                                                <a href="{{ route('login.page') }}">Sign In</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('register.page') }}">Create a Account</a>
-                                            </li>
-                                        </div>
-                                        <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
-                                            <li>
-                                                <a href="{{ route('profile.page') }}">Account Settings</a>
-                                            </li>
-                                            <li>
-                                                <a href="{{ route('order.history') }}">Order History</a>
-                                            </li>
-                                        </div>
-                                        <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
-                                            <li>
-                                                <a href="wishlist.html">Wishlist</a>
-                                            </li>
-                                            <li>
-                                                <a href="shopping-cart.html">Shopping Cart</a>
-                                            </li>
-                                        </div>
-                                        <div class="px-3">
-                                            <li>
-                                                <a href="{{ route('logout.user') }}">Logout</a>
-                                            </li>
-                                        </div>
+
+                                            <div class="px-3 shadow-[0px_1px_0px_#E1E3E6]">
+                                                @auth
+                                                    <li>
+                                                        <a href="{{ route('profile.page') }}">Account Settings</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ route('order.history') }}">Order History</a>
+                                                    </li>
+                                                @endauth
+                                            </div>
+
+                                            <div class="px-3">
+                                                @guest
+                                                    <li>
+                                                        <a href="{{ route('login.page') }}">Sign In</a>
+                                                    </li>
+                                                    <li>
+                                                        <a href="{{ route('register.page') }}">Create an Account</a>
+                                                    </li>
+                                                @else
+                                                    <li>
+                                                        <a href="{{ route('logout.user') }}">Logout</a>
+                                                    </li>
+                                                @endguest
+                                            </div>
+
                                     </ul>
                                 </div>
                             </li>
@@ -248,7 +247,7 @@
 
                               @php
                         $categories = \App\Models\Category::all();
-                    @endphp
+                             @endphp
 
                     @foreach($categories as $category)
                         <li>
@@ -266,10 +265,10 @@
                         <li>
                             <a href="{{ route('product.page') }}">Shop</a>
                         </li>
-                        <li>
+                        {{-- <li>
                             <a href="product-details.html">Product</a>
-                        </li>
-                        <li class="relative">
+                        </li> --}}
+                        {{-- <li class="relative">
                             <a href="javascript:void(0);" class="inline-flex gap-2 items-center">Pages
                                 <span>
                                 <img src="/frontend./public/assets/images/all-img/select-arrow.png" alt="">
@@ -313,7 +312,7 @@
                                     <a href="checkout-shopping.html">Checkout Shoping</a>
                                 </li>
                             </ul>
-                        </li>
+                        </li> --}}
                         <li>
                             <a href="">About</a>
                         </li>

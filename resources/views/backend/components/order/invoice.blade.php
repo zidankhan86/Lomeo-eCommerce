@@ -36,11 +36,20 @@
             </thead>
             <tr>
                 <td class="text-center">1</td>
+
+
+
+
                 <td>
-                    <p class="strong mb-1">{{ $inv->product->name }}</p>
+                    @foreach ($invItem as $item)
+                    <p class="strong mb-1">{{ $item->product->name }}</p>
+                     @endforeach
                 </td>
+
+
+
                 <td class="text-center">
-                    1
+                    {{ $inv->product->quantity }}
                 </td>
                 <td class="text-end">{{ $inv->amount }}</td>
             </tr>

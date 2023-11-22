@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItems;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,6 +16,7 @@ class OrderController extends Controller
     {
         $orders = Order::all();
         Product::with('product')->where('name');
+
         return view('backend.pages.orderList',compact('orders'));
     }
 
@@ -51,7 +53,9 @@ class OrderController extends Controller
     public function orderInvoice( $id)
     {
         $inv = Order::find($id);
-        return view('backend.components.order.invoice',compact('inv'));
+        $invItem=OrderItems::where('order_id',$id)->get();
+       // dd($invItem);
+        return view('backend.components.order.invoice',compact('inv','invItem'));
     }
 
     /**

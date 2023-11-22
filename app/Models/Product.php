@@ -40,4 +40,14 @@ class Product extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+
+    /**
+     * Get the user that owns the Product
+     *
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
+    public function orderItem(): BelongsTo
+    {
+        return $this->belongsTo(OrderItems::class);
+    }
 }
