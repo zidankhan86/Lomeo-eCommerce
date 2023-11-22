@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Auth;
 class CartController extends Controller
 {
    public function addToCart($productId){
-    
+
 
    $product = Product::find($productId);
 
@@ -24,12 +24,12 @@ class CartController extends Controller
 
 
    \Cart::session($userId)->add(array(
-       'id' => $product->id,
-       'name' => $product->name,
-       'price' => $product->price,
-       'quantity' => 1,
-       'attributes' => array(),
-       'associatedModel' => $product
+       'id'             => $product->id,
+       'name'           => $product->name,
+       'price'          => $product->price,
+       'quantity'       => 1,
+       'attributes'     => array(),
+       'associatedModel'=> $product
    ));
 
    return back()->with('success', 'Product added to the cart');

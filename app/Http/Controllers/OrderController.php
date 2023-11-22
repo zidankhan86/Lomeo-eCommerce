@@ -52,8 +52,8 @@ class OrderController extends Controller
      */
     public function orderInvoice( $id)
     {
-        $inv = Order::find($id);
-        $invItem=OrderItems::where('order_id',$id)->get();
+        $inv        = Order::find($id);
+        $invItem    =OrderItems::where('order_id',$id)->get();
        // dd($invItem);
         return view('backend.components.order.invoice',compact('inv','invItem'));
     }

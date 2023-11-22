@@ -43,7 +43,7 @@ class ProductController extends Controller
             'thumbnail'             => 'required',
             'stock'                 => 'required',
             'status'                => 'boolean',
-            'discount' => 'nullable|numeric|between:1,100',
+            'discount'              => 'nullable|numeric|between:1,100',
             'category_id'           => 'required|exists:categories,id',
             'image'                 => 'nullable',
         ]);

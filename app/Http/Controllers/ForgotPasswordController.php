@@ -53,8 +53,8 @@ class ForgotPasswordController extends Controller
         {
             // Validate the input fields
             $request->validate([
-                'email' => 'required|email',
-                'password' => 'required|min:5|confirmed',
+                'email'     => 'required|email',
+                'password'  => 'required|min:5|confirmed',
             ]);
 
             // Find the user by email

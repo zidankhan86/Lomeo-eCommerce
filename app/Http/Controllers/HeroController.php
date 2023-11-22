@@ -32,8 +32,8 @@ class HeroController extends Controller
        //dd($request->all());
        $request->validate([
         'welcome_title' => 'required|max:255',
-        'image' => 'required',
-        'title' => 'required',
+        'image'         => 'required',
+        'title'         => 'required',
     ]);
 
     $imageName = null;
@@ -45,9 +45,9 @@ class HeroController extends Controller
     // Create the product
     Hero::create([
         'welcome_title' => $request->welcome_title,
-        'image' => $imageName,
-        'title' => $request->title,
-        'discount' => $request->discount,
+        'image'         => $imageName,
+        'title'         => $request->title,
+        'discount'      => $request->discount,
 
     ]);
 

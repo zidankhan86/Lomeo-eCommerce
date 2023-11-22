@@ -29,7 +29,7 @@ class HomeController extends Controller
                                         ->get()->count();
         $testimonials            = Testimonial::get()->count();
         $totalCategories         = Category::get()->count();
-        $totalCategoryActive         = Category::where('status','1')->count();
+        $totalCategoryActive     = Category::where('status','1')->count();
           return view('backend.pages.dashboard',compact('totalProducts',
                                                         'totalCustomers',
                                                         'totalBrands',

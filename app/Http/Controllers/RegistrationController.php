@@ -32,15 +32,15 @@ class RegistrationController extends Controller
             {
                 //dd($request->all());
             $validator = Validator::make($request->all(), [
-                'email' => 'required|email|unique:users',
-                'phone' => [
+                'email'         => 'required|email|unique:users',
+                'phone'         => [
                 'required',
                 'regex:/^(?:\+?88|0088)?01[13-9]\d{8}$/'
                 ],
-                'name' => 'required',
-                'password' => 'required|min:5',
+                'name'          => 'required',
+                'password'      => 'required|min:5',
                 ], [
-                'phone.regex' => 'The phone number should be a valid number.'
+                'phone.regex'   => 'The phone number should be a valid number.'
                 ]);
 
                 if ($validator->fails()) {
