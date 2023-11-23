@@ -34,7 +34,7 @@ class AuthController extends Controller
                 return redirect()->route('app')->withSuccess('Login Success');
             }
         } else {
-            return redirect()->back()->withErrors(['error' => 'Invalid credentials. Please try again.']);
+            return redirect()->back()->with(['error' => 'Invalid credentials. Please try again.']);
         }
     }
 
