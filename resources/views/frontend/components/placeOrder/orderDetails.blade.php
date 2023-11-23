@@ -8,7 +8,7 @@
                     <div class="">
                         <div class="flex flex-wrap justify-between items-center px-8 py-[30px]">
                             <h2 class="text-[#272343] font-display xl:text-[32px] text-[18px] font-semibold leading-[110%] capitalize">Order Details</h2>
-                            <a href="account-setting.html" class="btn-primary capitalize">back to List</a>
+                            <a href="{{ route('order.history') }}" class="btn-primary capitalize">back to List</a>
                         </div>
                         <hr class="my-0">
                         <div class="px-8 py-8 flex flex-col md:flex-row md:flex-wrap gap-6 xl:gap-2 xl:justify-between md:items-center">
@@ -27,7 +27,7 @@
                             </div>
                             <div class="flex-wrap">
                                 <p class="text-[#9A9CAA] font-display text-[14px] leading-[100%] capitalize pb-[10px]">Total:</p>
-                                <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium">$265.00</span>
+                                <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium">BDT {{ $orderDetails->total }}</span>
                             </div>
                             <div class="flex-wrap">
                                 <p class="text-[#9A9CAA] font-display text-[14px] leading-[100%] capitalize pb-[10px]">Status:</p>
@@ -35,7 +35,7 @@
                             </div>
                             <div class="flex-wrap">
                                 <p class="text-[#9A9CAA] font-display text-[14px] leading-[100%] capitalize pb-[10px]">Payment Method:</p>
-                                <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium">Paypal</span>
+                                <span class="text-gray-black font-display text-[20px] leading-[120%] font-medium">{{ $orderDetails->paymenttype == 1 ? 'COD':'SSLcommerze' }}</span>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,7 @@
                                             <p>{{ $orderDetails->quantity }}</p>
                                         </td>
                                         <td class="text-sm">
-                                            <p>$145.00</p>
+                                            <p>BDT {{ $orderDetails->total }}</p>
                                         </td>
                                         <td class="text-sm pt-6">
                                             <div class="mb-6">
@@ -141,7 +141,7 @@
 
                                 <div class="flex justify-between pb-4">
                                     <p>Subtotal</p>
-                                    <p>$1,435.00</p>
+                                    <p>BDT {{ $orderDetails->total }}</p>
                                 </div>
                                 <div class="flex justify-between pb-4">
                                     <p>discount</p>
@@ -154,7 +154,7 @@
                                 <hr>
                                 <div class="flex justify-between">
                                     <p class="text-[18px] font-display text-dark-gray ">Total:</p>
-                                    <p class="text-[22px] font-display leading-[120%] font-sem">$1026.23</p>
+                                    <p class="text-[22px] font-display leading-[120%] font-sem">BDT {{ $orderDetails->total }}</p>
                                 </div>
                             </div>
                         </div>
