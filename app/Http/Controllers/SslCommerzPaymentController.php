@@ -256,8 +256,8 @@ class SslCommerzPaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-        //toastr()->success('Payment', 'Payment Successful');
-        return redirect()->route('home')->with('Payment', 'Payment Successful');
+        toastr()->success('Payment', 'Payment Successful');
+       // return redirect()->route('home')->with('success', 'Payment Successful');
 
 
     }

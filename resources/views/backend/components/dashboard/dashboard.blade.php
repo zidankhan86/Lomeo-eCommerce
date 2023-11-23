@@ -190,7 +190,7 @@
         </div>
 
 
-        {{-- <div class="col-lg-6">
+        <div class="col-lg-6">
             <div class="card">
               <div class="card-header border-0">
                 <div class="card-title">Development activity</div>
@@ -216,7 +216,7 @@
           </div>
 
 
-      </div> --}}
+      </div>
 
 
     </div>

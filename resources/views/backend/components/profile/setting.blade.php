@@ -1,4 +1,8 @@
-
+<!-- Include jQuery -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Include Dropify CSS and JS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/css/dropify.min.css" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Dropify/0.2.2/js/dropify.min.js"></script>
 <div class="page">
     <!-- Page header -->
     <div class="page-header d-print-none">
@@ -36,9 +40,10 @@
 
                                 <div class="row align-items-center">
                                     <label for="image-upload" style="cursor: pointer;">
-                                        <p class="label-txt">Choose Image</p>
-                                        <img height="100px" width="100px" id="image-preview" src="{{ asset('public/uploads/' . auth()->user()->image) }}" alt="Student Image">
-                                        <input type="file" id="image-upload" name="image">
+
+                                       <img height="100px" src="{{ asset('public/uploads/' . auth()->user()->image) }}" alt="Profile Photo">
+                                       <p class="label-txt">Choose profile photo</p>
+                                        <input type="file" id="image" name="image" class="form-control dropify" style=" width: 100%;">
                                     </label>
                                 </div>
 
@@ -58,7 +63,7 @@
                                     </div>
                                 </div>
 
-                                <!-- User Role (no changes allowed) -->
+
 
 
 
@@ -81,3 +86,8 @@
     </div>
 </div>
 
+<script>
+    $(document).ready(function () {
+        $('.dropify').dropify();
+    });
+</script>
