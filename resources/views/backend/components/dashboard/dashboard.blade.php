@@ -190,75 +190,34 @@
         </div>
 
 
+        {{-- <div class="col-lg-6">
+            <div class="card">
+              <div class="card-header border-0">
+                <div class="card-title">Development activity</div>
+              </div>
+              <div class="position-relative">
+                <div class="position-absolute top-0 left-0 px-3 mt-1 w-75">
+                  <div class="row g-2">
+                    <div class="col-auto">
+                      <div class="chart-sparkline chart-sparkline-square" id="sparkline-activity"></div>
+                    </div>
+                    <div class="col">
+                      <div>Today's Earning: $4,262.40</div>
+                      <div class="text-muted"><!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>
+                        +5% more than yesterday</div>
+                    </div>
+                  </div>
+                </div>
+                <div id="chart-development-activity"></div>
+              </div>
+
+            </div>
+          </div>
 
 
+      </div> --}}
 
-      </div>
+
     </div>
   </div>
-  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-
-  <script>
-      document.addEventListener("DOMContentLoaded", function () {
-          var ordersPerDay = @json($ordersPerDay);
-
-          var chartData = {
-              chart: {
-                  type: "bar",
-                  fontFamily: 'inherit',
-                  height: 240,
-                  parentHeightOffset: 0,
-                  toolbar: {
-                      show: false,
-                  },
-                  animations: {
-                      enabled: false
-                  },
-              },
-              plotOptions: {
-                  bar: {
-                      columnWidth: '50%',
-                  }
-              },
-              dataLabels: {
-                  enabled: false,
-              },
-              fill: {
-                  opacity: 1,
-              },
-              series: [
-                  {
-                      name: "Orders per Day",
-                      data: ordersPerDay.map(item => item.orders_count),
-                  },
-              ],
-              xaxis: {
-                  categories: ordersPerDay.map(item => item.date),
-                  labels: {
-                      padding: 0,
-                  },
-                  tooltip: {
-                      enabled: false
-                  },
-                  axisBorder: {
-                      show: false,
-                  },
-                  type: 'datetime',
-              },
-              yaxis: {
-                  labels: {
-                      padding: 4
-                  },
-              },
-              colors: ['#3F51B5'], // color
-              tooltip: {
-                  theme: 'dark',
-              },
-              legend: {
-                  show: false,
-              },
-          };
-
-          new ApexCharts(document.getElementById('chart-orders-per-day'), chartData).render();
-      });
-  </script>

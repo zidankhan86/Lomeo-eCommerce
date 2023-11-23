@@ -68,8 +68,8 @@ class AuthController extends Controller
     public function logoutUser()
     {
         Auth::logout();
-         session()->flush();
-        return back()->with('success','logout');
+        //  session()->flush();
+        return redirect('/')->with('success','logout');
     }
 
     public function list()

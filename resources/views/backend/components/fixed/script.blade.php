@@ -515,3 +515,69 @@
   });
   // @formatter:on
 </script>
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
+  <script>
+      document.addEventListener("DOMContentLoaded", function () {
+          var ordersPerDay = @json($ordersPerDay);
+
+          var chartData = {
+              chart: {
+                  type: "bar",
+                  fontFamily: 'inherit',
+                  height: 240,
+                  parentHeightOffset: 0,
+                  toolbar: {
+                      show: false,
+                  },
+                  animations: {
+                      enabled: false
+                  },
+              },
+              plotOptions: {
+                  bar: {
+                      columnWidth: '50%',
+                  }
+              },
+              dataLabels: {
+                  enabled: false,
+              },
+              fill: {
+                  opacity: 1,
+              },
+              series: [
+                  {
+                      name: "Orders per Day",
+                      data: ordersPerDay.map(item => item.orders_count),
+                  },
+              ],
+              xaxis: {
+                  categories: ordersPerDay.map(item => item.date),
+                  labels: {
+                      padding: 0,
+                  },
+                  tooltip: {
+                      enabled: false
+                  },
+                  axisBorder: {
+                      show: false,
+                  },
+                  type: 'datetime',
+              },
+              yaxis: {
+                  labels: {
+                      padding: 4
+                  },
+              },
+              colors: ['#3F51B5'], // color
+              tooltip: {
+                  theme: 'dark',
+              },
+              legend: {
+                  show: false,
+              },
+          };
+
+          new ApexCharts(document.getElementById('chart-orders-per-day'), chartData).render();
+      });
+  </script>
