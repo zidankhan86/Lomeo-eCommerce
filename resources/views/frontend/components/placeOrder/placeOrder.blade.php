@@ -33,7 +33,7 @@
                     </div>
 
                                     <div>
-                                        <input type="hidden" name="total" value="{{ $product->price }}">
+                                        <input type="hidden" name="total" value="{{ $totalPrice }}">
                                     </div>
 
                                     <div>

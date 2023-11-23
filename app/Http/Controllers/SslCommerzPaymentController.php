@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\DB;
 use App\Notifications\OrderReceivedNotification;
 use App\Library\SslCommerz\SslCommerzNotification;
 
-//use App\Http\Controllers\SslCommerzPaymentController;
+
 
 class SslCommerzPaymentController extends Controller
 {
@@ -102,7 +102,7 @@ class SslCommerzPaymentController extends Controller
 
 
 
-        //dd($request->all());
+       // dd($request->all());
         $request->validate([
             'name'      => 'required',
             'email'     => 'required',
@@ -110,11 +110,17 @@ class SslCommerzPaymentController extends Controller
             'address'   => 'required',
 
         ]);
+        $cartContents = \Cart::session(auth()->user()->id)->getContent();
+        $totalPrice = 0; // Initialize the total price
 
+        foreach ($cartContents as $item) {
+        $itemTotalPrice = $item->price * $item->quantity;
+        $totalPrice += $itemTotalPrice;
+}
          //dd($request->all());
         $product = Product::find($id);                //For specific product data pass through parameter.
         $post_data = array();
-        $post_data['total_amount']      = $product->price; # You cant not pay less than 10
+        $post_data['total_amount']      = $totalPrice;  # You cant not pay less than 10
         $post_data['total']             = $product->price;
         $post_data['currency']          = "BDT";
         $post_data['tran_id']           = uniqid();
@@ -250,8 +256,8 @@ class SslCommerzPaymentController extends Controller
             #That means something wrong happened. You can redirect customer to your product page.
             echo "Invalid Transaction";
         }
-        toastr()->success('Payment', 'Payment Successful');
-        return redirect()->route('home');
+        //toastr()->success('Payment', 'Payment Successful');
+        return redirect()->route('home')->with('Payment', 'Payment Successful');
 
 
     }
