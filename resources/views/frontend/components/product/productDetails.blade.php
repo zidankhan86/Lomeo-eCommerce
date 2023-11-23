@@ -1,24 +1,4 @@
-<style>
-    div#social-links {
-        margin: 0 auto;
-        max-width: 500px;
-    }
-    div#social-links ul li {
-        display: inline-block;
-    }
-    div#social-links ul li a {
-        padding: 20px;
-        border: 1px solid #ccc;
-        margin: 1px;
-        font-size: 30px;
-        color: #222;
-        background-color: #ccc;
-    }
-</style>
 
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
-
-<!-- product details section start -->
 <div class="">
     <div class="container px-3 md:px-5 xl:px-0">
         <div class="product-details-wrap pt-10">
@@ -28,25 +8,16 @@
                         <div class="gallery-button-prev"></div>
                         <div class="swiper-container gallery-thumbs">
                             <div class="swiper-wrapper">
-
-
-
-
-
-
                                 @foreach($products->gallery as $gallery)
-                            @if($gallery->images)
-                                @php $images = unserialize($gallery->images); @endphp
-                                @foreach($images as $image)
-                                <div class="swiper-slide">
-                                    <img src="{{ asset('public/uploads/' . $image) }}" alt="Gallery Image">
-                                </div>
+                                    @if($gallery->images)
+                                        @php $images = unserialize($gallery->images); @endphp
+                                        @foreach($images as $image)
+                                            <div class="swiper-slide">
+                                                <img src="{{ asset('public/uploads/' . $image) }}" alt="Gallery Image">
+                                            </div>
+                                        @endforeach
+                                    @endif
                                 @endforeach
-                            @endif
-                        @endforeach
-
-
-
                             </div>
                         </div>
                         <div class="gallery-button-next"></div>
@@ -56,24 +27,18 @@
                             <div class="swiper-slide">
                                 <img src="{{ url('public/uploads/',$products->thumbnail) }}" alt="Slide 01">
                             </div>
-
-
                             @foreach($products->gallery as $gallery)
-                            @if($gallery->images)
-                                @php $images = unserialize($gallery->images); @endphp
-                                @foreach($images as $image)
-                                    <img src="{{ asset('public/uploads/' . $image) }}" alt="Gallery Image">
-                                @endforeach
-                            @endif
-                        @endforeach
-
-
-
-
-
+                                @if($gallery->images)
+                                    @php $images = unserialize($gallery->images); @endphp
+                                    @foreach($images as $image)
+                                        <div class="swiper-slide">
+                                            <img src="{{ asset('public/uploads/' . $image) }}" alt="Gallery Image">
+                                        </div>
+                                    @endforeach
+                                @endif
+                            @endforeach
                         </div>
                     </div>
-
                 </div>
                 <div class="single-product-desc">
                     <h2 class="text-[#272343] text-2xl font-semibold mb-3.5">Product Descriptions</h2>
@@ -256,3 +221,28 @@
     </div>
 </section>
 <!-- product list section end-->
+
+
+<script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+       
+        var galleryThumbs = new Swiper('.gallery-thumbs', {
+            spaceBetween: 10,
+            slidesPerView: 40,
+            freeMode: true,
+            watchSlidesVisibility: true,
+            watchSlidesProgress: true,
+        });
+        var galleryMain = new Swiper('.gallery-main', {
+            spaceBetween: 10,
+            navigation: {
+                nextEl: '.gallery-button-next',
+                prevEl: '.gallery-button-prev',
+            },
+            thumbs: {
+                swiper: galleryThumbs,
+            },
+        });
+    });
+</script>
