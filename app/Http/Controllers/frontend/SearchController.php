@@ -14,8 +14,13 @@ class SearchController extends Controller
      */
     public function index(Request $request)
     {
-        $search = Product::where('name', 'like', '%' . $request->search_key . '%')
-        ->get();
+        $searchKey = $request->search_key;
+
+        if (empty($searchKey)) {
+            return redirect()->back()->with(['error' => 'Please enter a search key.'], 400);
+        }
+
+        $search = Product::where('name', 'like', '%' . $searchKey . '%')->get();
 
         $wishlistItems = collect([]);
 
