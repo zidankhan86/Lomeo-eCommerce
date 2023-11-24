@@ -1,10 +1,3 @@
-<style>
-    img{
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-</style>
 
 <div class="container">
     <br><h2 style="text-align: center">Category Table</h2>
@@ -34,7 +27,7 @@
                 <tr>
                     <tr>
                         <td data-label="id" >{{ $category->id }}</td>
-                        <td data-label="img" ><img src="{{ url('/public/uploads/' , $category->image) }}" alt="Cagegory"> </td>
+                        <td data-label="img" ><img height="100px" width="100px" src="{{ url('/public/uploads/' , $category->image) }}" alt="Cagegory"> </td>
                         <td data-label="name" >{{ $category->name }} </td>
 
 

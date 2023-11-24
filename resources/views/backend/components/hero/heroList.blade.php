@@ -1,11 +1,5 @@
 
-<style>
-    img{
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-</style>
+
 <div class="container">
     <br><h2 style="text-align: center">Hero Table</h2>
     <div style="text-align: right">
@@ -33,7 +27,7 @@
                 <tr>
                     <tr>
                         <td data-label="Name" >{{ $hero->id }}</td>
-                        <td data-label="Title" ><img src="{{ url('/public/uploads',$hero->image) }}" alt="brand"> </td>
+                        <td data-label="Title" ><img height="100px" width="100px" src="{{ url('/public/uploads',$hero->image) }}" alt="brand"> </td>
                         <td data-label="Name" >{{ $hero->welcome_title }}</td>
                         <td data-label="Name" >{{ $hero->title}}</td>
                   <td>

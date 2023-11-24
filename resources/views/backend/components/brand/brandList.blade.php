@@ -1,11 +1,4 @@
 
-<style>
-    img{
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-</style>
 <div class="container">
     <br><h2 style="text-align: center">Brand Table</h2>
     <div style="text-align: right">
@@ -33,7 +26,7 @@
                 <tr>
                     <tr>
                         <td data-label="Name" >{{ $brand->id }}</td>
-                        <td data-label="Title" ><img src="{{ url('/public/uploads',$brand->image) }}" alt="brand"> </td>
+                        <td data-label="Title" ><img height="100px" width="100px" src="{{ url('/public/uploads',$brand->image) }}" alt="brand"> </td>
                         <td data-label="Name" >{{ $brand->name }}</td>
                         <td data-label="Name" >{{ $brand->category->name }}</td>
                   <td>

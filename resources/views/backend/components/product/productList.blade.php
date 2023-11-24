@@ -1,11 +1,5 @@
 
-<style>
-    img{
-        height: 100px;
-        width: 100px;
-        border-radius: 50%;
-    }
-</style>
+
 <div class="container">
     <br><h2 style="text-align: center">Category Table</h2>
     <div style="text-align: right">
@@ -42,7 +36,7 @@
                     <tr>
                         <td data-label="sl" >{{ $product->id }} </td>
                         <td data-label="img" >
-                            <img src="{{ url('/public/uploads/' , $product->thumbnail) }}" alt="product">
+                            <img height="100px" width="100px" src="{{ url('/public/uploads/' , $product->thumbnail) }}" alt="product">
 
                         </td>
                         <td data-label="Title" >{{ $product->name }} </td>
