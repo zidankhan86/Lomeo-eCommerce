@@ -51,7 +51,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
 
     //Paypal
-
     Route::post('/paypal/create-payment', [PayPalController::class, 'createPayment'])->name('paypal.create-payment');
     Route::get('/paypal/success', [PayPalController::class, 'success'])->name('paypal.success');
     Route::get('/paypal/cancel', [PayPalController::class, 'cancel'])->name('paypal.cancel');
@@ -67,24 +66,20 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/category',[CategoryController::class,'index'])->name('category');
     Route::get('/category-wise-product/{id}',[FrontendProductController::class,'catWiseProduct'])->name('category.wise.product');
     Route::get('/search',[SearchController::class,'index'])->name('search');
-
     //Auth Frontend
     Route::get('/login-page',[FrontendAuthController::class,'login'])->name('login.page');
     Route::get('/register-page',[FrontendAuthController::class,'register'])->name('register.page');
     Route::post('/register-store',[FrontendAuthController::class,'store'])->name('register.store');
     Route::post('/login-authenticate',[FrontendAuthController::class,'loginProcess'])->name('login.authenticate');
-
     //Forget password
     Route::get('/forgot-password', [ForgotPasswordController::class, 'showLinkRequestForm'])->name('password.request');
     Route::post('/forgot-password', [ForgotPasswordController::class, 'sendResetLinkEmail'])->name('password.email');
     Route::get('/reset-password/{token}', [ForgotPasswordController::class, 'showResetForm'])->name('password.reset');
     Route::post('/reset-password', [ForgotPasswordController::class, 'resetPassword'])->name('password.update');
-
     //Auth backend
     Route::get('/login',[AuthController::class,'index'])->name('login');
     Route::get('/logout-user',[AuthController::class,'logoutUser'])->name('logout.user');
     Route::post('/login-store',[AuthController::class,'store'])->name('store');
-
     //Register backend
     Route::get('/registration',[RegistrationController::class,'index'])->name('registration');
     Route::post('/registration/store',[RegistrationController::class,'store'])->name('registration.store');
@@ -106,7 +101,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/account-info/{id}',[FrontendAuthController::class,'update'])->name('account.Info');
     Route::post('/profile-image/{id}',[FrontendAuthController::class,'profileImage'])->name('account.image');
     Route::post('/change-password/{id}',[FrontendAuthController::class,'changePassword'])->name('update.password');
-
     //Cart
     Route::get('/add-to-cart/{product}', [CartController::class, 'addToCart'])->name('cart.add');
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
@@ -133,7 +127,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/hero-list', [HeroController::class, 'list'])->name('hero.list');
     Route::post('/hero-store', [HeroController::class, 'store'])->name('hero.store');
     Route::get('/hero-delete/{id}', [HeroController::class, 'delete'])->name('hero.delete');
-
     //Order
     Route::get('/order-list',[OrderController::class,'orderList'])->name('order.list');
     Route::get('/order-on-the-way/{id}',[OrderController::class,'orderOnTheWay'])->name('order.on.the.way');
@@ -158,7 +151,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/brand-form/{id}', [BrandController::class,'edit'])->name('brand.edit');
     Route::get('/product/{id}', [ProductController::class,'edit'])->name('product.edit');
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
-
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password.backend');
     Route::post('/product', [ProductController::class,'store'])->name('product');
@@ -168,7 +160,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::post('/product/update/{id}', [ProductController::class,'update'])->name('product.update');
     Route::post('/product-gallery-store', [ProductController::class,'galleryStore'])->name('gallery.store');
     Route::post('/category-update/{id}',[CategoryController::class,'update'])->name('category.update');
-
     //profile
     Route::get('/profile',[ProfileController::class,'index'])->name('profile');
     //post

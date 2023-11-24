@@ -34,7 +34,7 @@
                     <tr>
                         <td data-label="sl" >{{ $order->id }}</td>
                         <td data-label="img" >
-                            <img src="" alt="product">
+                            <img height="100" width="100" src="{{ url('/public/uploads/',$order->product->thumbnail) }}" alt="product">
                         </td>
                         <td data-label="Name">{{ $order->product->name}} </td>
                         <td data-label="price">BDT {{ $order->amount }} </td>

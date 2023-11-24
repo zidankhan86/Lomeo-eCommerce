@@ -17,14 +17,15 @@ class SearchController extends Controller
         $searchKey = $request->search_key;
 
         if (empty($searchKey)) {
-            return redirect()->back()->with(['error' => 'Please enter a search key.'], 400);
+            return redirect()->back();
+
         }
 
         $search = Product::where('name', 'like', '%' . $searchKey . '%')->get();
 
         $wishlistItems = collect([]);
 
-        // Check if the user is authenticated
+      
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }

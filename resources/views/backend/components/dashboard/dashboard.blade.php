@@ -192,34 +192,44 @@
 
         <div class="col-lg-6">
             <div class="card">
-              <div class="card-header border-0">
-                <div class="card-title">Development activity</div>
-              </div>
-              <div class="position-relative">
-                <div class="position-absolute top-0 left-0 px-3 mt-1 w-75">
-                  <div class="row g-2">
-                    <div class="col-auto">
-                      <div class="chart-sparkline chart-sparkline-square" id="sparkline-activity"></div>
-                    </div>
-                    <div class="col">
-                      <div>Today's Earning: $4,262.40</div>
-                      <div class="text-muted"><!-- Download SVG icon from http://tabler-icons.io/i/trending-up -->
-                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-inline text-green" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 17l6 -6l4 4l8 -8" /><path d="M14 7l7 0l0 7" /></svg>
-                        +5% more than yesterday</div>
-                    </div>
-                  </div>
+                <div class="card-header border-0">
+                    <div class="card-title">Daily Product Delivered</div>
                 </div>
-                <div id="chart-development-activity"></div>
-              </div>
+                <div class="position-relative">
+                    <div class="position-absolute top-0 left-0 px-3 mt-1 w-75">
+                        <div class="row g-2">
+                            <div class="col-auto">
+                                <div class="chart-sparkline chart-sparkline-square" id="sparkline-activity"></div>
+                            </div>
+                            <div class="col">
 
+                            </div>
+                        </div>
+                    </div>
+                    <div id="chart-development-activity"></div>
+                </div>
             </div>
-          </div>
+        </div>
+
+        @php
+        $productDelivered = \App\Models\Order::select(DB::raw('DATE(created_at) as date'),
+                                                      DB::raw('COUNT(*) as orders_count'))
+                                                        ->where('status', 'Delivered')
+                                                        ->groupBy('date')
+                                                        ->orderBy('date', 'asc')
+                                                        ->get();
+
+            $dates = [];
+            $ordersCount = [];
+
+        if ($productDelivered->isNotEmpty()) {
+            $dates = $productDelivered->pluck('date')->toArray();
+            $ordersCount = $productDelivered->pluck('orders_count')->toArray();
+        }
+    @endphp
 
 
-      </div>
 
-
-    </div>
   </div>
 
 
@@ -289,3 +299,30 @@
           new ApexCharts(document.getElementById('chart-orders-per-day'), chartData).render();
       });
   </script>
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        new ApexCharts(document.getElementById('sparkline-activity'), {
+            chart: {
+                type: 'bar',
+                height: 350,
+            },
+            series: [{
+                name: 'Orders Count',
+                data: @json($ordersCount),
+            }],
+            xaxis: {
+                categories: @json($dates),
+            },
+            plotOptions: {
+                bar: {
+                    horizontal: false,
+                },
+            },
+            colors: ['#3498db'],
+            title: {
+                text: 'Daily Product Delivered',
+                align: 'left',
+            },
+        }).render();
+    });
+</script>

@@ -43,7 +43,7 @@
 
                                        <img height="100px" src="{{ asset('public/uploads/' . auth()->user()->image) }}" alt="Profile Photo">
                                        <p class="label-txt">Choose profile photo</p>
-                                        <input type="file" id="image" name="image" class="form-control dropify" style=" width: 100%;">
+                                       <input type="file" id="image" name="image" class="form-control dropify" style=" width: 100%;">
                                     </label>
                                 </div>
 
