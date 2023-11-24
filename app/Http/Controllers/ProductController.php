@@ -19,7 +19,7 @@ class ProductController extends Controller
     {
         $categories = Category::all();
         $brands     = Brand::all();
-       return view('backend\pages\productForm',compact('categories','brands'));
+       return view('backend.pages.productForm',compact('categories','brands'));
     }
 
     public function list()
