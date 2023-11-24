@@ -81,7 +81,7 @@ class CartController extends Controller
             $wishlistItems = Auth::user()->wishlistProducts;
         }
 
-       return view('frontend.pages.addToCart', compact('cartContents','userId','subTotal','total','totalPrice','wishlistItems'));
+       return view('frontend.pages.addTocart', compact('cartContents','userId','subTotal','total','totalPrice','wishlistItems'));
    }
 
 
