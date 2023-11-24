@@ -1,4 +1,4 @@
- <!-- header area start -->
+     <!-- header area start -->
  <header class="font-display">
     <div id="header-sticky" class="">
         <div class="top-header bg-secondary">
@@ -315,6 +315,10 @@
                         </li> --}}
                         <li>
                             <a href="">About</a>
+                        </li>
+
+                        <li>
+                           <a href="{{ route('app') }}"> <button class="btn-primary">ADMIN PANEL</button></a>
                         </li>
                     </ul>
                 </div>
