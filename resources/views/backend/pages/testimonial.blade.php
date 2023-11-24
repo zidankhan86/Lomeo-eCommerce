@@ -1,4 +1,4 @@
-@extends('backend\layout\app')
+@extends('backend.layout.app')
 @section('content')
-@include('backend\components\testimonial\testimonial')
+@include('backend.components.testimonial.testimonial')
 @endsection

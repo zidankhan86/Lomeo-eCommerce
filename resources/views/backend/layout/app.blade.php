@@ -8,10 +8,10 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge"/>
     <title>Lomeyo eCommerce</title>
 
-    
 
 
-            @include('backend\components\fixed\style')
+
+            @include('backend.components.fixed.style')
 
   </head>
   <body >
@@ -19,23 +19,23 @@
     <div class="page">
 
         {{-- Sidebar --}}
-        @include('backend\components\fixed\sidebar')
+        @include('backend.components.fixed.sidebar')
 
         <div class="page-wrapper">
 
         {{-- Header --}}
-        @include('backend\components\fixed\header')
+        @include('backend.components.fixed.header')
 
                @yield('content')
 
          {{-- Footer --}}
-         @include('backend\components\fixed\footer')
+         @include('backend.components.fixed.footer')
 
       </div>
     </div>
 
         {{-- Js --}}
-        @include('backend\components\fixed\script')
+        @include('backend.components.fixed.script')
 
   </body>
 </html>

@@ -1,6 +1,6 @@
-@extends('backend\layout\app')
+@extends('backend.layout.app')
 @section('content')
 
-@include('backend\components\hero\heroForm')
+@include('backend.components.hero.heroForm')
 
 @endsection

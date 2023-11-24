@@ -1,7 +1,7 @@
-@extends('frontend\layout\app')
+@extends('frontend.layout.app')
 
 @section('content')
 
-@include('frontend\components\product\recentProduct')
+@include('frontend.components.product.recentProduct')
 
 @endsection

@@ -26,7 +26,7 @@
                         <div class="card-body">
                             <h2 class="mb-4">My Account</h2>
                             <h3 class="card-title">Profile Details</h3>
-                            <form action="{{ route('update.password', auth()->user()->id) }}" method="post" enctype="multipart/form-data">
+                            <form action="{{ route('update.password.backend', auth()->user()->id) }}" method="post" enctype="multipart/form-data">
                                 @csrf
 
 

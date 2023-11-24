@@ -160,7 +160,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
 
     //Post
-    Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password');
+    Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password.backend');
     Route::post('/product', [ProductController::class,'store'])->name('product');
     Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
     Route::post('/brand-store', [BrandController::class,'store'])->name('brand.store');

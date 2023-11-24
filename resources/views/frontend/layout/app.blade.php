@@ -9,7 +9,7 @@
     <title>Comforty - eCommerce</title>
 
             {{-- Style.CSS --}}
-    @include('frontend\components\fixed\style')
+    @include('frontend.components.fixed.style')
 
 
     </head>
@@ -19,7 +19,7 @@
 
 
                     {{-- Header --}}
-                    @include('frontend\components\fixed\header')
+                    @include('frontend.components.fixed.header')
 
 
                         {{-- Content --}}
@@ -27,10 +27,10 @@
 
 
                      {{-- Footer --}}
-                     @include('frontend\components\fixed\footer')
+                     @include('frontend.components.fixed.footer')
 
                      {{-- Script --}}
-                     @include('frontend\components\fixed\script')
+                     @include('frontend.components.fixed.script')
 
 
     </body>

@@ -1,7 +1,7 @@
-@extends('frontend\layout\app')
+@extends('frontend.layout.app')
 
 @section('content')
 
-@include('frontend\components\category\categoryWiseProduct')
+@include('frontend.components.category.categoryWiseProduct')
 
 @endsection
