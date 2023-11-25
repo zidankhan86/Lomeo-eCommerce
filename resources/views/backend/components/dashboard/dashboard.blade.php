@@ -191,48 +191,53 @@
 
 
         <div class="col-lg-6">
-            <div class="card">
-                <div class="card-header border-0">
-                    <div class="card-title">Daily Product Delivered</div>
-                </div>
-                <div class="position-relative">
-                    <div class="position-absolute top-0 left-0 px-3 mt-1 w-75">
-                        <div class="row g-2">
-                            <div class="col-auto">
-                                <div class="chart-sparkline chart-sparkline-square" id="sparkline-activity"></div>
-                            </div>
-                            <div class="col">
+          <div class="card">
+              <div class="card-header border-0">
+                  <div class="card-title">Daily Product Delivered</div>
+              </div>
+              <div class="position-relative">
+                  <div class="position-absolute top-0 left-0 px-3 mt-1 w-75">
+                      <div class="row g-2">
+                          <div class="col-auto">
+                              <div class="chart-sparkline chart-sparkline-square" id="sparkline-activity"></div>
+                          </div>
+                          <div class="col">
+                              <ul id="deliveredDatesList"></ul>
+                          </div>
+                      </div>
+                  </div>
+                  <div id="chart-development-activity"></div>
+              </div>
+          </div>
+      </div>
 
-                            </div>
-                        </div>
-                    </div>
-                    <div id="chart-development-activity"></div>
-                </div>
-            </div>
-        </div>
-
-        @php
-        $productDelivered = \App\Models\Order::select(DB::raw('DATE(created_at) as date'),
-                                                      DB::raw('COUNT(*) as orders_count'))
+      @php
+          $productDelivered = \App\Models\Order::select(DB::raw('DATE(created_at) as date'),
+                                                        DB::raw('COUNT(*) as orders_count'))
                                                         ->where('status', 'Delivered')
                                                         ->groupBy('date')
                                                         ->orderBy('date', 'asc')
                                                         ->get();
 
-            $dates = [];
-            $ordersCount = [];
+          $dates = [];
+          $ordersCount = [];
 
-        if ($productDelivered->isNotEmpty()) {
-            $dates = $productDelivered->pluck('date')->toArray();
-            $ordersCount = $productDelivered->pluck('orders_count')->toArray();
-        }
-    @endphp
+          if ($productDelivered->isNotEmpty()) {
+              // Format dates using Carbon library
+              $dates = $productDelivered->pluck('date')->map(function ($date) {
+                  return \Carbon\Carbon::parse($date)->format('Y-m-d');
+              })->toArray();
+
+              $ordersCount = $productDelivered->pluck('orders_count')->toArray();
+          }
+      @endphp
 
 
 
   </div>
 
 
+  {{-- Chart 1 Order --}}
   <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
 
   <script>
@@ -299,30 +304,42 @@
           new ApexCharts(document.getElementById('chart-orders-per-day'), chartData).render();
       });
   </script>
+
+
+{{-- Chart 2 --}}
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+
 <script>
     document.addEventListener("DOMContentLoaded", function () {
-        new ApexCharts(document.getElementById('sparkline-activity'), {
-            chart: {
-                type: 'bar',
-                height: 350,
-            },
-            series: [{
-                name: 'Orders Count',
-                data: @json($ordersCount),
-            }],
-            xaxis: {
-                categories: @json($dates),
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
+        // Check if data is available before rendering the chart
+        if (@json($productDelivered->isNotEmpty())) {
+            new ApexCharts(document.getElementById('sparkline-activity'), {
+                chart: {
+                    type: 'bar',
+                    height: 350,
                 },
-            },
-            colors: ['#3498db'],
-            title: {
-                text: 'Daily Product Delivered',
-                align: 'left',
-            },
-        }).render();
+                series: [{
+                    name: 'Orders Count',
+                    data: @json($ordersCount),
+                }],
+                xaxis: {
+                    categories: @json($dates),
+                },
+                plotOptions: {
+                    bar: {
+                        horizontal: false,
+                    },
+                },
+                colors: ['#3498db'],
+                title: {
+                    text: 'Daily Product Delivered',
+                    align: 'left',
+                },
+            }).render();
+
+            // Display delivered dates below the chart
+            let deliveredDatesList = document.getElementById('deliveredDatesList');
+            deliveredDatesList.innerHTML = @json($dates);
+        }
     });
 </script>
