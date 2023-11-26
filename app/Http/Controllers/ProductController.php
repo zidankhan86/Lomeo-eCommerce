@@ -114,7 +114,6 @@ class ProductController extends Controller
             'image'                 => 'required|image|mimes:jpeg,png,jpg,gif',
             'long_description'      => 'required',
             'short_description'     => 'required',
-            'thumbnail'             => 'required',
             'stock'                 => 'required',
             'status'                => 'boolean',
             'discount'              => 'nullable',
@@ -122,7 +121,8 @@ class ProductController extends Controller
             'image'                 => 'nullable',
         ]);
 
-        $imageName = null;
+        $imageName = $request->input('current_thumbnail'); 
+
         if ($request->hasFile('thumbnail')) {
             $imageName = date('YmdHis') . '.' . $request->file('thumbnail')->getClientOriginalExtension();
             $request->file('thumbnail')->storeAs('uploads', $imageName, 'public');
@@ -144,7 +144,7 @@ class ProductController extends Controller
             'image'                 => $imageName,
         ]);
 
-        return redirect()->back()->with('success', 'Product updated successfully');
+        return redirect()->route('product.list')->with('success', 'Product updated successfully');
     }
 
     /**

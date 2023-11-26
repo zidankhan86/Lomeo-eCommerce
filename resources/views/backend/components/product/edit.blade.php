@@ -43,8 +43,15 @@
                         </div>
                         <div class="col-sm-8 col-md-6">
                             <div class="mb-3">
-                                <label class="form-label">Select Thumbnail*</label>
-                                <input type="file" name="thumbnail"  class="form-control dropify" data-show-remove="true">
+
+                                <img src="{{ url('/public/uploads/', $product->thumbnail) }}" alt="Current Thumbnail" class="img-thumbnail" style="max-width: 200px; max-height: 200px;"/>
+
+
+                                <input type="file" name="thumbnail" class="form-control mt-2 dropify" accept="image/*">
+                               
+                                <input type="hidden" name="current_thumbnail" value="{{ $product->thumbnail }}">
+
+
                             </div>
                             @error('thumbnail')
                         <p class="text-danger">{{ $message }}</p>
@@ -152,7 +159,7 @@
                     </div>
                 </div>
                 <div class="card-footer text-end">
-                    <button type="submit" class="btn btn-primary">Edit Product</button>
+                    <button type="submit" class="btn btn-primary">Update</button>
                 </div>
             </form>
         </div>
