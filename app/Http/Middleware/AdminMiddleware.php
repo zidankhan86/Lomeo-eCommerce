@@ -19,6 +19,6 @@ class AdminMiddleware
             return $next($request);
         }
 
-        return redirect('/')->with('error','You are not admin');
+        return redirect('/login-page')->with('error','You are not admin');
     }
 }

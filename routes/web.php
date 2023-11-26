@@ -88,7 +88,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     //Backend
 
     //Middleware Auth
-    Route::group(['middleware'=>'auth'],function(){
+    Route::group(['middleware'=>'customer'],function(){
 
     //Order
     Route::post('/pay/{id}', [SslCommerzPaymentController::class, 'index'])->name('pay');
