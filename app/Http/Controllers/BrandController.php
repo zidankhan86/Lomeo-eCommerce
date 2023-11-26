@@ -85,11 +85,10 @@ class BrandController extends Controller
 
         $request->validate([
             'name'          => 'required|max:255',
-            'image'         => 'required',
             'category_id'   => 'required|exists:categories,id',
         ]);
 
-        $imageName = null;
+        $imageName = $request->input('current_thumbnail');
         if ($request->hasFile('image')) {
             $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
@@ -103,7 +102,7 @@ class BrandController extends Controller
             'category_id'   => $request->category_id,
         ]);
 
-        return redirect()->back()->with('success', 'Brand updated successfully');
+        return redirect()->route('brand.list')->with('success', 'Brand updated successfully');
 
     }
 

@@ -43,12 +43,12 @@
                         </div>
                         <div class="col-sm-8 col-md-6">
                             <div class="mb-3">
-
+                                <label class="form-label">Product Image</label>
                                 <img src="{{ url('/public/uploads/', $product->thumbnail) }}" alt="Current Thumbnail" class="img-thumbnail" style="max-width: 200px; max-height: 200px;"/>
 
 
                                 <input type="file" name="thumbnail" class="form-control mt-2 dropify" accept="image/*">
-                               
+
                                 <input type="hidden" name="current_thumbnail" value="{{ $product->thumbnail }}">
 
 
