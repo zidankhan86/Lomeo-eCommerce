@@ -18,7 +18,7 @@ class CustomerMiddleware
     {
 
         if (!Auth::check()) {
-            // Redirect the user to the login page
+           
             return redirect()->route('login.page');
         }
 

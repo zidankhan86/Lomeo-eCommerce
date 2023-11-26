@@ -6,7 +6,7 @@
 
 
 <br><br><br><div class="col-10 mx-auto" >
-    <form class="card" action="{{ route('category.store') }}" method="post" enctype="multipart/form-data">
+    <form class="card" action="{{ route('category.update',$category->id) }}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="card-body">
             <br><br><h3 class="card-title" style="text-align: center; display: flex; justify-content: space-between; align-items: center;">
@@ -46,7 +46,12 @@
                     </div>
                     <div class="col-md-8">
                         <div class="mb-3">
-                            <input type="file" id="image" name="image" class="form-control dropify" style=" width: 100%;">
+                            <img src="{{ url('/public/uploads/', $category->image) }}" alt="Current Image" class="img-thumbnail" style="max-width: 200px; max-height: 200px;"/>
+
+
+                    <input type="file" name="image" class="form-control mt-2 dropify" accept="image/*">
+
+                    <input type="hidden" name="current_thumbnail" value="{{ $category->image }}">
                             @error('image')
                             <p class="text-danger">{{ $message }}</p>
                             @enderror
@@ -72,7 +77,7 @@
             </div>
         </div>
         <div class="card-footer text-end">
-            <button type="submit" class="btn btn-primary">+ Add</button>
+            <button type="submit" class="btn btn-primary">Update</button>
         </div>
     </form>
 

@@ -79,11 +79,9 @@ class CategoryController extends Controller
         $request->validate([
             'name'   => 'required|max:255',
             'status' => 'required',
-            'image'  => 'required|image|mimes:jpeg,png,jpg,gif',
-
         ]);
 
-        $imageName = null;
+        $imageName = $request->input('current_thumbnail');
         if ($request->hasFile('image')) {
             $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
@@ -97,7 +95,7 @@ class CategoryController extends Controller
 
        ]);
 
-       return redirect()->back()->with('success', 'Category created successfully.');
+       return redirect()->back()->with('success', 'Category updated successfully.');
     }
 
     /**
