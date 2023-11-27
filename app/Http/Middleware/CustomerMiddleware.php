@@ -18,7 +18,7 @@ class CustomerMiddleware
     {
 
         if (!Auth::check()) {
-           
+
             return redirect()->route('login.page');
         }
 
@@ -26,9 +26,9 @@ class CustomerMiddleware
 
             if (Auth::user()->role === 'customer') {
 
-                return redirect()->route('login.page');
+                return $next($request);
             }
         }
-        return $next($request);
+
     }
 }

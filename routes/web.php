@@ -2,7 +2,6 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
@@ -135,6 +134,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     //Pages
     Route::get('/',[HomeController::class,'index'])->name('app');
     Route::get('/product', [ProductController::class,'index'])->name('products.index');
+    Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
     Route::get('/logout',[TestController::class,'logout'])->name('logout');
     Route::get('/form',[TestController::class,'form'])->name('form');
     Route::get('/setting',[SettingController::class,'index'])->name('setting');
@@ -142,7 +142,6 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/user-list',[AuthController::class,'list'])->name('user.list');
     Route::get('/category-list',[CategoryController::class,'list'])->name('category.list');
     Route::get('/category-form',[CategoryController::class,'create'])->name('category.form');
-    Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
     Route::get('/brand-list', [BrandController::class,'list'])->name('brand.list');
     Route::get('/brand-form', [BrandController::class,'create'])->name('brand.create');
     Route::get('/product-gallery/{id}', [ProductController::class,'gallery'])->name('product.gallery');
@@ -153,7 +152,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/category-form/{id}',[CategoryController::class,'edit'])->name('category.edit');
     //Post
     Route::post('/update-password/{id}',[ChangePasswordController::class,'update'])->name('update.password.backend');
-    Route::post('/product', [ProductController::class,'store'])->name('product');
+    Route::post('/product-store', [ProductController::class,'store'])->name('product');
     Route::post('/category-store',[CategoryController::class,'store'])->name('category.store');
     Route::post('/brand-store', [BrandController::class,'store'])->name('brand.store');
     Route::post('/brand-update/{id}', [BrandController::class,'update'])->name('brand.update');

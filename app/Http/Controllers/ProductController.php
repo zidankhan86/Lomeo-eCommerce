@@ -121,7 +121,7 @@ class ProductController extends Controller
             'image'                 => 'nullable',
         ]);
 
-        $imageName = $request->input('current_thumbnail'); 
+        $imageName = $request->input('current_thumbnail');
 
         if ($request->hasFile('thumbnail')) {
             $imageName = date('YmdHis') . '.' . $request->file('thumbnail')->getClientOriginalExtension();
