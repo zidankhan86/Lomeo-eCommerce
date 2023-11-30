@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Storage;
@@ -17,6 +18,8 @@ class BrandFactory extends Factory
      *
      * @return array<string, mixed>
      */
+
+     protected $model = Brand::class;
     public function definition(): array
     {
 
@@ -24,7 +27,7 @@ class BrandFactory extends Factory
 
         $image = $this->faker->imageUrl(300, 300);
         $imageName = basename($image);
-        Storage::disk('public')->put('uploads/' . $imageName, file_get_contents($image));
+        Storage::disk('public')->put('/public/uploads/' . $imageName, file_get_contents($image));
 
 
                 return [
