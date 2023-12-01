@@ -31,7 +31,7 @@
                     <th>Product</th>
                     <th class="text-center" style="width: 1%">Qnt</th>
                     <th class="text-end" style="width: 1%">Unit(BDT)</th>
-                    <th class="text-end" style="width: 1%">Amount</th>
+                    <th class="text-end" style="width: 1%"></th>
                 </tr>
             </thead>
             <tr>
@@ -42,29 +42,37 @@
 
                 <td>
                     @foreach ($invItem as $item)
-                    <p class="strong mb-1">{{ $item->product->name }}</p>
+                    <p class="strong mb-1">{{ $item->product->name }}</p><hr>
                      @endforeach
                 </td>
 
 
 
                 <td class="text-center">
-                    {{ $inv->product->quantity }}
+                    @foreach ($invItem as $item)
+
+                    {{ $item->quantity }} <hr>
+
+                    @endforeach
                 </td>
-                <td class="text-end">{{ $inv->amount }}</td>
+
+            <td class="text-end">
+                @foreach ($invItem as $inv)
+                {{ $inv->unit_price }} <hr>
+                @endforeach
+            </td>
+
+
             </tr>
             <tr>
-                <td colspan="4" class="strong text-end">Subtotal</td>
-                <td class="text-end">{{ $inv->amount }}</td>
+                <td colspan="4" class="strong text-end">Subtotal(BDT)</td>
+                <td class="text-end"> {{ $inv->order->total }}</td>
             </tr>
             <tr>
                 <td colspan="4" class="strong text-end">Vat Rate</td>
                 <td class="text-end">0%</td>
             </tr>
-            <tr>
-                <td colspan="4" class="strong text-end">Vat Due</td>
-                <td class="text-end">00,00</td>
-            </tr>
+           
             <tr>
                 <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
                 <td class="font-weight-bold text-end">000,00</td>

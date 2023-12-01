@@ -64,15 +64,17 @@ class SslCommerzPaymentController extends Controller
         $orderId =$order->id;
         $userId = auth()->user()->id;
         $cartItems= \Cart::session($userId)->getContent();
-        //dd($cartItems);
+       // dd($cartItems);
        // dd($orderId);
         foreach ($cartItems as $item) {
             $orderItem = new OrderItems();
             $orderItem->user_id = $userId;
 
-            $orderItem->order_id = $orderId;
-            $orderItem->product_id = $item->id;
-            $orderItem->quantity = $item->quantity;
+            $orderItem->order_id    = $orderId;
+            $orderItem->product_id  = $item->id;
+            $orderItem->quantity    = $item->quantity;
+            $orderItem->unit_price  = $item->price;
+
             $orderItem->save();
         }
 
@@ -189,11 +191,13 @@ class SslCommerzPaymentController extends Controller
 
             foreach ($cartItems as $item) {
                 $orderItem = new OrderItems();
-                $orderItem->user_id    = $userId;
+                $orderItem->user_id     = $userId;
 
-                $orderItem->order_id   = $orderId;
-                $orderItem->product_id = $item->id;
-                $orderItem->quantity   = $item->quantity;
+                $orderItem->order_id    = $orderId;
+                $orderItem->product_id  = $item->id;
+                $orderItem->quantity    = $item->quantity;
+                $orderItem->unit_price  = $item->price;
+
                 $orderItem->save();
             }
             $order = Order::find($orderId);
@@ -236,12 +240,8 @@ class SslCommerzPaymentController extends Controller
             $validation = $sslc->orderValidate($request->all(), $tran_id, $amount, $currency);
 
             if ($validation) {
-                /*
-                That means IPN did not work or IPN URL was not set in your merchant panel. Here you need to update order status
-                in order table as Processing or Complete.
-                Here you can also sent sms or email for successfull transaction to customer
-                */
-                $update_product = DB::table('orders')   //Table name must mention here (Billings) table i have used
+
+                $update_product = DB::table('orders')   //Table name must mention here (order) table i have used
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
