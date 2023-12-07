@@ -113,7 +113,8 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 
     //Middleware Admin
     Route::group(['middleware'=>['auth','admin'],'prefix'=>'app'],function(){
-
+    //landing page for dashboard
+    Route::get('/',[HomeController::class,'index'])->name('app');
     //Testimonial
     Route::get('/testimonial', [TestimonialController::class, 'create'])->name('testimonial.form');
     Route::get('/testimonial-list', [TestimonialController::class, 'list'])->name('testimonial.list');
@@ -132,7 +133,7 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
     Route::get('/order-completed/{id}',[OrderController::class,'orderCompleted'])->name('order.completed');
     Route::get('/order-invoice/{id}',[OrderController::class,'orderInvoice'])->name('order.inv');
     //Pages
-    Route::get('/',[HomeController::class,'index'])->name('app');
+
     Route::get('/product', [ProductController::class,'index'])->name('products.index');
     Route::get('/product-list', [ProductController::class,'list'])->name('product.list');
     Route::get('/logout',[TestController::class,'logout'])->name('logout');
