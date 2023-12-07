@@ -23,14 +23,14 @@ class AuthTest extends TestCase
     public function test_for_login_process_backend_with_post_route_for_admin_login(): void
     {
         $user = User::create([
-            'name' => 'fakeName',
-            'email' => 'fake@gmail.com',
+            'name'      => 'fakeName',
+            'email'     => 'fake@gmail.com',
             'last_name' => 'fakeLast',
-            'phone' => '01776718178',
-            'password' => Hash::make('123456'),
-            'role' => 'admin',
-            'image' => null,
-            'address' => 'fake Dhaka',
+            'phone'     => '01776718178',
+            'password'  => Hash::make('123456'),
+            'role'      => 'admin',
+            'image'     => null,
+            'address'   => 'fake Dhaka',
         ]);
 
         $this->actingAs($user);
@@ -52,14 +52,14 @@ class AuthTest extends TestCase
     public function test_with_wrong_password_for_admin_login(): void
     {
         $user = User::create([
-            "name" => "fakeName",
-            "email" => "Fake@gmail.com",
+            "name"      => "fakeName",
+            "email"     => "Fake@gmail.com",
             "last_name" => "fakeLast",
-            "phone" => "01776718178",
-            "password" => Hash::make('1234564'),
-            "role" => "admin",
-            "image"=>"nullable",
-            "address"=>"fake Dhaka"
+            "phone"     => "01776718178",
+            "password"  => Hash::make('1234564'),
+            "role"      => "admin",
+            "image"     =>"nullable",
+            "address"   =>"fake Dhaka"
         ]);
 
 
@@ -73,23 +73,27 @@ class AuthTest extends TestCase
 
 
 
-    
+
     public function test_user_logout_from_backend(): void
 {
     $user = User::create([
-        "name" => "fakeName",
-        "email" => "Fake@gmail.com",
+        "name"      => "fakeName",
+        "email"     => "Fake@gmail.com",
         "last_name" => "fakeLast",
-        "phone" => "01776718178",
-        "password" => Hash::make('1234564'),
-        "role" => "admin",
-        "image" => "nullable",
-        "address" => "fake Dhaka"
+        "phone"     => "01776718178",
+        "password"  => Hash::make('1234564'),
+        "role"      => "admin",
+        "image"     => "nullable",
+        "address"   => "fake Dhaka"
     ]);
 
     $response = $this->actingAs($user)->get(route('logout'));
+
     $response->assertStatus(302);
+
     $this->assertGuest();
+
     $response->assertRedirect('/');
+
 }
 }

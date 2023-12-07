@@ -32,14 +32,14 @@ class TestimonialTest extends TestCase
     public function test_testimonials_create_data_for_backend()
     {
         $user = User::create([
-            "name" => "fakeName",
-            "email" => "Fake@gmail.com",
+            "name"      => "fakeName",
+            "email"     => "Fake@gmail.com",
             "last_name" => "fakeLast",
-            "phone" => "01776718178",
-            "password" => Hash::make('123456'),
-            "role" => "admin",
-            "image"=>"nullable",
-            "address"=>"fake Dhaka"
+            "phone"     => "01776718178",
+            "password"  => Hash::make('123456'),
+            "role"      => "admin",
+            "image"     =>"nullable",
+            "address"   =>"fake Dhaka"
         ]);
 
         $this->actingAs($user);
@@ -47,10 +47,10 @@ class TestimonialTest extends TestCase
         Storage::fake('public');
 
         $data = [
-            'name' => $this->faker->name,
-            'image' => UploadedFile::fake()->image('Fake_image.jpg'),
-            'drscription'=>'fake description',
-            'positon'=>'CEO'
+            'name'          => $this->faker->name,
+            'image'         => UploadedFile::fake()->image('Fake_image.jpg'),
+            'drscription'   =>'fake description',
+            'positon'       =>'CEO'
         ];
 
         $response = $this->post(route('testimonial.store'), $data);

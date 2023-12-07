@@ -46,14 +46,14 @@ class CategoryTest extends TestCase
     public function test_categoty_for_backend_Store()
     {
         $user = User::create([
-            "name" => "fakeName",
-            "email" => "Fake@gmail.com",
-            "last_name" => "fakeLast",
-            "phone" => "01776718178",
-            "password" => Hash::make('123456'),
-            "role" => "admin",
-            "image"=>"nullable",
-            "address"=>"fake Dhaka"
+            "name"          => "fakeName",
+            "email"         => "Fake@gmail.com",
+            "last_name"     => "fakeLast",
+            "phone"         => "01776718178",
+            "password"      => Hash::make('123456'),
+            "role"          => "admin",
+            "image"         =>"nullable",
+            "address"       =>"fake Dhaka"
         ]);
 
         $this->actingAs($user);

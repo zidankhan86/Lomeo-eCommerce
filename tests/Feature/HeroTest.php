@@ -34,14 +34,14 @@ class HeroTest extends TestCase
     public function test_hero_backend_hero_store_data(): void
     {
         $user = User::create([
-            "name" => "fakeName",
-            "email" => "Fake@gmail.com",
+            "name"      => "fakeName",
+            "email"     => "Fake@gmail.com",
             "last_name" => "fakeLast",
-            "phone" => "01776718178",
-            "password" => Hash::make('123456'),
-            "role" => "admin",
-            "image"=>"nullable",
-            "address"=>"fake Dhaka"
+            "phone"     => "01776718178",
+            "password"  => Hash::make('123456'),
+            "role"      => "admin",
+            "image"     =>"nullable",
+            "address"   =>"fake Dhaka"
         ]);
 
         $this->actingAs($user);
@@ -49,9 +49,9 @@ class HeroTest extends TestCase
         Storage::fake('public');
 
         $data = [
-            'name' => $this->faker->name,
-            'image' => UploadedFile::fake()->image('fake_image.jpg'),
-            'discount'=>'140'
+            'name'      => $this->faker->name,
+            'image'     => UploadedFile::fake()->image('fake_image.jpg'),
+            'discount'  =>'140'
 
         ];
 
