@@ -96,4 +96,22 @@ class AuthTest extends TestCase
     $response->assertRedirect('/');
 
 }
+
+
+//Registration
+
+public function test_frontend_registration_for_user_route(): void
+    {
+        $response = $this->get(route('register.page'));
+
+        $response->assertStatus(200);
+    }
+
+public function test_frontend_registration_for_user_store_route(): void
+    {
+        $response = $this->post(route('register.store'));
+
+        $response->assertStatus(302);
+    }
+
 }
