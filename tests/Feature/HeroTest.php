@@ -55,7 +55,7 @@ class HeroTest extends TestCase
 
         ];
 
-        $response = $this->post(route('hero.store'));
+        $response = $this->post(route('hero.store'), $data);
 
         $response->assertStatus(302);
     }

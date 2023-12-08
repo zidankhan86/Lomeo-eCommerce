@@ -114,4 +114,22 @@ public function test_frontend_registration_for_user_store_route(): void
         $response->assertStatus(302);
     }
 
+    public function test_frontend_registration_for_user_to_store_data(): void
+    {
+        $data = [
+            "name" => $this->faker->name,
+            "email" => $this->faker->unique()->safeEmail,
+            "last_name" => $this->faker->lastName,
+            "phone" => $this->faker->phoneNumber,
+            "password" => Hash::make('123456'),
+            "role" => "admin",
+            "image" => null,
+            "address" => $this->faker->address,
+        ];
+
+        $response = $this->post(route('register.store'), $data);
+
+        $response->assertStatus(302); 
+    }
+
 }

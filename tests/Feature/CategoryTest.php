@@ -62,8 +62,8 @@ class CategoryTest extends TestCase
 
         $data = [
             'name' => $this->faker->name,
-            'icon' => UploadedFile::fake()->image('category_image.jpg'),
-            //'description' => $this->faker->paragraph,
+            'image' => UploadedFile::fake()->image('category_image.jpg'),
+            
         ];
 
         $response = $this->post(route('category.store'), $data);

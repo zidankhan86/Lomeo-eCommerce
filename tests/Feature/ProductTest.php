@@ -81,12 +81,12 @@ class ProductTest extends TestCase
 
             ];
 
-        $response = $this->post(route('product'));
+        $response = $this->post(route('product'), $data);
 
         $response->assertStatus(302);
         }
 
-        
+
 
 
 }
