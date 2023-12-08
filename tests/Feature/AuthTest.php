@@ -6,6 +6,7 @@ use Tests\TestCase;
 use App\Models\User;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Foundation\Testing\RefreshDatabase;
 
@@ -129,7 +130,15 @@ public function test_frontend_registration_for_user_store_route(): void
 
         $response = $this->post(route('register.store'), $data);
 
-        $response->assertStatus(302); 
+        $response->assertStatus(302);
     }
 
+    public function test_frontend_registration_for_user_list_route(): void
+    {
+
+
+        $response = $this->get(route('user.list'),);
+
+        $response->assertStatus(302);
+    }
 }
