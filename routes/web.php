@@ -6,6 +6,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\TestController;
+use Laravel\Socialite\Facades\Socialite;
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\OrderController;
@@ -28,6 +29,8 @@ use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
 use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
 use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
 use App\Http\Controllers\frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\GithubController;
+use App\Http\Controllers\GoogleController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,9 +42,14 @@ use App\Http\Controllers\frontend\ProductController as FrontendProductController
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+    //Social Login
+    Route::get( 'auth/github', [GithubController::class, 'redirect'] )->name( 'github.login' );
+    Route::get( 'auth/github/callback', [GithubController::class, 'callback'] );
 
-//Frontend
+    Route::get( 'auth/google', [GoogleController::class, 'redirect'] )->name( 'google.login' );
+    Route::get( 'auth/google/callback', [GoogleController::class, 'callback'] );
 
+    //Frontend
 
     //SSlcommerze
     Route::post('/success', [SslCommerzPaymentController::class, 'success']);
