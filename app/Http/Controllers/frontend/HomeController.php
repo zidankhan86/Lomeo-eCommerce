@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\Hero;
+use App\Http\Controllers\Controller;
 use App\Models\Brand;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Hero;
+use App\Models\Product;
 use App\Models\Testimonial;
 use Illuminate\Http\Request;
 use Illuminate\Support\Collection;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
@@ -19,8 +19,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $wishlistItems = new Collection; 
-
+        $wishlistItems = new Collection;
 
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
@@ -29,23 +28,20 @@ class HomeController extends Controller
         $productIds = $wishlistItems->pluck('id');
         $product = Product::whereIn('id', $productIds)->get();
 
+        $categories = Category::all();
+        $products = Product::all();
+        $brands = Brand::all();
+        $featuredProducts = Product::where('featured', 1)->get();
+        $latestProducts = Product::orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+        $testimonials = Testimonial::all();
+        $heros = Hero::all();
 
-         $categories        = Category::all();
-         $products          = Product::all();
-         $brands            = Brand::all();
-         $featuredProducts  = Product::where('featured', 1)->get();
-         $latestProducts    = Product::orderBy('created_at', 'desc')
-                                        ->take(5)
-                                        ->get();
-          $testimonials     = Testimonial::all();
-          $heros            = Hero::all();
-
-        return view('frontend.pages.home',compact('products','brands',
-                    'featuredProducts','categories','latestProducts',
-                    'wishlistItems','testimonials','heros','product'));
+        return view('frontend.pages.home', compact('products', 'brands',
+            'featuredProducts', 'categories', 'latestProducts',
+            'wishlistItems', 'testimonials', 'heros', 'product'));
     }
-
-
 
     /**
      * Show the form for creating a new resource.

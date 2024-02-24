@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use App\Models\Brand;
+use App\Models\Category;
 use App\Models\Order;
 use App\Models\Product;
-use App\Models\Category;
 use App\Models\Testimonial;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -19,33 +19,34 @@ class HomeController extends Controller
     public function index()
     {
 
-        $totalProducts           = Product::get()->count();
-        $totalFeatured           = Product::where('status','1')->get()->count();
-        $totalCustomers          = User::get()->count();
-        $totalBrands             = Brand::get()->count();
-        $totalOrders             = Order::get()->count();
-        $totalOrdersDelivered    = Order::where('status','Delivered')->get()->count();
-        $totalOrdersPending      = Order::where('status','processing')
-                                        ->orWhere('status','pending')
-                                        ->orWhere('status','Ship')
-                                        ->get()->count();
-        $testimonials            = Testimonial::get()->count();
-        $totalCategories         = Category::get()->count();
-        $totalCategoryActive     = Category::where('status','1')->count();
-        $ordersPerDay            = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as orders_count'))
-                                    ->groupBy('date')
-                                    ->orderBy('date', 'asc')
-                                    ->get();
-          return view('backend.pages.dashboard',compact('totalProducts',
-                                                        'totalCustomers',
-                                                        'totalBrands',
-                                                        'totalOrders',
-                                                        'totalOrdersDelivered',
-                                                        'totalOrdersPending',
-                                                        'testimonials',
-                                                        'totalCategories',
-                                                        'totalCategoryActive',
-                                                        'ordersPerDay','totalFeatured'));
+        $totalProducts = Product::get()->count();
+        $totalFeatured = Product::where('status', '1')->get()->count();
+        $totalCustomers = User::get()->count();
+        $totalBrands = Brand::get()->count();
+        $totalOrders = Order::get()->count();
+        $totalOrdersDelivered = Order::where('status', 'Delivered')->get()->count();
+        $totalOrdersPending = Order::where('status', 'processing')
+            ->orWhere('status', 'pending')
+            ->orWhere('status', 'Ship')
+            ->get()->count();
+        $testimonials = Testimonial::get()->count();
+        $totalCategories = Category::get()->count();
+        $totalCategoryActive = Category::where('status', '1')->count();
+        $ordersPerDay = Order::select(DB::raw('DATE(created_at) as date'), DB::raw('COUNT(*) as orders_count'))
+            ->groupBy('date')
+            ->orderBy('date', 'asc')
+            ->get();
+
+        return view('backend.pages.dashboard', compact('totalProducts',
+            'totalCustomers',
+            'totalBrands',
+            'totalOrders',
+            'totalOrdersDelivered',
+            'totalOrdersPending',
+            'testimonials',
+            'totalCategories',
+            'totalCategoryActive',
+            'ordersPerDay', 'totalFeatured'));
     }
 
     /**

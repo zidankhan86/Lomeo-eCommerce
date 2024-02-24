@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasMany;
-use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class Product extends Model
 {
     use HasFactory;
+
     protected $guarded = [];
 
     /**
      * Get the user that owns the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function category(): BelongsTo
     {
@@ -24,17 +23,14 @@ class Product extends Model
 
     /**
      * Get the user that owns the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function brand(): BelongsTo
     {
         return $this->belongsTo(Brand::class, 'brand_id', 'id');
     }
+
     /**
      * Get all of the comments for the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
     public function gallery(): HasMany
     {
@@ -43,8 +39,6 @@ class Product extends Model
 
     /**
      * Get the user that owns the Product
-     *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
     public function orderItem(): BelongsTo
     {

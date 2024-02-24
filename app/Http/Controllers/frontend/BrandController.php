@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class BrandController extends Controller
 {
-    
     public function index()
     {
         $brands = Brand::all();
-        return view('frontend.pages.brand',compact('brands'));
+
+        return view('frontend.pages.brand', compact('brands'));
     }
 
     /**

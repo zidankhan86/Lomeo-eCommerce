@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use Exception;
 use App\Models\User;
-use Illuminate\Support\Str;
-use Illuminate\Http\Request;
+use Exception;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 use Laravel\Socialite\Facades\Socialite;
 
 class GithubController extends Controller
@@ -25,20 +24,21 @@ class GithubController extends Controller
 
             $gitUser = User::updateOrCreate([
                 'github_id' => $user->id,
-            ],[
+            ], [
                 'name' => $user->name,
                 'nickname' => $user->nickname,
                 'email' => $user->email,
                 'github_token' => $user->token,
                 'auth_type' => 'github',
                 'password' => Hash::make(Str::random(10)),
-                "role"=>'admin'
+                'role' => 'admin',
             ]);
 
             Auth::login($gitUser);
 
             return redirect()->route('app');
-        } catch(Exception $e) {
+        } catch (Exception $e) {
             //dd($e->getMessage());
         }
-    }}
+    }
+}

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
 class SearchController extends Controller
@@ -21,16 +21,15 @@ class SearchController extends Controller
 
         }
 
-        $search = Product::where('name', 'like', '%' . $searchKey . '%')->get();
+        $search = Product::where('name', 'like', '%'.$searchKey.'%')->get();
 
         $wishlistItems = collect([]);
 
-      
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
 
-        return view('frontend.pages.search',compact('search','wishlistItems'));
+        return view('frontend.pages.search', compact('search', 'wishlistItems'));
     }
 
     /**

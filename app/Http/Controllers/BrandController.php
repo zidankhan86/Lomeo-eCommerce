@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Models\Brand;
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class BrandController extends Controller
 {
@@ -16,7 +16,8 @@ class BrandController extends Controller
     {
         $brands = Brand::all();
         Category::with('category')->where('name');
-        return view('backend.pages.brandList',compact('brands'));
+
+        return view('backend.pages.brandList', compact('brands'));
     }
 
     /**
@@ -26,7 +27,8 @@ class BrandController extends Controller
     {
 
         $categories = Category::all();
-        return view('backend.pages.brandForm',compact('categories'));
+
+        return view('backend.pages.brandForm', compact('categories'));
     }
 
     /**
@@ -35,14 +37,14 @@ class BrandController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'       => 'required|max:255',
-            'image'      => 'required',
-            'category_id'=> 'required|exists:categories,id',
+            'name' => 'required|max:255',
+            'image' => 'required',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $imageName = null;
         if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $imageName = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
         }
 
@@ -69,37 +71,38 @@ class BrandController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
-        $categories= Category::all();
+        $categories = Category::all();
         $brand = Brand::find($id);
-        return view('backend.pages.brandEdit',compact('categories','brand'));
+
+        return view('backend.pages.brandEdit', compact('categories', 'brand'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         $update = Brand::find($id);
 
         $request->validate([
-            'name'          => 'required|max:255',
-            'category_id'   => 'required|exists:categories,id',
+            'name' => 'required|max:255',
+            'category_id' => 'required|exists:categories,id',
         ]);
 
         $imageName = $request->input('current_thumbnail');
         if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $imageName = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
         }
 
-             // Create the product
-            $update->update([
-            'name'          => $request->name,
-            'image'         => $imageName,
-            'slug'          => Str::slug($request->name),
-            'category_id'   => $request->category_id,
+        // Create the product
+        $update->update([
+            'name' => $request->name,
+            'image' => $imageName,
+            'slug' => Str::slug($request->name),
+            'category_id' => $request->category_id,
         ]);
 
         return redirect()->route('brand.list')->with('success', 'Brand updated successfully');

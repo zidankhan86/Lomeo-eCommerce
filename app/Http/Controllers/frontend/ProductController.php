@@ -2,18 +2,15 @@
 
 namespace App\Http\Controllers\frontend;
 
-use App\Models\Brand;
-use App\Models\Gallery;
-use App\Models\Product;
-use App\Models\Category;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Brand;
+use App\Models\Category;
+use App\Models\Product;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ProductController extends Controller
 {
-
-
     public function index()
     {
         $wishlistItems = collect([]);
@@ -22,10 +19,11 @@ class ProductController extends Controller
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
-         $categories        = Category::all();
-         $products          = Product::all();
-         $brands            = Brand::all();
-        return view('frontend.pages.product',compact('products','wishlistItems','categories','brands'));
+        $categories = Category::all();
+        $products = Product::all();
+        $brands = Brand::all();
+
+        return view('frontend.pages.product', compact('products', 'wishlistItems', 'categories', 'brands'));
     }
 
     /**
@@ -35,19 +33,20 @@ class ProductController extends Controller
     {
 
         $category = Category::findOrFail($id);
-        $products = Product::where('category_id',$id)
-                  ->where('status',1)
-                  ->limit(20)
-                  ->get();
+        $products = Product::where('category_id', $id)
+            ->where('status', 1)
+            ->limit(20)
+            ->get();
         $wishlistItems = collect([]);
 
         // Check if the user is authenticated
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
-         $categories        = Category::all();
-         $brands            = Brand::all();
-        return view('frontend.pages.categoryWiseProduct',compact('products','wishlistItems','categories','brands','category'));
+        $categories = Category::all();
+        $brands = Brand::all();
+
+        return view('frontend.pages.categoryWiseProduct', compact('products', 'wishlistItems', 'categories', 'brands', 'category'));
     }
 
     /**
@@ -61,26 +60,23 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show( $id)
+    public function show($id)
     {
 
         $wishlistItems = collect([]);
-
 
         if (Auth::check()) {
             $wishlistItems = Auth::user()->wishlistProducts;
         }
 
-         $products = Product::with('gallery')->find($id);
+        $products = Product::with('gallery')->find($id);
 
-         $product = Product::with('category')->find($id);
+        $product = Product::with('category')->find($id);
 
-
-         $relatedProducts = Product::where('category_id', $product->category->id)
-             ->where('id', '<>', $product->id)
-             ->take(4)
-             ->get();
-
+        $relatedProducts = Product::where('category_id', $product->category->id)
+            ->where('id', '<>', $product->id)
+            ->take(4)
+            ->get();
 
         //Social share
         $routeName = 'details';
@@ -89,14 +85,14 @@ class ProductController extends Controller
             $url,
             'Your share text comes here',
         )
-        ->facebook()
-        ->twitter()
-        ->linkedin()
-        ->telegram()
-        ->whatsapp()
-        ->reddit();
+            ->facebook()
+            ->twitter()
+            ->linkedin()
+            ->telegram()
+            ->whatsapp()
+            ->reddit();
 
-         return view('frontend.pages.productDetails',compact('products','wishlistItems','relatedProducts','shareComponent'));
+        return view('frontend.pages.productDetails', compact('products', 'wishlistItems', 'relatedProducts', 'shareComponent'));
     }
 
     /**

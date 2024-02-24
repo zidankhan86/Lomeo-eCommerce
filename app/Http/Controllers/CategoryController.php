@@ -3,17 +3,15 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use Illuminate\Support\Str;
 use Illuminate\Http\Request;
+use Illuminate\Support\Str;
 
 class CategoryController extends Controller
 {
-
-
     //Frontend page
     public function index()
     {
-       return view('frontend.pages.category');
+        return view('frontend.pages.category');
     }
 
     /**
@@ -30,27 +28,27 @@ class CategoryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'name'   => 'required|max:255',
+            'name' => 'required|max:255',
             'status' => 'required',
-            'image'  => 'required|image|mimes:jpeg,png,jpg,gif',
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif',
 
         ]);
 
         $imageName = null;
         if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $imageName = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
         }
 
         Category::create([
-            "name"     => $request->name,
-            "status"   => $request->status,
-            "image"    => $imageName,
-            "slug"     => Str::slug($request->name),
+            'name' => $request->name,
+            'status' => $request->status,
+            'image' => $imageName,
+            'slug' => Str::slug($request->name),
 
-       ]);
+        ]);
 
-       return redirect()->back()->with('success', 'Category created successfully.');
+        return redirect()->back()->with('success', 'Category created successfully.');
     }
 
     /**
@@ -64,38 +62,39 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit( $id)
+    public function edit($id)
     {
         $category = Category::find($id);
-       return view('backend.pages.categoryEdit',compact('category'));
+
+        return view('backend.pages.categoryEdit', compact('category'));
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request,  $id)
+    public function update(Request $request, $id)
     {
         $update = Category::find($id);
         $request->validate([
-            'name'   => 'required|max:255',
+            'name' => 'required|max:255',
             'status' => 'required',
         ]);
 
         $imageName = $request->input('current_thumbnail');
         if ($request->hasFile('image')) {
-            $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
+            $imageName = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
             $request->file('image')->storeAs('uploads', $imageName, 'public');
         }
 
         $update->update([
-            "name"     => $request->name,
-            "status"   => $request->status,
-            "image"    => $imageName,
-            "slug"     => Str::slug($request->name),
+            'name' => $request->name,
+            'status' => $request->status,
+            'image' => $imageName,
+            'slug' => Str::slug($request->name),
 
-       ]);
+        ]);
 
-       return redirect()->back()->with('success', 'Category updated successfully.');
+        return redirect()->back()->with('success', 'Category updated successfully.');
     }
 
     /**
@@ -105,10 +104,11 @@ class CategoryController extends Controller
     {
         //
     }
+
     public function list()
     {
         $categories = Category::all();
-       return view('backend.pages.categoryList',compact('categories'));
-    }
 
+        return view('backend.pages.categoryList', compact('categories'));
+    }
 }

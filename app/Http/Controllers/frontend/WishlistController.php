@@ -2,12 +2,11 @@
 
 namespace App\Http\Controllers\frontend;
 
+use App\Http\Controllers\Controller;
 use App\Models\Product;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Session;
 
 class WishlistController extends Controller
 {
@@ -17,42 +16,39 @@ class WishlistController extends Controller
     public function index()
     {
         $wishlistItems = Auth::user()->wishlistProducts;
-        $productIds    = $wishlistItems->pluck('id');
-        $products      = Product::whereIn('id', $productIds)->get();
+        $productIds = $wishlistItems->pluck('id');
+        $products = Product::whereIn('id', $productIds)->get();
 
         return view('frontend.pages.wishlist', compact('wishlistItems', 'products'));
     }
 
-
     /**
      * Show the form for creating a new resource.
      */
-    public function addToWishlist( Request $request ,$id)
+    public function addToWishlist(Request $request, $id)
     {
         $user = Auth::user();
 
+        if (! $user->wishlistProducts->contains('id', $id)) {
 
-    if (!$user->wishlistProducts->contains('id', $id)) {
+            $wishlistItem = new Wishlist(['product_id' => $id, 'user_id' => $user->id]);
 
-        $wishlistItem = new Wishlist(['product_id' => $id, 'user_id' => $user->id]);
+            $wishlistItem->save();
 
+            return redirect()->route('home')->with('success', 'Product added to wishlist successfully.');
+        }
 
-        $wishlistItem->save();
-
-        return redirect()->route('home')->with('success', 'Product added to wishlist successfully.');
+        return redirect()->route('home')->with('error', 'Product is already in the wishlist.');
     }
-
-    return redirect()->route('home')->with('error', 'Product is already in the wishlist.');
-}
 
     public function removeFromWishlist($id)
     {
 
         try {
 
-        $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
-        ->where('product_id', $id)
-        ->firstOrFail();
+            $wishlistItem = Wishlist::where('user_id', auth()->user()->id)
+                ->where('product_id', $id)
+                ->firstOrFail();
 
             if ($wishlistItem->user_id !== auth()->user()->id) {
                 return redirect()->route('product.page')->with('error', 'You do not have permission to remove this product from the wishlist.');
@@ -70,8 +66,6 @@ class WishlistController extends Controller
 
     }
 
-
-
     public function addToCartFromWishlist($id)
     {
         // Find the product in the wishlist
@@ -80,7 +74,7 @@ class WishlistController extends Controller
             ->first();
 
         if ($wishlistItem) {
-           
+
             $quantity = $wishlistItem->quantity ?? 1;
 
             // Add the product to the cart
@@ -101,10 +95,6 @@ class WishlistController extends Controller
 
         return redirect()->route('wishlist.index')->with('error', 'Product not found in the wishlist.');
     }
-
-
-
-
 
     /**
      * Display the specified resource.

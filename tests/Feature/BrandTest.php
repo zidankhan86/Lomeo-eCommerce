@@ -2,15 +2,13 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
 use App\Models\User;
-use App\Models\Brand;
-use Illuminate\Support\Str;
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\UploadedFile;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Foundation\Testing\WithFaker;
-use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class BrandTest extends TestCase
 {
@@ -23,17 +21,12 @@ class BrandTest extends TestCase
         $response->assertStatus(302);
     }
 
-
-
     public function test_brand_list_page(): void
     {
         $response = $this->get(route('brand.list'));
 
         $response->assertStatus(302);
     }
-
-
-
 
     public function test_brand_frontend_page(): void
     {
@@ -42,18 +35,17 @@ class BrandTest extends TestCase
         $response->assertStatus(200);
     }
 
-
     public function test_brand_for_backend_Store()
     {
         $user = User::create([
-            "name"      => "fakeName",
-            "email"     => "Fake@gmail.com",
-            "last_name" => "fakeLast",
-            "phone"     => "01776718178",
-            "password"  => Hash::make('123456'),
-            "role"      => "admin",
-            "image"     =>"nullable",
-            "address"   =>"fake Dhaka"
+            'name' => 'fakeName',
+            'email' => 'Fake@gmail.com',
+            'last_name' => 'fakeLast',
+            'phone' => '01776718178',
+            'password' => Hash::make('123456'),
+            'role' => 'admin',
+            'image' => 'nullable',
+            'address' => 'fake Dhaka',
         ]);
 
         $this->actingAs($user);
@@ -71,5 +63,4 @@ class BrandTest extends TestCase
         $response->assertStatus(302);
 
     }
-
 }

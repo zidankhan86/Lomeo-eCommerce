@@ -13,7 +13,8 @@ class SettingController extends Controller
     public function index()
     {
         $profile = User::all();
-        return view('backend.pages.setting',compact('profile'));
+
+        return view('backend.pages.setting', compact('profile'));
     }
 
     /**

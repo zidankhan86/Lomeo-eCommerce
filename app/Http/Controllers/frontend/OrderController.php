@@ -4,7 +4,6 @@ namespace App\Http\Controllers\frontend;
 
 use App\Http\Controllers\Controller;
 use App\Models\Order;
-use App\Models\OrderItems;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -19,11 +18,12 @@ class OrderController extends Controller
         $product = Product::find($id);
         $totalPrice = 0; // Initialize the total price
 
-                foreach ($cartContents as $item) {
+        foreach ($cartContents as $item) {
             $itemTotalPrice = $item->price * $item->quantity;
             $totalPrice += $itemTotalPrice;
         }
-        return view('frontend.pages.placeOrder',compact('product','cartContents','totalPrice'));
+
+        return view('frontend.pages.placeOrder', compact('product', 'cartContents', 'totalPrice'));
     }
 
     /**
@@ -34,9 +34,8 @@ class OrderController extends Controller
         $user = auth()->user();
         $orderHistory = Order::where('user_id', $user->id)->orderBy('created_at', 'desc')->get();
 
-        return view('frontend.pages.orderHistory',compact('orderHistory'));
+        return view('frontend.pages.orderHistory', compact('orderHistory'));
     }
-
 
     public function orderDetails($id)
     {
@@ -45,12 +44,8 @@ class OrderController extends Controller
 
         Product::with('product')->where('name');
 
-
-
-
-        return view('frontend.pages.orderDetails',compact('orderDetails'));
+        return view('frontend.pages.orderDetails', compact('orderDetails'));
     }
-
 
     /**
      * Store a newly created resource in storage.

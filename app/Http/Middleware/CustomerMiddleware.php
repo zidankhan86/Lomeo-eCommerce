@@ -17,7 +17,7 @@ class CustomerMiddleware
     public function handle(Request $request, Closure $next): Response
     {
 
-        if (!Auth::check()) {
+        if (! Auth::check()) {
 
             return redirect()->route('login.page');
         }
@@ -29,6 +29,7 @@ class CustomerMiddleware
                 return $next($request);
             }
         }
+
         return $next($request);
     }
 }

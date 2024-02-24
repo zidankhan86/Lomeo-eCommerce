@@ -16,14 +16,12 @@ class AuthController extends Controller
         return view('backend.components.auth.login');
     }
 
-
-
     public function store(Request $request)
     {
         //dd($request->all());
         $request->validate([
-            'email'     => 'required|email',
-            'password'  => 'required',
+            'email' => 'required|email',
+            'password' => 'required',
         ]);
         $credential = $request->only(['email', 'password']);
 
@@ -43,7 +41,7 @@ class AuthController extends Controller
      */
     public function show(string $id)
     {
-       //
+        //
     }
 
     /**
@@ -68,13 +66,15 @@ class AuthController extends Controller
     public function logoutUser()
     {
         Auth::logout();
+
         //  session()->flush();
-        return redirect('/')->with('success','logout');
+        return redirect('/')->with('success', 'logout');
     }
 
     public function list()
     {
         $user = User::all();
-        return view('backend.pages.userList',compact('user'));
+
+        return view('backend.pages.userList', compact('user'));
     }
 }

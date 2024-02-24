@@ -17,7 +17,7 @@ class OrderController extends Controller
         $orders = Order::all();
         Product::with('product')->where('name');
 
-        return view('backend.pages.orderList',compact('orders'));
+        return view('backend.pages.orderList', compact('orders'));
     }
 
     /**
@@ -29,10 +29,10 @@ class OrderController extends Controller
 
         $status->update([
 
-            "status"=>"Ship"
+            'status' => 'Ship',
         ]);
 
-        return redirect()->back()->with('success','Status updated successfully');
+        return redirect()->back()->with('success', 'Status updated successfully');
     }
 
     public function orderCompleted($id)
@@ -41,21 +41,22 @@ class OrderController extends Controller
 
         $status->update([
 
-            "status"=>"Delivered"
+            'status' => 'Delivered',
         ]);
 
-        return redirect()->back()->with('success','Status updated successfully');
+        return redirect()->back()->with('success', 'Status updated successfully');
     }
 
     /**
      * Display the specified resource.
      */
-    public function orderInvoice( $id)
+    public function orderInvoice($id)
     {
-        $inv        = Order::find($id);
-        $invItem    = OrderItems::where('order_id',$id)->get();
-       // dd($invItem);
-        return view('backend.components.order.invoice',compact('inv','invItem'));
+        $inv = Order::find($id);
+        $invItem = OrderItems::where('order_id', $id)->get();
+
+        // dd($invItem);
+        return view('backend.components.order.invoice', compact('inv', 'invItem'));
     }
 
     /**

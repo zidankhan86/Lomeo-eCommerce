@@ -21,7 +21,8 @@ class HeroController extends Controller
     public function list()
     {
         $heros = Hero::all();
-        return view('backend.pages.heroList',compact('heros'));
+
+        return view('backend.pages.heroList', compact('heros'));
     }
 
     /**
@@ -29,29 +30,29 @@ class HeroController extends Controller
      */
     public function store(Request $request)
     {
-       //dd($request->all());
-       $request->validate([
-        'welcome_title' => 'required|max:255',
-        'image'         => 'required',
-        'title'         => 'required',
-    ]);
+        //dd($request->all());
+        $request->validate([
+            'welcome_title' => 'required|max:255',
+            'image' => 'required',
+            'title' => 'required',
+        ]);
 
-    $imageName = null;
-    if ($request->hasFile('image')) {
-        $imageName = date('YmdHis') . '.' . $request->file('image')->getClientOriginalExtension();
-        $request->file('image')->storeAs('uploads', $imageName, 'public');
-    }
+        $imageName = null;
+        if ($request->hasFile('image')) {
+            $imageName = date('YmdHis').'.'.$request->file('image')->getClientOriginalExtension();
+            $request->file('image')->storeAs('uploads', $imageName, 'public');
+        }
 
-    // Create the product
-    Hero::create([
-        'welcome_title' => $request->welcome_title,
-        'image'         => $imageName,
-        'title'         => $request->title,
-        'discount'      => $request->discount,
+        // Create the product
+        Hero::create([
+            'welcome_title' => $request->welcome_title,
+            'image' => $imageName,
+            'title' => $request->title,
+            'discount' => $request->discount,
 
-    ]);
+        ]);
 
-    return redirect()->back()->with('success', 'Banner created successfully');
+        return redirect()->back()->with('success', 'Banner created successfully');
     }
 
     /**
@@ -81,10 +82,11 @@ class HeroController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function delete( $id)
+    public function delete($id)
     {
         $delete = Hero::find($id);
         $delete->delete();
-        return back()->with('success','Hero deleted');
+
+        return back()->with('success', 'Hero deleted');
     }
 }

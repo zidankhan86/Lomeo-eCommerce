@@ -3,8 +3,8 @@
 namespace Database\Factories;
 
 use App\Models\Brand;
-use App\Models\Product;
 use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,6 +18,7 @@ class ProductFactory extends Factory
      * @return array<string, mixed>
      */
     protected $model = Product::class;
+
     public function definition()
     {
         $imageName = null;
@@ -32,13 +33,12 @@ class ProductFactory extends Factory
             'price' => $this->faker->randomFloat(2, 10, 100),
             'slug' => $this->faker->slug,
             'featured' => $this->faker->boolean,
-            'thumbnail' => '20231130102039.jpg' . $imageName,
+            'thumbnail' => '20231130102039.jpg'.$imageName,
             'stock' => $this->faker->numberBetween(1, 100),
             'status' => $this->faker->boolean,
             'discount' => $this->faker->optional(0.5)->randomFloat(2, 5, 20),
             'category_id' => $category->id,
             'brand_id' => $brand->id,
-
 
         ];
     }
