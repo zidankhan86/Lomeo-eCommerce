@@ -6,7 +6,7 @@
       </button>
       <h1 class="navbar-brand navbar-brand-autodark">
         <a href="{{ route('app') }}">
-          <img src="{{url('/dist/logo.jpg') }}" width="230" height="70" alt="Tabler" >
+          <img src="{{url('/dist/logo.jpg.png') }}" width="260" height="80" alt="Logo" >
 
         </a>
       </h1>

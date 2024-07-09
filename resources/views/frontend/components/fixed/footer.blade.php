@@ -75,24 +75,17 @@
                 <div class="footer-widget">
                     <h2 class="widget-title text-[#9A9CAA] text-sm leading-[110%] font-display font-medium uppercase mb-5">Category</h2>
                     <ul class="flex flex-col gap-3">
+                        @php
+                        $categories = \App\Models\Category::all();
+                             @endphp
+
+                    @foreach($categories as $category)
                         <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1 ease-in-out">Sofa</a>
+                            <a href="{{ route('category.wise.product',$category->id) }}" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1 ease-in-out">{{ $category->name }}</a>
+                           
                         </li>
-                        <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1">Armchair</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1">Wing Chair</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1">Desk Chair</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1">wooden Chair</a>
-                        </li>
-                        <li>
-                            <a href="#" class="footer-link text-gray-black text-base leading-[110%] hover:text-[#007580] transition-all duration-500 inline-block pb-1">Park Bench</a>
-                        </li>
+                    @endforeach
+                        
                     </ul>
                 </div>
 
@@ -130,7 +123,7 @@
     <div class="footer-bottom shadow-[inset_0px_1px_0px_#E1E3E6] py-6">
         <div class="container px-3 md:px-5 xl:px-0">
             <div class="flex flex-wrap sm:justify-between sm:flex-nowrap justify-center items-center gap-y-6">
-                <p class="text-center text-[#9A9CAA]">@ 2021 - Blogy - Designed & Develop by <b class="text-grayscales-900">Zakirsoft</b></p>
+                <p class="text-center text-[#9A9CAA]">@  {{ date('Y') }} - Forissa - Designed & Develop by <b class="text-grayscales-900">{{ config('app.name') }}</b></p>
                 <div class="inline-flex justify-center h-[27px] w-[227px]">
                     <img src="/frontend./public/assets/images/all-img/payments.png" alt="">
                 </div>

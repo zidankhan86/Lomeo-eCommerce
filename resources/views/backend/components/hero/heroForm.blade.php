@@ -24,7 +24,7 @@
                 <div class="col-md-12">
                   <div class="mb-3">
                     <label class="form-label"> Welcom Title</label>
-                    <input type="text" value="{{ old('welcome_title') }}" name="welcome_title" class="form-control" placeholder="Welcome to lomeo">
+                    <input type="text" value="{{ old('welcome_title') }}" name="welcome_title" class="form-control" placeholder="Welcome to Forissa">
                   </div>
                   @error('welcome_title')
                 <p class="text-danger">{{ $message }}</p>

@@ -6,7 +6,7 @@
         <div class="row">
 
             <div class="col-6">
-                <p class="h3">Lomeyo eCommerce</p>
+                <p class="h3">{{ config('app.name') }}</p>
                 <address>
                     {{ $inv->address }}
                 </address>

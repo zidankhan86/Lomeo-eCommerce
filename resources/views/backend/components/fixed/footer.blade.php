@@ -18,14 +18,12 @@
         <div class="col-12 col-lg-auto mt-3 mt-lg-0">
           <ul class="list-inline list-inline-dots mb-0">
             <li class="list-inline-item">
-              Copyright &copy; 2023
-              <a href="." class="link-secondary">eCommerce</a>.
+              Copyright &copy; {{ date('Y') }}
+              <a href="." class="link-secondary">{{ config('app.name') }}</a>.
               All rights reserved.
             </li>
             <li class="list-inline-item">
-              <a href="./changelog.html" class="link-secondary" rel="noopener">
-                Beta Version
-              </a>
+              
             </li>
           </ul>
         </div>

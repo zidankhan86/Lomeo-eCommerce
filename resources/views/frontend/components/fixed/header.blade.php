@@ -317,9 +317,7 @@
                             <a href="">About</a>
                         </li>
 
-                        <li>
-                           <a href="{{ route('app') }}"> <button class="btn-primary">ADMIN PANEL</button></a>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div>
