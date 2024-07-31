@@ -108,8 +108,8 @@ class SslCommerzPaymentController extends Controller
             $product->save();
         }else {
           
-          
-            notify()->error('Out of stock');
+
+            toastr()->error('Stock', 'Out of stock');
             return redirect()->back();
     
         }
