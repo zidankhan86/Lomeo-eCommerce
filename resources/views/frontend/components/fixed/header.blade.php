@@ -14,12 +14,7 @@
                     </p>
                     <div>
                         <ul class="flex gap-6 items-center">
-                            <li class="inline-flex items-center text-white-50 justify-center relative language">
-                                <select class="custom-select" name="state">
-                                    <option value="AL">Eng</option>
-                                    <option value="WY">Bangla</option>
-                                </select>
-                            </li>
+                           
                             <li class="inline-flex items-center justify-center">
                                 <a href="#" class="inline-flex gap-2 items-center text-white opacity-70 text-[13px] leading-[130%]">Faqs</a>
                             </li>
@@ -52,7 +47,7 @@
                 <div class="flex justify-between items-center py-5">
                     <div>
                         <a href="{{ route('home') }}">
-                            <img src="/frontend./public/assets/images/all-img/logo.png" alt="">
+                            <img src="{{url ('frontend/public/assets/images/all-img/logo.png') }}" alt="">
                         </a>
                     </div>
 
@@ -265,54 +260,7 @@
                         <li>
                             <a href="{{ route('product.page') }}">Shop</a>
                         </li>
-                        {{-- <li>
-                            <a href="product-details.html">Product</a>
-                        </li> --}}
-                        {{-- <li class="relative">
-                            <a href="javascript:void(0);" class="inline-flex gap-2 items-center">Pages
-                                <span>
-                                <img src="/frontend./public/assets/images/all-img/select-arrow.png" alt="">
-                                </span>
-                            </a>
-                            <ul>
-                                <li>
-                                    <a href="404.html">404</a>
-                                </li>
-                                <li>
-                                    <a href="account-setting.html">Account Setting</a>
-                                </li>
-                                <li>
-                                    <a href="sign-in.html">Sign In</a>
-                                </li>
-                                <li>
-                                    <a href="sign-up.html">Sign Up</a>
-                                </li>
-                                <li>
-                                    <a href="forget-password.html">Forget Password</a>
-                                </li>
-                                <li>
-                                    <a href="change-password.html">Change Password</a>
-                                </li>
-                                <li>
-                                    <a href="products.html">Product List</a>
-                                </li>
-                                <li>
-                                    <a href="product-details.html">Product Details</a>
-                                </li>
-                                <li>
-                                    <a href="shopping-cart.html">Shopping Cart</a>
-                                </li>
-                                <li>
-                                    <a href="wishlist.html">Wishlist</a>
-                                </li>
-                                <li>
-                                    <a href="checkout-billing.html">Checkout Billing</a>
-                                </li>
-                                <li>
-                                    <a href="checkout-shopping.html">Checkout Shoping</a>
-                                </li>
-                            </ul>
-                        </li> --}}
+                        
                         <li>
                             <a href="">About</a>
                         </li>
