@@ -13,16 +13,7 @@ use Illuminate\Support\Facades\DB;
 
 class SslCommerzPaymentController extends Controller
 {
-    public function exampleEasyCheckout()
-    {
-        return view('exampleEasycheckout');
-    }
-
-    public function exampleHostedCheckout()
-    {
-        return view('exampleHosted');
-    }
-
+   
     public function CheckPayment(Request $request, $id)
     {
 
@@ -111,6 +102,17 @@ class SslCommerzPaymentController extends Controller
         }
         //dd($request->all());
         $product = Product::find($id);                //For specific product data pass through parameter.
+
+        if ($product->stock > 0) {
+            $product->stock--;
+            $product->save();
+        }else {
+          
+          
+            notify()->error('Out of stock');
+            return redirect()->back();
+    
+        }
         $post_data = [];
         $post_data['total_amount'] = $totalPrice;  // You cant not pay less than 10
         $post_data['total'] = $product->price;
