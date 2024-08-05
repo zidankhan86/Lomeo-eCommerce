@@ -4,12 +4,22 @@
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#sidebar-menu" aria-controls="sidebar-menu" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
-      <h1 class="navbar-brand navbar-brand-autodark">
-        <a href="{{ route('app') }}">
-          <img src="{{url('/dist/logo.jpg.png') }}" width="260" height="80" alt="Logo" >
+      
+                    @php
+                    $logo = App\Models\LogoController::latest()->first();
+                    @endphp
+                    <div>
+                        @if($logo)
+                        <h1 class="navbar-brand navbar-brand-autodark">
+                          <a href="{{ route('app') }}">
+                            <img src="{{url('/public/uploads/', $logo->image)}}" width="260" height="50" alt="Logo" >
+                  
+                          </a>
+                        </h1>
+                        @else
+                            <a href="{{ route('home') }}">Inseart a logo</a>
+                         @endif
 
-        </a>
-      </h1>
       <div class="navbar-nav flex-row d-lg-none">
         <div class="nav-item d-none d-lg-flex me-3">
           <div class="btn-list">
