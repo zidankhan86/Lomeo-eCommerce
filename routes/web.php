@@ -1,35 +1,36 @@
 <?php
 
-use App\Http\Controllers\AboutController;
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CartController;
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\ChangePasswordController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\ForgotPasswordController;
-use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
-use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
-use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
-use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
-use App\Http\Controllers\frontend\ProductController as FrontendProductController;
-use App\Http\Controllers\frontend\SearchController;
-use App\Http\Controllers\frontend\WishlistController;
-use App\Http\Controllers\GithubController;
-use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\HeroController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\TestController;
+use App\Http\Controllers\AboutController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\GithubController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\PayPalController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\RegistrationController;
 use App\Http\Controllers\SettingController;
-use App\Http\Controllers\SocialShareButtonsController;
-use App\Http\Controllers\SslCommerzPaymentController;
-use App\Http\Controllers\TestController;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\TestimonialController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\RegistrationController;
+use App\Http\Controllers\ChangePasswordController;
+use App\Http\Controllers\ForgotPasswordController;
+use App\Http\Controllers\LogoControllerController;
+use App\Http\Controllers\frontend\SearchController;
+use App\Http\Controllers\frontend\WishlistController;
+use App\Http\Controllers\SslCommerzPaymentController;
+use App\Http\Controllers\SocialShareButtonsController;
+use App\Http\Controllers\frontend\AuthController as FrontendAuthController;
+use App\Http\Controllers\frontend\HomeController as FrontendHomeController;
+use App\Http\Controllers\frontend\BrandController as FrontendBrandController;
+use App\Http\Controllers\frontend\OrderController as FrontendOrderController;
+use App\Http\Controllers\frontend\ProductController as FrontendProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -152,6 +153,10 @@ Route::group(['middleware' => 'customer'], function () {
         Route::get('/brand-form', [BrandController::class, 'create'])->name('brand.create');
         Route::get('/product-gallery/{id}', [ProductController::class, 'gallery'])->name('product.gallery');
         Route::get('/delete-gallery/{id}', [ProductController::class, 'deleteGallery'])->name('delete.gallery');
+        Route::get('/logo', [LogoControllerController::class, 'index'])->name('logo.form');
+        Route::get('/logo/list', [LogoControllerController::class, 'logo_list'])->name('logo.list');
+        Route::get('/logo/delete/{id}', [LogoControllerController::class, 'logo_delete'])->name('logo.delete');
+        
         //Edit
         Route::get('/brand-form/{id}', [BrandController::class, 'edit'])->name('brand.edit');
         Route::get('/product/{id}', [ProductController::class, 'edit'])->name('product.edit');
@@ -165,6 +170,7 @@ Route::group(['middleware' => 'customer'], function () {
         Route::post('/product/update/{id}', [ProductController::class, 'update'])->name('product.update');
         Route::post('/product-gallery-store', [ProductController::class, 'galleryStore'])->name('gallery.store');
         Route::post('/category-update/{id}', [CategoryController::class, 'update'])->name('category.update');
+        Route::post('/logo/store', [LogoControllerController::class, 'store'])->name('logo.store');
         //profile
         Route::get('/profile', [ProfileController::class, 'index'])->name('profile');
         //post

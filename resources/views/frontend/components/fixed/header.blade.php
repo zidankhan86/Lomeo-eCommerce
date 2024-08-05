@@ -45,10 +45,19 @@
         <div class="main-header bg-grayscales-500 lg:border-none border-b border-grayscales-700">
             <div class="container px-3 md:px-5 xl:px-0">
                 <div class="flex justify-between items-center py-5">
+                   
+                    @php
+                    $logo = App\Models\LogoController::latest()->first();
+                    @endphp
                     <div>
+                        @if($logo)
                         <a href="{{ route('home') }}">
-                            <img src="{{url ('frontend/public/assets/images/all-img/logo.png') }}" alt="">
+                            <img src="{{url('/public/uploads/', $logo->image)}}" alt="">
                         </a>
+                        @else
+                            <a href="{{ route('home') }}">Inseart a logo</a>
+                         @endif
+                       
                     </div>
 
                     <div class="lg:max-w-[413px] lg:block hidden w-full">

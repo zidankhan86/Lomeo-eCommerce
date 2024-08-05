@@ -140,7 +140,7 @@
                     </div>
                     <div class="flex justify-between items-center pt-4">
                         <p class="common-hedding">discount</p>
-                        <p class="text-gray-black text-[16px] leading-[120%] font-display font-medium">26%</p>
+                        <p class="text-gray-black text-[16px] leading-[120%] font-display font-medium"></p>
                     </div>
                     <div class="flex justify-between items-center pt-4">
                         <p class="common-hedding">shipping </p>
