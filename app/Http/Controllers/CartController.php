@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
+use Illuminate\Http\Request;
 
 use App\Models\Product;
 use Cart;
@@ -79,4 +80,28 @@ class CartController extends Controller
 
         return redirect()->route('cart.show')->with('success', 'Cart cleared successfully.');
     }
+
+    public function updateCart(Request $request, $productId)
+{
+    $userId = auth()->user()->id;
+    $quantity = $request->input('quantity');
+
+    // Check if the product exists in the cart
+    $cartItem = \Cart::session($userId)->get($productId);
+
+    if (!$cartItem) {
+        return back()->with('error', 'Product not found in the cart.');
+    }
+
+    // Update the quantity of the product in the cart
+    \Cart::session($userId)->update($productId, [
+        'quantity' => array(
+            'relative' => false,
+            'value' => $quantity
+        ),
+    ]);
+
+    return back()->with('success', 'Product quantity updated.');
+}
+
 }

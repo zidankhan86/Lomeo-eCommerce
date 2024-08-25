@@ -47,14 +47,20 @@
                                         <p class="mb-0">BDT {{ number_format($item->price, 2) }}</p>
                                     </td>
                                     <td class="py-6 text-sm">
-                                        <div class="border inline-flex justify-around items-center h-[52px] w-[140px] border-[#D6D9DD] rounded-lg">
-                                            <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pl-[14px] select-none minus" id="minus">-</span>
-                                            <p class="text-[#272343] text-base plus_mines_input select-none">{{ $item->quantity }}</p>
-                                            <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pr-[14px] select-none plus" id="plus">+</span>
-                                        </div>
+                                        @foreach ($cartContents as $item)
+                                            <form action="{{ route('cart.update', $item->id) }}" method="POST">
+                                                @csrf
+                                                <input type="number" name="quantity" value="{{ $item->quantity }}" min="1">
+                                              
+                                            
+                                            
+                                        @endforeach
+
+                                        
                                     </td>
                                     <td class="py-6 text-sm">
                                         <p>BDT {{ number_format($item->price * $item->quantity, 2) }}</p>
+                                        
                                     </td>
                                 </tr>
                             @endforeach
@@ -66,8 +72,9 @@
                     <!-- Coupon code and apply button here -->
                     <input type="text" name="" id="" class="px-5 py-[18px] bg-[#F0F2F3] rounded-lg border-none focus:outline-none coupon-input coupon-btn w-full block focus:ring-2 ring-[#029FAE]" placeholder="Coupon Code">
                     <button type="submit" class="bg-[#007580] hover:bg-[#272343] transition-all duration-300 inline-flex font-semibold text-gray-white coupon-btn px-6 py-[17px] rounded-lg">Apply Coupon Code</button>
-                    <button class="bg-off-white text-[#272343] coupon-btn font-semibold py-[17px] px-6 rounded-lg">Update Cart</button>
+                    <button type="submit" class="bg-off-white text-[#272343] coupon-btn font-semibold py-[17px] px-6 rounded-lg">Update Cart</button>
                 </div>
+            </form>
             </div>
             <!-- Shopping cart end -->
 

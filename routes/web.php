@@ -111,6 +111,8 @@ Route::group(['middleware' => 'customer'], function () {
     Route::get('/cart', [CartController::class, 'showCart'])->name('cart.show');
     Route::get('/remove-from-cart/{product}', [CartController::class, 'removeFromCart'])->name('cart.remove');
     Route::get('/clear-cart', [CartController::class, 'clearCart'])->name('cart.clear');
+    Route::post('/update-cart/{product}', [CartController::class, 'updateCart'])->name('cart.update');
+
     //Wishlist
     Route::get('/wishlist', [WishlistController::class, 'index'])->name('wishlist.index');
     Route::post('/wishlist/add/{id}', [WishlistController::class, 'addToWishlist'])->name('add.to.wishlist');

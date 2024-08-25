@@ -114,11 +114,7 @@
                     </ul>
                 </div>
                 <div class="flex flex-wrap lg:flex-nowrap items-center gap-3 mb-6">
-                    <div class="border inline-flex justify-around items-center h-[52px] w-[140px] xl:w-[343px] add-to-cart-btn border-[#D6D9DD] rounded-lg">
-                        <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pl-[14px] select-none minus" id="minus">-</span>
-                        <input type="text" class="text-[#272343] text-base plus_mines_input select-none" value="01" />
-                        <span class="w-5 h-5 inline-flex justify-center items-center text-[#9A9CAA] pr-[14px] select-none plus" id="plus">+</span>
-                    </div>
+                    
                     <div class="flex gap-3 w-full">
                         <div class="xl:w-[343px] add-to-cart-btn">
                             <button class="inline-flex gap-3 py-3.5 bg-[#029FAE] hover:bg-[#272343] transition-all duration-300 rounded-lg px-4 xl:w-[343px] w-full items-center justify-center">
@@ -134,12 +130,7 @@
                             </button>
                         </div>
                         <div>
-                            <button class="h-[52px] w-[52px] border border-[#D6D9DD] rounded-lg inline-flex justify-center items-center">
-                                {{-- <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd" clip-rule="evenodd" d="M2.87199 11.598C1.79899 8.24799 3.05199 4.419 6.56999 3.286C7.48224 2.9941 8.45106 2.92457 9.39563 3.08322C10.3402 3.24187 11.2332 3.62409 12 4.198C13.455 3.073 15.572 2.693 17.42 3.286C20.937 4.419 22.199 8.24799 21.127 11.598C19.457 16.908 12 20.998 12 20.998C12 20.998 4.59799 16.97 2.87199 11.598V11.598Z" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                    <path d="M16 6.70001C16.5232 6.86903 16.9845 7.18931 17.3257 7.62039C17.6669 8.05148 17.8727 8.57403 17.917 9.12201" stroke="#272343" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
-                                </svg> --}}
-                            </button>
+                           
                         </div>
                     </div>
                 </div>
