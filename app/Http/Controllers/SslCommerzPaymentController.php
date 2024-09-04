@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Library\SslCommerz\SslCommerzNotification;
-use App\Models\Order;
-use App\Models\OrderItems;
-use App\Models\Product;
 use App\Models\User;
-use App\Notifications\OrderReceivedNotification;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderItems;
+use Darryldecode\Cart\Cart;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use App\Notifications\OrderReceivedNotification;
+use App\Library\SslCommerz\SslCommerzNotification;
 
 class SslCommerzPaymentController extends Controller
 {
@@ -17,6 +19,28 @@ class SslCommerzPaymentController extends Controller
     public function CheckPayment(Request $request, $id)
     {
 
+        $cartContents = \Cart::session(auth()->user()->id)->getContent();
+        $totalPrice = 0; // Initialize the total price
+
+        foreach ($cartContents as $cartItem) {
+            $itemTotalPrice = $cartItem->price * $cartItem->quantity;
+            $totalPrice += $itemTotalPrice;
+        }
+        //dd($request->all());
+        $product = Product::find($id);                //For specific product data pass through parameter.
+
+        if ($product) {
+            if ($product->stock >= $cartItem->quantity) {
+                // Decrease the product stock based on the cart item quantity
+                $product->stock -= $cartItem->quantity;
+                $product->save();
+            } else {
+
+            // toastr()->error('Stock', 'Out of stock');
+            return redirect()->route('home')->with('Stock', 'Out of stock');
+            }
+        }
+        
         $request->validate([
             'name' => 'required|string',
             'last_name' => 'required|string',
@@ -96,22 +120,23 @@ class SslCommerzPaymentController extends Controller
         $cartContents = \Cart::session(auth()->user()->id)->getContent();
         $totalPrice = 0; // Initialize the total price
 
-        foreach ($cartContents as $item) {
-            $itemTotalPrice = $item->price * $item->quantity;
+        foreach ($cartContents as $cartItem) {
+            $itemTotalPrice = $cartItem->price * $cartItem->quantity;
             $totalPrice += $itemTotalPrice;
         }
         //dd($request->all());
         $product = Product::find($id);                //For specific product data pass through parameter.
 
-        if ($product->stock > 0) {
-            $product->stock--;
-            $product->save();
-        }else {
-          
+        if ($product) {
+            if ($product->stock >= $cartItem->quantity) {
+                // Decrease the product stock based on the cart item quantity
+                $product->stock -= $cartItem->quantity;
+                $product->save();
+            } else {
 
-            toastr()->error('Stock', 'Out of stock');
-            return redirect()->back();
-    
+            // toastr()->error('Stock', 'Out of stock');
+            return redirect()->route('home')->with('Stock', 'Out of stock');
+            }
         }
         $post_data = [];
         $post_data['total_amount'] = $totalPrice;  // You cant not pay less than 10
@@ -235,13 +260,15 @@ class SslCommerzPaymentController extends Controller
                     ->where('transaction_id', $tran_id)
                     ->update(['status' => 'Processing']);
 
-                echo '<br >Transaction is successfully Completed';
+                    return redirect()->route('home')->with('success', 'Payment initiated successfully.');
+
+
             }
         } elseif ($order_details->status == 'Processing' || $order_details->status == 'Complete') {
             /*
              That means through IPN Order status already updated. Now you can just show the customer that transaction is completed. No need to udate database.
              */
-            echo 'Transaction is successfully Completed';
+            return redirect()->route('home')->with('success', 'Payment initiated successfully.');
         } else {
             //That means something wrong happened. You can redirect customer to your product page.
             echo 'Invalid Transaction';
