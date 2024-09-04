@@ -91,26 +91,18 @@
                 </div>
                 <div class="mb-6">
                     <ul class="p-0 m-0">
+                        
                         <li>
                             <p class="text-[15px] inline-flex gap-2 items-center">
-                                <span class="text-[#9A9CAA]">Material:</span><span class="text-[#636270] font-medium">Polyester, Fabric</span>
+                                <span class="text-[#9A9CAA]">Brand:</span><span class="text-[#636270] font-medium">{{ $products->brand->name }}</span>
                             </p>
                         </li>
                         <li>
                             <p class="text-[15px] inline-flex gap-2 items-center">
-                                <span class="text-[#9A9CAA]">Brand:</span><span class="text-[#636270] font-medium">Purefit</span>
+                                <span class="text-[#9A9CAA]">Category:</span><span class="text-[#636270] font-medium">{{ $products->category->name }}</span>
                             </p>
                         </li>
-                        <li>
-                            <p class="text-[15px] inline-flex gap-2 items-center">
-                                <span class="text-[#9A9CAA]">Category:</span><span class="text-[#636270] font-medium">Wing Chair</span>
-                            </p>
-                        </li>
-                        <li>
-                            <p class="text-[15px] inline-flex gap-2 items-center">
-                                <span class="text-[#9A9CAA]">Tag:</span><span class="text-[#636270] font-medium">minimalistic, Sofa, Living room</span>
-                            </p>
-                        </li>
+                        
                     </ul>
                 </div>
                 <div class="flex flex-wrap lg:flex-nowrap items-center gap-3 mb-6">
