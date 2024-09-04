@@ -73,10 +73,7 @@
                 <td class="text-end">0%</td>
             </tr>
            
-            <tr>
-                <td colspan="4" class="font-weight-bold text-uppercase text-end">Total Due</td>
-                <td class="font-weight-bold text-end">000,00</td>
-            </tr>
+           
         </table>
         <p class="text-muted text-center mt-5">Thank you very much. We look forward to working with
             you again!</p>
