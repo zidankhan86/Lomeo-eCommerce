@@ -37,7 +37,7 @@ class SslCommerzPaymentController extends Controller
             } else {
 
             // toastr()->error('Stock', 'Out of stock');
-            return redirect()->route('home')->with('Stock', 'Out of stock');
+            return redirect()->route('home')->with('error', 'Out of stock');
             }
         }
         
