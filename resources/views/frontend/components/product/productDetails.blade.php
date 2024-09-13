@@ -64,30 +64,16 @@
                     {!! $products->short_description!!}
                 </p>
                 <div class="mb-6">
-                    <h2 class="text-[#9A9CAA] text-sm font-medium mb-3">Color</h2>
+                    <h2 class="text-[#9A9CAA] text-sm font-medium mb-3">Stock</h2>
                     <ul class="flex gap-[30px] items-center p-0 m-0">
                         <li>
                             <label for="black" class="inline-flex gap-2 items-center custom-radio cursor-pointer">
                                 <input type="radio" id="black" checked name="color" class="hidden"/>
-                                <span class="bg-[#1E1E1E] w-8 h-8 rounded-full custom-bg m-1"></span>
-                                <span class="text-base text-[#636270]">Black</span>
+                                
+                                <span class="text-base text-[#636270]"><b style="color: black">{{ $products->stock }}</b></span>
                             </label>
                         </li>
-                        <li>
-                            <label for="brown" class="inline-flex gap-2 items-center custom-radio cursor-pointer">
-                                <input type="radio" id="brown" name="color" class="hidden" />
-                                <span class="bg-[#B26F3F] w-8 h-8 rounded-full custom-bg m-1"></span>
-                                <span class="text-base text-[#636270]">Brown</span>
-                            </label>
-                        </li>
-                        <li>
-                            <label for="orange" class="inline-flex gap-2 items-center custom-radio cursor-pointer">
-                                <input type="radio" id="orange" name="color" class="hidden" />
-                                <span class="bg-[#F7AD94] w-8 h-8 rounded-full custom-bg m-1"></span>
-                                <span class="text-base text-[#636270]">Peach</span>
-                            </label>
-                        </li>
-                    </ul>
+                    
                 </div>
                 <div class="mb-6">
                     <ul class="p-0 m-0">
