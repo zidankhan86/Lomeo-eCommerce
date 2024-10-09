@@ -42,7 +42,7 @@
                                 </td>
 
                                 <td class="py-6 text-sm">
-                                    <p>1</p>
+                                    {{-- <p>{{ $item->quantity }}</p> --}}
                                 </td>
                                 <td class="py-6 text-sm">
                                     <p>BDT {{ $item->total }}</p>

@@ -83,14 +83,32 @@ class CartController extends Controller
 
     public function updateCart(Request $request, $productId)
 {
-    $userId = auth()->user()->id;
-    $quantity = $request->input('quantity');
+    // Validate quantity input
+    $request->validate([
+        'quantity' => 'required|integer|min:1',
+    ]);
 
-    // Check if the product exists in the cart
+    $userId = auth()->user()->id;
+    $quantity = intval($request->input('quantity'));  // Ensure quantity is an integer
+
+    // Find the cart item
     $cartItem = \Cart::session($userId)->get($productId);
 
     if (!$cartItem) {
         return back()->with('error', 'Product not found in the cart.');
+    }
+
+    // Find the product by ID to check its stock
+    $product = Product::find($productId);
+
+    if (!$product) {
+        return back()->with('error', 'Product not found.');
+    }
+
+    // Check if product stock is sufficient
+    if ($product->stock < $quantity) {
+        // Not enough stock
+        return back()->with('error', 'Out of stock.');
     }
 
     // Update the quantity of the product in the cart
@@ -103,5 +121,7 @@ class CartController extends Controller
 
     return back()->with('success', 'Product quantity updated.');
 }
+
+    
 
 }
