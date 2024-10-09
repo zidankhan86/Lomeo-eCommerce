@@ -63,7 +63,9 @@
                           <a class="dropdown-item" href="{{ route('product.gallery',$product->id) }}">
                             Add Gallery
                           </a>
-                          
+                          <a class="dropdown-item" href="{{ route('delete',$product->id) }}">
+                            Delete
+                          </a>
                         </div>
                       </div>
                     </div>

@@ -19,28 +19,8 @@ class SslCommerzPaymentController extends Controller
     public function CheckPayment(Request $request, $id)
     {
 
-        $cartContents = \Cart::session(auth()->user()->id)->getContent();
-        $totalPrice = 0; // Initialize the total price
 
-        foreach ($cartContents as $cartItem) {
-            $itemTotalPrice = $cartItem->price * $cartItem->quantity;
-            $totalPrice += $itemTotalPrice;
-        }
-        //dd($request->all());
-        $product = Product::find($id);                //For specific product data pass through parameter.
-
-        if ($product) {
-            if ($product->stock >= $cartItem->quantity) {
-                // Decrease the product stock based on the cart item quantity
-                $product->stock -= $cartItem->quantity;
-                $product->save();
-            } else {
-
-            // toastr()->error('Stock', 'Out of stock');
-            return redirect()->route('home')->with('error', 'Out of stock');
-            }
-        }
-        
+ 
         $request->validate([
             'name' => 'required|string',
             'last_name' => 'required|string',
@@ -118,25 +98,29 @@ class SslCommerzPaymentController extends Controller
 
         ]);
         $cartContents = \Cart::session(auth()->user()->id)->getContent();
-        $totalPrice = 0; // Initialize the total price
-
+        $totalPrice = 0; 
+        
         foreach ($cartContents as $cartItem) {
             $itemTotalPrice = $cartItem->price * $cartItem->quantity;
             $totalPrice += $itemTotalPrice;
-        }
-        //dd($request->all());
-        $product = Product::find($id);                //For specific product data pass through parameter.
-
-        if ($product) {
-            if ($product->stock >= $cartItem->quantity) {
-                // Decrease the product stock based on the cart item quantity
-                $product->stock -= $cartItem->quantity;
-                $product->save();
+        
+            // Fetch the product that matches the current cart item by its ID
+            $product = Product::where('id', $cartItem->id)->first();
+        
+            if ($product) {
+                // Check if the stock is sufficient for the current cart item's quantity
+                if ($product->stock >= $cartItem->quantity) {
+                    // Deduct the quantity from the specific product's stock
+                    $product->stock -= $cartItem->quantity;
+                    $product->save();
+                } else {
+                    // Redirect if any product is out of stock
+                    return redirect()->route('home')->with('error', 'Product ' . $product->name . ' is out of stock.');
+                }
             } else {
-
-            // toastr()->error('Stock', 'Out of stock');
-            return redirect()->route('home')->with('Stock', 'Out of stock');
+                return redirect()->route('home')->with('error', 'Product not found.');
             }
+        
         }
         $post_data = [];
         $post_data['total_amount'] = $totalPrice;  // You cant not pay less than 10

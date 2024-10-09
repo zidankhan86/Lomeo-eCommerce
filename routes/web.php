@@ -143,6 +143,7 @@ Route::group(['middleware' => 'customer'], function () {
         //Pages
 
         Route::get('/product', [ProductController::class, 'index'])->name('products.index');
+        Route::get('/product/delete/{id}', [ProductController::class, 'delete'])->name('delete');
         Route::get('/product-list', [ProductController::class, 'list'])->name('product.list');
         Route::get('/logout', [TestController::class, 'logout'])->name('logout');
         Route::get('/form', [TestController::class, 'form'])->name('form');

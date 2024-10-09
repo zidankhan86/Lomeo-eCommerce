@@ -84,9 +84,12 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Product $product)
+    public function delete($id)
     {
-        //
+        $delete = Product::find($id);
+        $delete->delete();
+
+        return back()->with('success', 'Product deleted');
     }
 
     /**
